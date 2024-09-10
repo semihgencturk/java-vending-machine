@@ -7,7 +7,7 @@ public class Product {
     */
 
     private String productName;
-    private Float productPrice;
+    private Double productPrice;
 
     public String getProductName() {
         return productName;
@@ -17,11 +17,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public Float getProductPrice() {
+    public Double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Float productPrice) {
+    public void setProductPrice(Double productPrice) {
         if (productPrice >= 0) {
             this.productPrice = productPrice;
         } else {
