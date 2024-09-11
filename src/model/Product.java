@@ -1,3 +1,5 @@
+package model;
+
 public class Product {
     /*
     Define the product's attributes and behaviours
@@ -25,7 +27,7 @@ public class Product {
         if (productPrice >= 0) {
             this.productPrice = productPrice;
         } else {
-            throw new IllegalArgumentException("Product Price cannot be smaller than 0");
+            throw new IllegalArgumentException("model.Product Price cannot be smaller than 0");
         }
 
     }

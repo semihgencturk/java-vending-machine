@@ -1,14 +1,21 @@
-import java.util.HashMap;
-
-public class VendingMachine {
-    /*
+/*
     Define the attributes and behaviours of the Vending Machine:
         - Which data should be defined in a Vending Machine?
             - Available Storage Unit Number, their capacity
-            - Storage Unit Number <-> Product
+            - Storage Unit Number <-> model.Product
         - Which methods should be operated for a Vending Machine works smoothly?
-            - Adding a new Product: Product, Storage Unit, Amount
-     */
+            - Adding a new model.Product: model.Product, Storage Unit, Amount
+*/
+
+package model;
+
+import controller.vendingMachine.VendingMachineCreator;
+
+import java.util.HashMap;
+
+public class VendingMachine {
+    private static VendingMachine self = new VendingMachine();
+    public static VendingMachine getInstance() { return self; }
 
     private int totalProductStorageUnitNumber;
     private int productStorageUnitCapacity;
