@@ -9,8 +9,6 @@
 
 package model;
 
-import controller.vendingMachine.VendingMachineCreator;
-
 import java.util.HashMap;
 
 public class VendingMachine {
@@ -24,7 +22,7 @@ public class VendingMachine {
     private int denominationStorageUnitCapacity;
 
     private HashMap<Integer, Denomination> denominationsOnUsage = new HashMap<Integer, Denomination>();
-    private HashMap<Integer, Integer> denominationAvailability = new HashMap<Integer, Integer>();
+    private HashMap<Integer, Integer> denominationsAvailability = new HashMap<Integer, Integer>();
     private HashMap<Integer, Product> productsOnSale = new HashMap<Integer, Product>();
     private HashMap<Integer, Integer> productsAvailability = new HashMap<Integer, Integer>();
 
@@ -76,12 +74,12 @@ public class VendingMachine {
         denominationsOnUsage.put(denominationStorageUnit, myDenomination);
     }
 
-    public HashMap<Integer, Integer> getDenominationAvailability() {
-        return denominationAvailability;
+    public HashMap<Integer, Integer> getDenominationsAvailability() {
+        return denominationsAvailability;
     }
 
-    public void setDenominationAvailability(int denominationStorageUnit, int amount) {
-        denominationAvailability.put(denominationStorageUnit, amount);
+    public void setDenominationAvailability(int denominationStorageUnit, int denominationPiece) {
+        denominationsAvailability.put(denominationStorageUnit, denominationPiece);
     }
 
     public HashMap<Integer, Product> getProductsOnSale() {
@@ -96,7 +94,7 @@ public class VendingMachine {
         return productsAvailability;
     }
 
-    public void setProductsAvailability(int productStorageUnit, int amount) {
-        productsAvailability.put(productStorageUnit, amount);
+    public void setProductsAvailability(int productStorageUnit, int productPiece) {
+        productsAvailability.put(productStorageUnit, productPiece);
     }
 }

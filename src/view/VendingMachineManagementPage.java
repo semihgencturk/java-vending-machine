@@ -4,7 +4,7 @@
     Excepted input is an integer represents the choices such as 1,2 etc.
     If the input isn't included the choices, it gives an error. (The error text: Invalid Entry)
     The Admin page gives two choices:
-        1-Add a New Vending Machine:
+        1-Define a New Vending Machine:
         This option calls the method to create a new vending machine. (the method: definingNewVendingMachine)
         When the user enter 1, this is invoked.
         2-Update An Existing Vending Machine:
@@ -13,15 +13,20 @@
         3-Delete An Existing Vending Machine:
         This option calls the method to delete an existing vending machine.
         When the user enter 3, this is invoked.
+        4- List of All Vending Machines
+        This option calls the method to list all vending machines in the application.
+        When the user enter 4, this is invoked.
  */
 
 package view;
 
+import controller.currentVendingMachines.CurrentVendingMachinesAdder;
+import controller.currentVendingMachines.CurrentVendingMachinesDeleter;
+import controller.currentVendingMachines.CurrentVendingMachinesLister;
+import controller.currentVendingMachines.currentVendingMachineUpdater;
 import controller.vendingMachine.VendingMachineCreator;
 
 import java.util.Scanner;
-
-import static model.CurrentVendingMachinesList.CurrentVendingMachinesList;
 
 public class VendingMachineManagementPage {
     private static VendingMachineManagementPage self = new VendingMachineManagementPage();
@@ -31,27 +36,35 @@ public class VendingMachineManagementPage {
 
     public void VendingMachineManagementPageOpener() {
         System.out.println("You can manage the machines in there. Please select the operation:");
-        System.out.println("1- Add A New Vending Machine");
+        System.out.println("1- Define A New Vending Machine");
         System.out.println("2- Update An Existing Vending Machine");
         System.out.println("3- Delete An Existing Vending Machine");
+        System.out.println("4- List of All Vending Machines");
 
         int selectedOption = myScanner.nextInt();
 
         switch (selectedOption) {
             case 1:
-                CurrentVendingMachinesList.add(VendingMachineCreator.getInstance().definingNewVendingMachine());
-                System.out.println(CurrentVendingMachinesList);
+                CurrentVendingMachinesAdder.getInstance().CurrentVendingMachinesAdderStarter(VendingMachineCreator.getInstance().definingNewVendingMachine());
                 break;
             case 2:
-                System.out.println("2 is called");
-                System.out.println(CurrentVendingMachinesList);
+                currentVendingMachineUpdater.getInstance().VendingMachineUpdaterStarter();
                 break;
             case 3:
-                System.out.println("3 is called");
+
+                CurrentVendingMachinesDeleter.getInstance().CurrentVendingMachinesDeleterStarter();
+                break;
+            case 4:
+                CurrentVendingMachinesLister.getInstance().currentVendingMachinesListerStarter();
                 break;
             default:
                 System.out.println("Invalid Entry");
         }
     }
-
 }
+
+// CurrentVendingMachinesLister.getInstance().currentVendingMachinesListerStarter();
+//                System.out.println("Select the vending machine you want to update");
+//                int selectedVendingMachine = myScanner.nextInt();
+//                System.out.println("s" + myVendingMachine1.getTotalProductStorageUnitNumber());
+//                VendingMachineUpdater.getInstance().totalProductStorageUnitNumberUpdater(myVendingMachine1, 20);

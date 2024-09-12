@@ -9,6 +9,8 @@ public class ApplicationLauncher {
         // We're going to launch the machine in there.
         System.out.println("Main is called successfully!");
 
+        GreetingPage.getInstance().greetingPageStarter();
+
         /*
 
         Which way is better? Also, research what the best practices are?
@@ -25,12 +27,6 @@ public class ApplicationLauncher {
         GreetingPage.get().greetingPageStarter();
 
         */
-
-        GreetingPage.getInstance().greetingPageStarter();
-
-        ArrayList<VendingMachine> currentVendingMachines = new ArrayList<VendingMachine>();
-
-
 
 //        // Admin
 //        ApplicationAdmin myVendingMachineAdmin = new ApplicationAdmin();
@@ -54,7 +50,7 @@ public class ApplicationLauncher {
 //        */
 //
 //        // Machine
-//        VendingMachine myVendingMachine1 = new VendingMachine();
+//
 //
 //        // Machine's Denominations
 //        myVendingMachineAdmin.addingDenominationToMachine(myVendingMachine1, 1, denomination5, 5);
