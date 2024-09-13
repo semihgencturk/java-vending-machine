@@ -26,14 +26,14 @@ public class VendingMachineUpdater {
     public void denominationStorageUnitCapacityUpdater(VendingMachine vendingMachine, int denominationStorageUnitCapacity) {
         vendingMachine.setDenominationStorageUnitCapacity(denominationStorageUnitCapacity);
     };
-    public void denominationsOnUsageUpdater(VendingMachine vendingMachine, int denominationStorageUnit, Denomination myDenomination) {
-        vendingMachine.setDenominationsOnUsage(denominationStorageUnit, myDenomination);
+    public void denominationsOnUsageUpdater(VendingMachine vendingMachine, int denominationStorageUnit, Denomination denomination) {
+        vendingMachine.setDenominationsOnUsage(denominationStorageUnit, denomination);
     };
     public void denominationAvailabilityUpdater(VendingMachine vendingMachine, int denominationStorageUnit, int denominationPiece) {
         vendingMachine.setDenominationAvailability(denominationStorageUnit, denominationPiece);
     };
-    public void productsOnSaleUpdater(VendingMachine vendingMachine, int productStorageUnit, Product myProduct) {
-        vendingMachine.setProductsOnSale(productStorageUnit, myProduct);
+    public void productsOnSaleUpdater(VendingMachine vendingMachine, int productStorageUnit, Product product) {
+        vendingMachine.setProductsOnSale(productStorageUnit, product);
     };
     public void productsAvailabilityUpdater(VendingMachine vendingMachine, int productStorageUnit, int productPiece) {
         vendingMachine.setProductsAvailability(productStorageUnit, productPiece);
