@@ -3,8 +3,16 @@ package controller.product;
 import model.Product;
 
 public class ProductUpdater {
-    public void updatingExistingProduct(Product myProduct, String myProductName, Double myProductPrice) {
-        myProduct.setProductName(myProductName);
-        myProduct.setProductPrice(myProductPrice);
+    private static ProductUpdater self = new ProductUpdater();
+    public static ProductUpdater getInstance() { return self; }
+
+    public void productIdUpdater(Product product, int productId) {
+        product.setProductId(productId);
     }
+    public void productNameUpdater(Product product, String productName) {
+        product.setProductName(productName);
+    };
+    public void productPriceUpdater(Product product, Double productPrice) {
+        product.setProductPrice(productPrice);
+    };
 }

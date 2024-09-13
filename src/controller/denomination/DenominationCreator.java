@@ -1,17 +1,22 @@
 package controller.denomination;
 
-import controller.vendingMachine.VendingMachineCreator;
 import model.Denomination;
 
 public class DenominationCreator {
     private static DenominationCreator self = new DenominationCreator();
     public static DenominationCreator getInstance() { return self; }
 
-    public Denomination definingNewDenomination(String myDenominationCurrency, Integer myDenominationAmount){
-        Denomination myDenomination = new Denomination();
-        myDenomination.setDenominationCurrency(myDenominationCurrency);
-        myDenomination.setDenominationAmount(myDenominationAmount);
+    public Denomination denominationCreatorStarter() {
+        return Denomination.getInstance();
+    }
 
-        return myDenomination;
+    public Denomination denominationCreatorStarter(int denominationId, String denominationCurrency, Integer denominationAmount){
+        Denomination denomination = Denomination.getInstance();
+
+        denomination.setDenominationId(denominationId);
+        denomination.setDenominationCurrency(denominationCurrency);
+        denomination.setDenominationAmount(denominationAmount);
+
+        return denomination;
     }
 }

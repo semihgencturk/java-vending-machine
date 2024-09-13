@@ -1,9 +1,20 @@
 package model;
 
 public class Denomination {
+    private static Denomination self = new Denomination();
+    public static Denomination getInstance() { return self; }
 
+    private int denominationId;
     private String denominationCurrency;
     private int denominationAmount;
+
+    public int getDenominationId() {
+        return denominationId;
+    }
+
+    public void setDenominationId(int denominationId) {
+        this.denominationId = denominationId;
+    }
 
     public int getDenominationAmount() {
         return denominationAmount;

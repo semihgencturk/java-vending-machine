@@ -15,16 +15,33 @@ public class VendingMachine {
     private static VendingMachine self = new VendingMachine();
     public static VendingMachine getInstance() { return self; }
 
+    private int vendingMachineId;
+    private String vendingMachineName;
+
     private int totalProductStorageUnitNumber;
     private int productStorageUnitCapacity;
-
     private int totalDenominationStorageUnitNumber;
     private int denominationStorageUnitCapacity;
-
     private HashMap<Integer, Denomination> denominationsOnUsage = new HashMap<Integer, Denomination>();
     private HashMap<Integer, Integer> denominationsAvailability = new HashMap<Integer, Integer>();
     private HashMap<Integer, Product> productsOnSale = new HashMap<Integer, Product>();
     private HashMap<Integer, Integer> productsAvailability = new HashMap<Integer, Integer>();
+
+    public int getVendingMachineId() {
+        return vendingMachineId;
+    }
+
+    public void setVendingMachineId(int vendingMachineId) {
+        this.vendingMachineId = vendingMachineId;
+    }
+
+    public String getVendingMachineName() {
+        return vendingMachineName;
+    }
+
+    public void setVendingMachineName(String vendingMachineName) {
+        this.vendingMachineName = vendingMachineName;
+    }
 
     public int getTotalProductStorageUnitNumber() {
         return totalProductStorageUnitNumber;

@@ -3,11 +3,20 @@ package controller.product;
 import model.Product;
 
 public class ProductCreator {
-    public Product definingNewProduct(String myProductName, Double myProductPrice){
-        Product myProduct = new Product();
-        myProduct.setProductName(myProductName);
-        myProduct.setProductPrice(myProductPrice);
+    private static ProductCreator self = new ProductCreator();
+    public static ProductCreator getInstance() { return self; }
 
-        return myProduct;
+    public Product productCreatorStarter() {
+        return Product.getInstance();
+    }
+
+    public Product productCreatorStarter (int productId, String productName, Double productPrice){
+        Product product = Product.getInstance();
+
+        product.setProductId(productId);
+        product.setProductName(productName);
+        product.setProductPrice(productPrice);
+
+        return product;
     }
 }

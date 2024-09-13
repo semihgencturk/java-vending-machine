@@ -1,15 +1,27 @@
-package model;
-
-public class Product {
-    /*
+/*
     Define the product's attributes and behaviours
     A product has a name and price.
     Code, Id ?
     How many exist in the machine?
     */
 
+package model;
+
+public class Product {
+    private static Product self = new Product();
+    public static Product getInstance() { return self; }
+
+    private int productId;
     private String productName;
     private Double productPrice;
+
+    public int getProductId() {
+        return productId;
+    }
+
+    public void setProductId(int productId) {
+        this.productId = productId;
+    }
 
     public String getProductName() {
         return productName;
@@ -29,7 +41,5 @@ public class Product {
         } else {
             throw new IllegalArgumentException("model.Product Price cannot be smaller than 0");
         }
-
     }
-
 }

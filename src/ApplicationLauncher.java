@@ -1,7 +1,4 @@
-import model.VendingMachine;
-import view.GreetingPage;
-
-import java.util.ArrayList;
+import view.GreetingView;
 
 public class ApplicationLauncher {
     public static void main(String[] args) {
@@ -9,7 +6,7 @@ public class ApplicationLauncher {
         // We're going to launch the machine in there.
         System.out.println("Main is called successfully!");
 
-        GreetingPage.getInstance().greetingPageStarter();
+        GreetingView.getInstance().greetingViewStarter();
 
         /*
 

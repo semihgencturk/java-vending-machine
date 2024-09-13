@@ -17,15 +17,19 @@
 
 package view;
 
+import view.denominationManagementView.DenominationManagementView;
+import view.productManagementView.ProductManagementView;
+import view.vendingMachineManagementView.VendingMachineManagementView;
+
 import java.util.Scanner;
 
-public class AdminPage {
-    private static AdminPage self = new AdminPage();
-    public static AdminPage getInstance() { return self; }
+public class AdminView {
+    private static AdminView self = new AdminView();
+    public static AdminView getInstance() { return self; }
 
     Scanner myScanner = new Scanner(System.in);
 
-    public void adminPageStarter() {
+    public void adminViewStarter() {
         System.out.println("This is the Admin Page. Please select the operations:");
         System.out.println("1-Vending Machine Management (Add, Update, Delete Machine)");
         System.out.println("2-Denomination Management (Add, Update, Delete Denomination)");
@@ -35,11 +39,13 @@ public class AdminPage {
 
         switch (selectedOption) {
             case 1:
-                System.out.println("1 is called");
-                VendingMachineManagementPage.getInstance().VendingMachineManagementPageOpener();
+                VendingMachineManagementView.getInstance().VendingMachineManagementViewStarter();
                 break;
             case 2:
-                System.out.println("2 is called");
+                DenominationManagementView.getInstance().denominationManagementViewStarter();
+                break;
+            case 3:
+                ProductManagementView.getInstance().productManagementViewStarter();
                 break;
             default:
                 System.out.println("Invalid Entry");

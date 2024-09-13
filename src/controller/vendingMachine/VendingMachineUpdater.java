@@ -8,28 +8,34 @@ public class VendingMachineUpdater {
     private static VendingMachineUpdater self = new VendingMachineUpdater();
     public static VendingMachineUpdater getInstance() { return self; }
 
-    public void totalProductStorageUnitNumberUpdater(VendingMachine selectedVendingMachine, int totalProductStorageUnitNumber) {
-        selectedVendingMachine.setTotalProductStorageUnitNumber(totalProductStorageUnitNumber);
+    public void vendingMachineIdUpdater(VendingMachine vendingMachine, int vendingMachineId) {
+        vendingMachine.setVendingMachineId(vendingMachineId);
+    }
+    public void vendingMachineNameUpdater(VendingMachine vendingMachine, String vendingMachineName) {
+        vendingMachine.setVendingMachineName(vendingMachineName);
+    }
+    public void totalProductStorageUnitNumberUpdater(VendingMachine vendingMachine, int totalProductStorageUnitNumber) {
+        vendingMachine.setTotalProductStorageUnitNumber(totalProductStorageUnitNumber);
     };
-    public void productStorageUnitCapacityUpdater(VendingMachine selectedVendingMachine, int productStorageUnitCapacity) {
-        selectedVendingMachine.setProductStorageUnitCapacity(productStorageUnitCapacity);
+    public void productStorageUnitCapacityUpdater(VendingMachine vendingMachine, int productStorageUnitCapacity) {
+        vendingMachine.setProductStorageUnitCapacity(productStorageUnitCapacity);
     };
-    public void totalDenominationStorageUnitNumberUpdater(VendingMachine selectedVendingMachine, int totalDenominationStorageUnitNumber) {
-        selectedVendingMachine.setTotalDenominationStorageUnitNumber(totalDenominationStorageUnitNumber);
+    public void totalDenominationStorageUnitNumberUpdater(VendingMachine vendingMachine, int totalDenominationStorageUnitNumber) {
+        vendingMachine.setTotalDenominationStorageUnitNumber(totalDenominationStorageUnitNumber);
     };
-    public void denominationStorageUnitCapacityUpdater(VendingMachine selectedVendingMachine, int denominationStorageUnitCapacity) {
-        selectedVendingMachine.setDenominationStorageUnitCapacity(denominationStorageUnitCapacity);
+    public void denominationStorageUnitCapacityUpdater(VendingMachine vendingMachine, int denominationStorageUnitCapacity) {
+        vendingMachine.setDenominationStorageUnitCapacity(denominationStorageUnitCapacity);
     };
-    public void denominationsOnUsageUpdater(VendingMachine selectedVendingMachine, int denominationStorageUnit, Denomination myDenomination) {
-        selectedVendingMachine.setDenominationsOnUsage(denominationStorageUnit, myDenomination);
+    public void denominationsOnUsageUpdater(VendingMachine vendingMachine, int denominationStorageUnit, Denomination myDenomination) {
+        vendingMachine.setDenominationsOnUsage(denominationStorageUnit, myDenomination);
     };
-    public void denominationAvailabilityUpdater(VendingMachine selectedVendingMachine, int denominationStorageUnit, int denominationPiece) {
-        selectedVendingMachine.setDenominationAvailability(denominationStorageUnit, denominationPiece);
+    public void denominationAvailabilityUpdater(VendingMachine vendingMachine, int denominationStorageUnit, int denominationPiece) {
+        vendingMachine.setDenominationAvailability(denominationStorageUnit, denominationPiece);
     };
-    public void productsOnSaleUpdater(VendingMachine selectedVendingMachine, int productStorageUnit, Product myProduct) {
-        selectedVendingMachine.setProductsOnSale(productStorageUnit, myProduct);
+    public void productsOnSaleUpdater(VendingMachine vendingMachine, int productStorageUnit, Product myProduct) {
+        vendingMachine.setProductsOnSale(productStorageUnit, myProduct);
     };
-    public void productsAvailabilityUpdater(VendingMachine selectedVendingMachine, int productStorageUnit, int productPiece) {
-        selectedVendingMachine.setProductsAvailability(productStorageUnit, productPiece);
+    public void productsAvailabilityUpdater(VendingMachine vendingMachine, int productStorageUnit, int productPiece) {
+        vendingMachine.setProductsAvailability(productStorageUnit, productPiece);
     }
 }

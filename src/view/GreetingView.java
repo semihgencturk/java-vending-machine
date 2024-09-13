@@ -17,13 +17,13 @@ package view;
 
 import java.util.Scanner;
 
-public class GreetingPage {
-    private static GreetingPage self = new GreetingPage();
-    public static GreetingPage getInstance() { return self; }
+public class GreetingView {
+    private static GreetingView self = new GreetingView();
+    public static GreetingView getInstance() { return self; }
 
     Scanner myScanner = new Scanner(System.in);
 
-    public void greetingPageStarter() {
+    public void greetingViewStarter() {
         System.out.println("Welcome to Vending Machine! How can I help you?");
         System.out.println("1-Admin");
         System.out.println("2-Customer");
@@ -32,10 +32,10 @@ public class GreetingPage {
 
         switch (selectedOption) {
             case 1:
-                AdminPage.getInstance().adminPageStarter();
+                AdminView.getInstance().adminViewStarter();
                 break;
             case 2:
-                CustomerPage.getInstance().customerPageStarter();
+                CustomerView.getInstance().customerViewStarter();
                 break;
             default:
                 System.out.println("Invalid Entry");

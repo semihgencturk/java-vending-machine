@@ -10,13 +10,13 @@ package view;
 
 import java.util.Scanner;
 
-public class CustomerPage {
-    private static CustomerPage self = new CustomerPage();
-    public static CustomerPage getInstance() { return self; }
+public class CustomerView {
+    private static CustomerView self = new CustomerView();
+    public static CustomerView getInstance() { return self; }
 
     Scanner myScanner = new Scanner(System.in);
 
-    public void customerPageStarter() {
+    public void customerViewStarter() {
         System.out.println("This is the Customer Page. Please select the operations:");
 
         int selectedOption = myScanner.nextInt();
