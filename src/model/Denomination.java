@@ -29,13 +29,6 @@ public class Denomination {
     }
 
     public void setDenominationCurrency(String denominationCurrency) {
-        /*
-        if (validDenominationCurrencies.contains(denominationCurrency)) {
-            this.denominationCurrency = denominationCurrency;
-        } else {
-            throw new IllegalArgumentException("Currency is invalid!");
-        }
-        */
         this.denominationCurrency = denominationCurrency;
     }
 }

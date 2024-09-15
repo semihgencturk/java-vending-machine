@@ -5,7 +5,7 @@ import controller.denomination.DenominationUpdater;
 
 import java.util.Scanner;
 
-import static model.DefinedDenominations.definedDenominationsList;
+import static model.DefinedDenominationList.definedDenominationList;
 
 
 public class DenominationManagementUpdaterView {
@@ -32,17 +32,17 @@ public class DenominationManagementUpdaterView {
             case 1:
                 System.out.println("Please enter the new denominationId");
                 int denominationId = myScanner.nextInt();
-                denominationUpdater.denominationIdUpdater(definedDenominationsList.get(denomination), denominationId);
+                denominationUpdater.denominationIdUpdater(definedDenominationList.get(denomination), denominationId);
                 break;
             case 2:
                 System.out.println("Please enter the new denominationCurrency");
                 String denominationCurrency = myScanner.nextLine();
-                denominationUpdater.denominationCurrencyUpdater(definedDenominationsList.get(denomination), denominationCurrency);
+                denominationUpdater.denominationCurrencyUpdater(definedDenominationList.get(denomination), denominationCurrency);
                 break;
             case 3:
                 System.out.println("Please enter the new total denominationAmount");
                 int denominationAmount = myScanner.nextInt();
-                denominationUpdater.denominationAmountUpdater(definedDenominationsList.get(denomination), denominationAmount);
+                denominationUpdater.denominationAmountUpdater(definedDenominationList.get(denomination), denominationAmount);
                 break;
             default:
                 System.out.println("Invalid Entry");

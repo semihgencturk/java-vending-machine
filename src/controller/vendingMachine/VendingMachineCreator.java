@@ -1,5 +1,9 @@
 package controller.vendingMachine;
+import model.Denomination;
+import model.Product;
 import model.VendingMachine;
+
+import java.util.ArrayList;
 
 
 public class VendingMachineCreator {
@@ -15,7 +19,11 @@ public class VendingMachineCreator {
                                                        int totalProductStorageUnitNumber,
                                                        int productStorageUnitCapacity,
                                                        int totalDenominationStorageUnitNumber,
-                                                       int denominationStorageUnitCapacity) {
+                                                       int denominationStorageUnitCapacity,
+                                                       ArrayList<Denomination> denominationsOnUsage,
+                                                       ArrayList<Integer> denominationsOnUsageAvailability,
+                                                       ArrayList<Product> productsOnSale,
+                                                       ArrayList<Integer> productsOnSaleAvailability) {
 
         VendingMachine vendingMachine = VendingMachine.getInstance();
 
@@ -25,14 +33,15 @@ public class VendingMachineCreator {
         vendingMachine.setProductStorageUnitCapacity(productStorageUnitCapacity);
         vendingMachine.setTotalDenominationStorageUnitNumber(totalDenominationStorageUnitNumber);
         vendingMachine.setDenominationStorageUnitCapacity(denominationStorageUnitCapacity);
+        for(int denominationStorageUnit=0; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++){
+            vendingMachine.setDenominationsOnUsage(denominationStorageUnit, denominationsOnUsage.get(denominationStorageUnit));
+            vendingMachine.denominationsOnUsageAvailability(denominationStorageUnit,denominationsOnUsageAvailability.get(denominationStorageUnit));
+        }
+        for(int productStorageUnit=0; productStorageUnit <= totalProductStorageUnitNumber; productStorageUnit++){
+            vendingMachine.setProductsOnSale(productStorageUnit, productsOnSale.get(productStorageUnit));
+            vendingMachine.productsOnSaleAvailability(productStorageUnit,productsOnSaleAvailability.get(productStorageUnit));
+        }
 
         return vendingMachine;
     }
 }
-
-/*
-private HashMap<Integer, Denomination> denominationsOnUsage = new HashMap<Integer, Denomination>();
-private HashMap<Integer, Integer> denominationsAvailability = new HashMap<Integer, Integer>();
-private HashMap<Integer, Product> productsOnSale = new HashMap<Integer, Product>();
-private HashMap<Integer, Integer> productsAvailability = new HashMap<Integer, Integer>();
-*/

@@ -31,9 +31,9 @@ public class AdminView {
 
     public void adminViewStarter() {
         System.out.println("This is the Admin Page. Please select the operations:");
-        System.out.println("1-Vending Machine Management (Add, Update, Delete Machine)");
-        System.out.println("2-Denomination Management (Add, Update, Delete Denomination)");
-        System.out.println("3-Product Management (Add, Update, Delete Product)");
+        System.out.println("1- Vending Machine Management (List Of Defined Machines -> Add, Update, Delete, Detail Vending Machine)");
+        System.out.println("2- Denomination Management (List Of Defined Denominations -> Add, Update, Delete, Detail Denomination)");
+        System.out.println("3- Product Management (List Of Defined Products -> Add, Update, Delete, Detail Product)");
 
         int selectedOption = myScanner.nextInt();
 

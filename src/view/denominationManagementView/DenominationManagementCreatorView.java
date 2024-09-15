@@ -1,6 +1,5 @@
 package view.denominationManagementView;
 
-
 import controller.definedDenominations.DefinedDenominationsAdder;
 import controller.denomination.DenominationCreator;
 

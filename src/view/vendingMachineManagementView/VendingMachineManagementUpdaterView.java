@@ -4,7 +4,9 @@ import controller.vendingMachine.VendingMachineUpdater;
 
 import java.util.Scanner;
 
-import static model.DefinedVendingMachines.definedVendingMachinesList;
+import static model.DefinedDenominationList.definedDenominationList;
+import static model.DefinedProductList.definedProductList;
+import static model.DefinedVendingMachineList.definedVendingMachineList;
 
 public class VendingMachineManagementUpdaterView {
     private static VendingMachineManagementUpdaterView self = new VendingMachineManagementUpdaterView();
@@ -37,32 +39,60 @@ public class VendingMachineManagementUpdaterView {
             case 1:
                 System.out.println("Please enter the new vending Machine Id");
                 int vendingMachineId = myScanner.nextInt();
-                vendingMachineUpdater.vendingMachineIdUpdater(definedVendingMachinesList.get(vendingMachine), vendingMachineId);
+                vendingMachineUpdater.vendingMachineIdUpdater(definedVendingMachineList.get(vendingMachine), vendingMachineId);
                 break;
             case 2:
                 System.out.println("Please enter the new vending Machine Name");
                 String vendingMachineName = myScanner.nextLine();
-                vendingMachineUpdater.vendingMachineNameUpdater(definedVendingMachinesList.get(vendingMachine), vendingMachineName);
+                vendingMachineUpdater.vendingMachineNameUpdater(definedVendingMachineList.get(vendingMachine), vendingMachineName);
                 break;
             case 3:
                 System.out.println("Please enter the new total Product Storage Unit Number");
                 int totalProductStorageUnitNumber = myScanner.nextInt();
-                vendingMachineUpdater.totalProductStorageUnitNumberUpdater(definedVendingMachinesList.get(vendingMachine), totalProductStorageUnitNumber);
+                vendingMachineUpdater.totalProductStorageUnitNumberUpdater(definedVendingMachineList.get(vendingMachine), totalProductStorageUnitNumber);
                 break;
             case 4:
                 System.out.println("Please enter the new product Storage Unit Capacity");
                 int productStorageUnitCapacity = myScanner.nextInt();
-                vendingMachineUpdater.productStorageUnitCapacityUpdater(definedVendingMachinesList.get(vendingMachine), productStorageUnitCapacity);
+                vendingMachineUpdater.productStorageUnitCapacityUpdater(definedVendingMachineList.get(vendingMachine), productStorageUnitCapacity);
                 break;
             case 5:
                 System.out.println("Please enter the new total Denomination Storage Unit Number");
                 int totalDenominationStorageUnitNumber = myScanner.nextInt();
-                vendingMachineUpdater.totalDenominationStorageUnitNumberUpdater(definedVendingMachinesList.get(vendingMachine), totalDenominationStorageUnitNumber);
+                vendingMachineUpdater.totalDenominationStorageUnitNumberUpdater(definedVendingMachineList.get(vendingMachine), totalDenominationStorageUnitNumber);
                 break;
             case 6:
                 System.out.println("Please enter the new denomination Storage Unit Capacity");
                 int denominationStorageUnitCapacity = myScanner.nextInt();
-                vendingMachineUpdater.denominationStorageUnitCapacityUpdater(definedVendingMachinesList.get(vendingMachine), denominationStorageUnitCapacity);
+                vendingMachineUpdater.denominationStorageUnitCapacityUpdater(definedVendingMachineList.get(vendingMachine), denominationStorageUnitCapacity);
+                break;
+            case 7:
+                System.out.println("Please enter the denomination Storage Unit");
+                int denominationStorageUnit = myScanner.nextInt();
+                System.out.println("Please enter the new denomination on Usage");
+                int denomination = myScanner.nextInt();
+                vendingMachineUpdater.denominationsOnUsageUpdater(definedVendingMachineList.get(vendingMachine), denominationStorageUnit, definedDenominationList.get(denomination));
+                break;
+            case 8:
+                System.out.println("Please enter the denomination Storage Unit");
+                int denominationStorageUnit2 = myScanner.nextInt();
+                System.out.println("Please enter the new denominationPiece");
+                int denominationPiece = myScanner.nextInt();
+                vendingMachineUpdater.denominationAvailabilityUpdater(definedVendingMachineList.get(vendingMachine), denominationStorageUnit2, denominationPiece);
+                break;
+            case 9:
+                System.out.println("Please enter the product Storage Unit");
+                int productStorageUnit = myScanner.nextInt();
+                System.out.println("Please enter the new product on sale");
+                int product = myScanner.nextInt();
+                vendingMachineUpdater.productsOnSaleUpdater(definedVendingMachineList.get(vendingMachine), productStorageUnit, definedProductList.get(product));
+                break;
+            case 10:
+                System.out.println("Please enter the product Storage Unit");
+                int productStorageUnit2 = myScanner.nextInt();
+                System.out.println("Please enter the new product on sale");
+                int productPiece = myScanner.nextInt();
+                vendingMachineUpdater.productsAvailabilityUpdater(definedVendingMachineList.get(vendingMachine), productStorageUnit2, productPiece);
                 break;
             default:
                 System.out.println("Invalid Entry");

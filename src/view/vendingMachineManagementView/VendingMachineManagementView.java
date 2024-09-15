@@ -30,20 +30,28 @@ public class VendingMachineManagementView {
 
     public void VendingMachineManagementViewStarter() {
         System.out.println("You can manage the vending machines in there. Please select the operation:");
-        System.out.println("1- Create A New Vending Machine");
-        System.out.println("2- Update An Existing Vending Machine");
-        System.out.println("3- Delete An Existing Vending Machine");
+        System.out.println("1- List Of Defined Vending Machines");
+        System.out.println("2- See Details of An Existing Vending Machine");
+        System.out.println("3- Create A New Vending Machine");
+        System.out.println("4- Update An Existing Vending Machine");
+        System.out.println("5- Delete An Existing Vending Machine");
 
         int selectedOption = myScanner.nextInt();
 
         switch (selectedOption) {
             case 1:
-                VendingMachineManagementCreatorView.getInstance().vendingMachineManagementCreatorViewStarter();
+                VendingMachineManagementListerView.getInstance().vendingMachineManagementListerViewStarter();
                 break;
             case 2:
-                VendingMachineManagementUpdaterView.getInstance().vendingMachineManagementUpdaterViewStarter();
+                VendingMachineManagementDetailerView.getInstance().vendingMachineManagementDetailerViewStarter();
                 break;
             case 3:
+                VendingMachineManagementCreatorView.getInstance().vendingMachineManagementCreatorViewStarter();
+                break;
+            case 4:
+                VendingMachineManagementUpdaterView.getInstance().vendingMachineManagementUpdaterViewStarter();
+                break;
+            case 5:
                 VendingMachineManagementDeleterView.getInstance().vendingMachineManagementDeleterViewDeleter();
                 break;
             default:

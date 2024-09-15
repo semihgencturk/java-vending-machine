@@ -1,13 +1,12 @@
 package controller.definedDenominations;
 
-import model.Denomination;
-import static model.DefinedDenominations.definedDenominationsList;
+import static model.DefinedDenominationList.definedDenominationList;
 
 public class DefinedDenominationsRemover {
     private static DefinedDenominationsRemover self = new DefinedDenominationsRemover();
     public static DefinedDenominationsRemover getInstance() { return self; }
 
-    public void definedDenominationsRemoverStarter(Denomination denomination) {
-        definedDenominationsList.remove(denomination);
+    public void definedDenominationsRemoverStarter(int denominationIndex) {
+        definedDenominationList.remove(denominationIndex);
     }
 }

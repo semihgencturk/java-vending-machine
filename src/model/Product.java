@@ -1,10 +1,3 @@
-/*
-    Define the product's attributes and behaviours
-    A product has a name and price.
-    Code, Id ?
-    How many exist in the machine?
-    */
-
 package model;
 
 public class Product {
@@ -36,10 +29,6 @@ public class Product {
     }
 
     public void setProductPrice(Double productPrice) {
-        if (productPrice >= 0) {
-            this.productPrice = productPrice;
-        } else {
-            throw new IllegalArgumentException("model.Product Price cannot be smaller than 0");
-        }
+        this.productPrice = productPrice;
     }
 }

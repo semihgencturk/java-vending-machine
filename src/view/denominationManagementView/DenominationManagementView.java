@@ -11,20 +11,28 @@ public class DenominationManagementView {
 
     public void denominationManagementViewStarter() {
         System.out.println("You can manage the denomination in there. Please select the operation:");
-        System.out.println("1- Create A New Denomination");
-        System.out.println("2- Update An Denomination");
-        System.out.println("3- Delete An Denomination");
+        System.out.println("1- List Of Defined Denominations");
+        System.out.println("2- Detail Of An Denomination");
+        System.out.println("3- Create A New Denomination");
+        System.out.println("4- Update An Denomination");
+        System.out.println("5- Delete An Denomination");
 
         int selectedOption = myScanner.nextInt();
 
         switch (selectedOption) {
             case 1:
-                DenominationManagementCreatorView.getInstance().denominationManagementCreatorViewStarter();
+                DenominationManagementListerView.getInstance().denominationManagementListerViewStarter();
                 break;
             case 2:
-                DenominationManagementUpdaterView.getInstance().denominationManagementUpdaterViewStarter();
+                DenominationManagementDetailerView.getInstance().denominationManagementDetailerViewStarter();
                 break;
             case 3:
+                DenominationManagementCreatorView.getInstance().denominationManagementCreatorViewStarter();
+                break;
+            case 4:
+                DenominationManagementUpdaterView.getInstance().denominationManagementUpdaterViewStarter();
+                break;
+            case 5:
                 DenominationManagementDeleterView.getInstance().denominationManagementDeleterViewStarter();
                 break;
             default:

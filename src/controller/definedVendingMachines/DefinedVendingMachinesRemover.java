@@ -1,13 +1,12 @@
 package controller.definedVendingMachines;
 
-import model.VendingMachine;
-import static model.DefinedVendingMachines.definedVendingMachinesList;
+import static model.DefinedVendingMachineList.definedVendingMachineList;
 
 public class DefinedVendingMachinesRemover {
     private static DefinedVendingMachinesRemover self = new DefinedVendingMachinesRemover();
     public static DefinedVendingMachinesRemover getInstance() { return self; }
 
-    public void definedVendingMachinesRemoverStarter(VendingMachine vendingMachine) {
-        definedVendingMachinesList.remove(vendingMachine);
+    public void definedVendingMachinesRemoverStarter(int vendingMachineIndex) {
+        definedVendingMachineList.remove(vendingMachineIndex);
     }
 }

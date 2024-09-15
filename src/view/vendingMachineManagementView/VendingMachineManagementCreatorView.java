@@ -2,8 +2,12 @@ package view.vendingMachineManagementView;
 
 import controller.definedVendingMachines.DefinedVendingMachinesAdder;
 import controller.vendingMachine.VendingMachineCreator;
-
+import model.Denomination;
+import model.Product;
+import java.util.ArrayList;
 import java.util.Scanner;
+import static model.DefinedDenominationList.definedDenominationList;
+import static model.DefinedProductList.definedProductList;
 
 public class VendingMachineManagementCreatorView {
     private static VendingMachineManagementCreatorView self = new VendingMachineManagementCreatorView();
@@ -31,17 +35,28 @@ public class VendingMachineManagementCreatorView {
         System.out.println("Enter the totalDenominationStorageUnitNumber");
         int denominationStorageUnitCapacity = myScanner.nextInt();
 
-        DefinedVendingMachinesAdder.getInstance().definedVendingMachinesAdderStarter(VendingMachineCreator.getInstance().VendingMachineCreatorStarter(vendingMachineId, vendingMachineName, totalProductStorageUnitNumber, productStorageUnitCapacity, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity));
+        ArrayList<Denomination> denominationsOnUsage = new ArrayList<Denomination>();
+        ArrayList<Integer> denominationsOnUsageAvailability = new ArrayList<Integer>();
+        for(int denominationStorageUnit=0; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++){
+            System.out.println("Enter the denomination on usage for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
+            int denominationIndex = myScanner.nextInt();
+            denominationsOnUsage.add(definedDenominationList.get(denominationIndex));
+            System.out.println("Enter the denomination availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
+            int denominationPiece = myScanner.nextInt();
+            denominationsOnUsageAvailability.add(denominationPiece);
+        }
 
-        System.out.println("Enter the totalDenominationStorageUnitNumber");
-        System.out.println("Enter the totalDenominationStorageUnitNumber");
-        System.out.println("Enter the totalDenominationStorageUnitNumber");
-        System.out.println("Enter the totalDenominationStorageUnitNumber");
+        ArrayList<Product> productsOnSale = new ArrayList<Product>();
+        ArrayList<Integer> productsOnSaleAvailability = new ArrayList<Integer>();
+        for(int denominationStorageUnit=0; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++){
+            System.out.println("Enter the product on sale for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
+            int productIndex = myScanner.nextInt();
+            productsOnSale.add(definedProductList.get(productIndex));
+            System.out.println("Enter the product availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
+            int productPiece = myScanner.nextInt();
+            productsOnSaleAvailability.add(productPiece);
+        }
 
+        DefinedVendingMachinesAdder.getInstance().definedVendingMachinesAdderStarter(VendingMachineCreator.getInstance().VendingMachineCreatorStarter(vendingMachineId, vendingMachineName, totalProductStorageUnitNumber, productStorageUnitCapacity, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, denominationsOnUsage, denominationsOnUsageAvailability, productsOnSale, productsOnSaleAvailability));
     }
 }
-
-//private HashMap<Integer, Denomination> denominationsOnUsage = new HashMap<Integer, Denomination>();
-//private HashMap<Integer, Integer> denominationsAvailability = new HashMap<Integer, Integer>();
-//private HashMap<Integer, Product> productsOnSale = new HashMap<Integer, Product>();
-//private HashMap<Integer, Integer> productsAvailability = new HashMap<Integer, Integer>();

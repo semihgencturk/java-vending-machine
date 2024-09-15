@@ -4,7 +4,7 @@ import controller.product.ProductUpdater;
 
 import java.util.Scanner;
 
-import static model.DefinedProducts.definedProductsList;
+import static model.DefinedProductList.definedProductList;
 
 
 public class ProductManagementUpdaterView {
@@ -31,17 +31,17 @@ public class ProductManagementUpdaterView {
             case 1:
                 System.out.println("Please enter the new productId");
                 int productId = myScanner.nextInt();
-                productUpdater.productIdUpdater(definedProductsList.get(product), productId);
+                productUpdater.productIdUpdater(definedProductList.get(product), productId);
                 break;
             case 2:
                 System.out.println("Please enter the new productName");
                 String productName = myScanner.nextLine();
-                productUpdater.productNameUpdater(definedProductsList.get(product), productName);
+                productUpdater.productNameUpdater(definedProductList.get(product), productName);
                 break;
             case 3:
                 System.out.println("Please enter the new total productPrice");
                 Double productPrice = myScanner.nextDouble();
-                productUpdater.productPriceUpdater(definedProductsList.get(product), productPrice);
+                productUpdater.productPriceUpdater(definedProductList.get(product), productPrice);
                 break;
             default:
                 System.out.println("Invalid Entry");
