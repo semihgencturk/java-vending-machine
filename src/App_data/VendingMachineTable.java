@@ -1,6 +1,6 @@
 package App_data;
 
-import Model.VendingMachine;
+import Models.VendingMachine;
 import java.util.ArrayList;
 
 public class VendingMachineTable {

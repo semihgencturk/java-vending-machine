@@ -1,6 +1,6 @@
 package App_data;
 
-import Model.Denomination;
+import Models.Denomination;
 import java.util.ArrayList;
 
 public class DenominationTable {
