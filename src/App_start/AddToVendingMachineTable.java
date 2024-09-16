@@ -5,7 +5,6 @@ import App_data.ProductTable;
 import Controllers.vendingMachine.VendingMachineCreator;
 import Models.Denomination;
 import Models.Product;
-import Views.vendingMachineView.VendingMachineReaderAllView;
 
 import java.util.ArrayList;
 
@@ -14,6 +13,8 @@ public class AddToVendingMachineTable {
     public static AddToVendingMachineTable getInstance() { return self; }
 
     public void addToVendingMachineTable() {
+        VendingMachineCreator vendingMachineCreator = VendingMachineCreator.getInstance();
+
         ArrayList<Denomination> denominationsOnUsage = DenominationTable.denominationTable;
         ArrayList<Integer> denominationsAvailability = new ArrayList<>();
         ArrayList<Product> productsOnSale = ProductTable.productTable;
@@ -27,8 +28,8 @@ public class AddToVendingMachineTable {
             productsOnSaleAvailability.add(5);
         }
 
-        VendingMachineCreator.getInstance().vendingMachineCreator(1, "myVendingMachine1",5,10,5,100, denominationsOnUsage, denominationsAvailability, productsOnSale, productsOnSaleAvailability);
-        VendingMachineCreator.getInstance().vendingMachineCreator(2, "myVendingMachine2",5,10,5,100, denominationsOnUsage, denominationsAvailability, productsOnSale, productsOnSaleAvailability);
-        VendingMachineCreator.getInstance().vendingMachineCreator(3, "myVendingMachine3",5,10,5,100, denominationsOnUsage, denominationsAvailability, productsOnSale, productsOnSaleAvailability);
+        vendingMachineCreator.vendingMachineCreator(1, "myVendingMachine1",5,10,5,100, denominationsOnUsage, denominationsAvailability, productsOnSale, productsOnSaleAvailability);
+        vendingMachineCreator.vendingMachineCreator(2, "myVendingMachine2",5,10,5,100, denominationsOnUsage, denominationsAvailability, productsOnSale, productsOnSaleAvailability);
+        vendingMachineCreator.vendingMachineCreator(3, "myVendingMachine3",5,10,5,100, denominationsOnUsage, denominationsAvailability, productsOnSale, productsOnSaleAvailability);
     }
 }

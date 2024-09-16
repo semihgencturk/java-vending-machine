@@ -12,7 +12,7 @@ public class DenominationUpdater {
     public void denominationCurrencyUpdater(Denomination denomination, String denominationCurrency) {
         denomination.setDenominationCurrency(denominationCurrency);
     }
-    public void denominationAmountUpdater(Denomination denomination, int denominationAmount) {
+    public void denominationAmountUpdater(Denomination denomination, double denominationAmount) {
         denomination.setDenominationAmount(denominationAmount);
     }
 }

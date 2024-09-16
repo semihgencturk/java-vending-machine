@@ -6,7 +6,7 @@ public class Denomination {
 
     private int denominationId;
     private String denominationCurrency;
-    private int denominationAmount;
+    private double denominationAmount;
 
     public int getDenominationId() {
         return denominationId;
@@ -16,11 +16,11 @@ public class Denomination {
         this.denominationId = denominationId;
     }
 
-    public int getDenominationAmount() {
+    public double getDenominationAmount() {
         return denominationAmount;
     }
 
-    public void setDenominationAmount(int denominationAmount) {
+    public void setDenominationAmount(double denominationAmount) {
         this.denominationAmount = denominationAmount;
     }
 

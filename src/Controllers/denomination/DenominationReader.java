@@ -12,7 +12,7 @@ public class DenominationReader {
     public String denominationCurrencyReader(Denomination denomination) {
         return denomination.getDenominationCurrency();
     }
-    public int denominationAmountReader(Denomination denomination) {
+    public double denominationAmountReader(Denomination denomination) {
         return denomination.getDenominationAmount();
     }
 }

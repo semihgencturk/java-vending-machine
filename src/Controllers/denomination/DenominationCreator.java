@@ -11,7 +11,7 @@ public class DenominationCreator {
         denominationTable.add(Denomination.getInstance());
     }
 
-    public void denominationCreator(int denominationId, String denominationCurrency, Integer denominationAmount){
+    public void denominationCreator(int denominationId, String denominationCurrency, double denominationAmount){
         Denomination denomination = Denomination.getInstance();
 
         denomination.setDenominationId(denominationId);
