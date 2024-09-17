@@ -5,8 +5,13 @@ import java.util.Scanner;
 import static App_data.DenominationTable.denominationTable;
 
 public class DenominationUpdaterView {
-    private static DenominationUpdaterView self = new DenominationUpdaterView();
-    public static DenominationUpdaterView getInstance() { return self; }
+    private static DenominationUpdaterView self = null;
+    public static DenominationUpdaterView getInstance() {
+        if (self == null) {
+            self = new DenominationUpdaterView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 

@@ -1,14 +1,17 @@
 package Views.vendingMachineView;
 
-
 import Controllers.vendingMachine.VendingMachineReader;
 import Models.VendingMachine;
-
 import static App_data.VendingMachineTable.vendingMachineTable;
 
 public class VendingMachineReaderAllView {
-    private static VendingMachineReaderAllView self = new VendingMachineReaderAllView();
-    public static VendingMachineReaderAllView getInstance() { return self; }
+    private static VendingMachineReaderAllView self = null;
+    public static VendingMachineReaderAllView getInstance() {
+        if (self == null) {
+            self = new VendingMachineReaderAllView();
+        }
+        return self;
+    }
 
     public void vendingMachineReaderAllView() {
         System.out.println("List of Defined Vending Machines and their details:");

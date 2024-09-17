@@ -2,14 +2,17 @@ package Views.productView;
 
 import Controllers.product.ProductReader;
 import Models.Product;
-
 import java.util.Scanner;
-
 import static App_data.ProductTable.productTable;
 
 public class ProductReaderView {
-    private static ProductReaderView self = new ProductReaderView();
-    public static ProductReaderView getInstance() { return self; }
+    private static ProductReaderView self = null;
+    public static ProductReaderView getInstance() {
+        if (self == null) {
+            self = new ProductReaderView();
+        }
+        return self;
+    }
 
     public void productReaderView() {
         Scanner myScanner = new Scanner(System.in);

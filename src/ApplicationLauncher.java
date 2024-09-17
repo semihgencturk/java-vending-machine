@@ -1,8 +1,7 @@
-import App_start.AddToDenominationTable;
-import App_start.AddToProductTable;
-import App_start.AddToVendingMachineTable;
+import Scripts.AddToDenominationTable;
+import Scripts.AddToProductTable;
+import Scripts.AddToVendingMachineTable;
 import Views.GreetingView;
-import Views.vendingMachineView.VendingMachineReaderAllView;
 
 public class ApplicationLauncher {
     public static void main(String[] args) {

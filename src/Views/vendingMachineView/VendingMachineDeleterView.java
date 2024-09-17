@@ -4,8 +4,13 @@ import Controllers.vendingMachine.VendingMachineDeleter;
 import java.util.Scanner;
 
 public class VendingMachineDeleterView {
-    private static VendingMachineDeleterView self = new VendingMachineDeleterView();
-    public static VendingMachineDeleterView getInstance() { return self; }
+    private static VendingMachineDeleterView self = null;
+    public static VendingMachineDeleterView getInstance() {
+        if (self == null) {
+            self = new VendingMachineDeleterView();
+        }
+        return self;
+    }
 
     public void vendingMachineDeleterView(){
         Scanner myScanner = new Scanner(System.in);

@@ -6,8 +6,13 @@ import Models.Denomination;
 import static App_data.DenominationTable.denominationTable;
 
 public class DenominationReaderAllView {
-    private static DenominationReaderAllView self = new DenominationReaderAllView();
-    public static DenominationReaderAllView getInstance() { return self; }
+    private static DenominationReaderAllView self = null;
+    public static DenominationReaderAllView getInstance() {
+        if (self == null) {
+            self = new DenominationReaderAllView();
+        }
+        return self;
+    }
 
     public void denominationReaderAllView() {
         System.out.println("List of Defined Nominations and their details:");

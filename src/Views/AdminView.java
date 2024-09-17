@@ -6,8 +6,13 @@ import Views.vendingMachineView.VendingMachineView;
 import java.util.Scanner;
 
 public class AdminView {
-    private static AdminView self = new AdminView();
-    public static AdminView getInstance() { return self; }
+    private static AdminView self = null;
+    public static AdminView getInstance() {
+        if (self == null) {
+            self = new AdminView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 

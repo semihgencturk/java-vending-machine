@@ -1,6 +1,5 @@
 package Views.vendingMachineView;
 
-import App_data.VendingMachineTable;
 import Controllers.vendingMachine.VendingMachineReader;
 import Models.VendingMachine;
 
@@ -9,8 +8,13 @@ import java.util.Scanner;
 import static App_data.VendingMachineTable.vendingMachineTable;
 
 public class VendingMachineReaderView {
-    private static VendingMachineReaderView self = new VendingMachineReaderView();
-    public static VendingMachineReaderView getInstance() { return self; }
+    private static VendingMachineReaderView self = null;
+    public static VendingMachineReaderView getInstance() {
+        if (self == null) {
+            self = new VendingMachineReaderView();
+        }
+        return self;
+    }
 
     public void vendingMachineReaderView(){
         Scanner myScanner = new Scanner(System.in);

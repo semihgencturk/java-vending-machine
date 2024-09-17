@@ -11,8 +11,13 @@ import static App_data.DenominationTable.denominationTable;
 import static App_data.ProductTable.productTable;
 
 public class DenominationReaderView {
-    private static DenominationReaderView self = new DenominationReaderView();
-    public static DenominationReaderView getInstance() { return self; }
+    private static DenominationReaderView self = null;
+    public static DenominationReaderView getInstance() {
+        if (self == null) {
+            self = new DenominationReaderView();
+        }
+        return self;
+    }
 
     public void denominationReaderView() {
         Scanner myScanner = new Scanner(System.in);

@@ -4,8 +4,13 @@ import Controllers.denomination.DenominationDeleter;
 import java.util.Scanner;
 
 public class DenominationDeleterView {
-    private static DenominationDeleterView self = new DenominationDeleterView();
-    public static DenominationDeleterView getInstance() { return self; }
+    private static DenominationDeleterView self = null;
+    public static DenominationDeleterView getInstance() {
+        if (self == null) {
+            self = new DenominationDeleterView();
+        }
+        return self;
+    }
 
     public void denominationDeleterView(){
         Scanner myScanner = new Scanner(System.in);

@@ -4,8 +4,13 @@ import Models.Denomination;
 import static App_data.DenominationTable.denominationTable;
 
 public class DenominationCreator {
-    private static DenominationCreator self = new DenominationCreator();
-    public static DenominationCreator getInstance() { return self; }
+    private static DenominationCreator self = null;
+    public static DenominationCreator getInstance() {
+        if (self == null) {
+            self = new DenominationCreator();
+        }
+        return self; 
+    }
 
     public void denominationCreator() {
         Denomination denomination = new Denomination();

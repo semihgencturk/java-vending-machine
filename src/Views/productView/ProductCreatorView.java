@@ -4,8 +4,13 @@ import Controllers.product.ProductCreator;
 import java.util.Scanner;
 
 public class ProductCreatorView {
-    private static ProductCreatorView self = new ProductCreatorView();
-    public static ProductCreatorView getInstance() { return self; }
+    private static ProductCreatorView self = null;
+    public static ProductCreatorView getInstance() {
+        if (self == null) {
+            self = new ProductCreatorView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 

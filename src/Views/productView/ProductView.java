@@ -3,8 +3,13 @@ package Views.productView;
 import java.util.Scanner;
 
 public class ProductView {
-    private static ProductView self = new ProductView();
-    public static ProductView getInstance() { return self; }
+    private static ProductView self = null;
+    public static ProductView getInstance() {
+        if (self == null) {
+            self = new ProductView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 

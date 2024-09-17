@@ -6,8 +6,13 @@ import Models.VendingMachine;
 import java.util.HashMap;
 
 public class VendingMachineReader {
-    private static VendingMachineReader self = new VendingMachineReader();
-    public static VendingMachineReader getInstance() { return self; }
+    private static VendingMachineReader self = null;
+    public static VendingMachineReader getInstance() {
+        if (self == null) {
+            self = new VendingMachineReader();
+        }
+        return self;
+    }
 
     public int vendingMachineIdReader(VendingMachine vendingMachine) {
         return vendingMachine.getVendingMachineId();

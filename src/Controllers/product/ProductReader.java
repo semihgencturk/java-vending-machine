@@ -1,11 +1,15 @@
 package Controllers.product;
 
 import Models.Product;
-import static App_data.ProductTable.productTable;
 
 public class ProductReader {
-    private static ProductReader self = new ProductReader();
-    public static ProductReader getInstance() { return self; }
+    private static ProductReader self = null;
+    public static ProductReader getInstance() {
+        if (self == null) {
+            self = new ProductReader();
+        }
+        return self;
+    }
 
     public int productIdReader(Product product) {
         return product.getProductId();
