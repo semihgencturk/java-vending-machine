@@ -1,4 +1,4 @@
-package App_start;
+package Scripts;
 
 import App_data.DenominationTable;
 import App_data.ProductTable;
@@ -9,8 +9,13 @@ import Models.Product;
 import java.util.ArrayList;
 
 public class AddToVendingMachineTable {
-    private static AddToVendingMachineTable self = new AddToVendingMachineTable();
-    public static AddToVendingMachineTable getInstance() { return self; }
+    private static AddToVendingMachineTable self = null;
+    public static AddToVendingMachineTable getInstance() {
+        if (self == null) {
+            self = new AddToVendingMachineTable();
+        }
+        return self;
+    }
 
     public void addToVendingMachineTable() {
         VendingMachineCreator vendingMachineCreator = VendingMachineCreator.getInstance();

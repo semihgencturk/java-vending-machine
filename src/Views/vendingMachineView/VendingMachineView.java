@@ -3,8 +3,13 @@ package Views.vendingMachineView;
 import java.util.Scanner;
 
 public class VendingMachineView {
-    private static VendingMachineView self = new VendingMachineView();
-    public static VendingMachineView getInstance() { return self; }
+    private static VendingMachineView self = null;
+    public static VendingMachineView getInstance() {
+        if (self == null) {
+            self = new VendingMachineView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 

@@ -7,8 +7,13 @@ import java.util.ArrayList;
 import static App_data.VendingMachineTable.vendingMachineTable;
 
 public class VendingMachineCreator {
-    private static VendingMachineCreator self = new VendingMachineCreator();
-    public static VendingMachineCreator getInstance() { return self; }
+    private static VendingMachineCreator self = null;
+    public static VendingMachineCreator getInstance() {
+        if (self == null) {
+            self = new VendingMachineCreator();
+        }
+        return self;
+    }
 
     public void vendingMachineCreator() {
         VendingMachine vendingMachine = new VendingMachine();

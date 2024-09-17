@@ -3,8 +3,13 @@ package Views.denominationView;
 import java.util.Scanner;
 
 public class DenominationView {
-    private static DenominationView self = new DenominationView();
-    public static DenominationView getInstance() { return self; }
+    private static DenominationView self = null;
+    public static DenominationView getInstance() {
+        if (self == null) {
+            self = new DenominationView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 

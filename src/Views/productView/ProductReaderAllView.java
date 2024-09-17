@@ -2,12 +2,16 @@ package Views.productView;
 
 import Controllers.product.ProductReader;
 import Models.Product;
-
 import static App_data.ProductTable.productTable;
 
 public class ProductReaderAllView {
-    private static ProductReaderAllView self = new ProductReaderAllView();
-    public static ProductReaderAllView getInstance() { return self; }
+    private static ProductReaderAllView self = null;
+    public static ProductReaderAllView getInstance() {
+        if (self == null) {
+            self = new ProductReaderAllView();
+        }
+        return self;
+    }
 
     public void productReaderAllView() {
         System.out.println("List of Defined Products and their details:");

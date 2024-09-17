@@ -1,10 +1,15 @@
-package App_start;
+package Scripts;
 
 import Controllers.product.ProductCreator;
 
 public class AddToProductTable {
-    private static AddToProductTable self = new AddToProductTable();
-    public static AddToProductTable getInstance() { return self; }
+    private static AddToProductTable self = null;
+    public static AddToProductTable getInstance() {
+        if (self == null) {
+            self = new AddToProductTable();
+        }
+        return self;
+    }
 
     public void addToProductTable() {
         ProductCreator productCreator = ProductCreator.getInstance();

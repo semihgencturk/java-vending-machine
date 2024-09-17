@@ -4,8 +4,13 @@ import Controllers.denomination.DenominationCreator;
 import java.util.Scanner;
 
 public class DenominationCreatorView {
-    private static DenominationCreatorView self = new DenominationCreatorView();
-    public static DenominationCreatorView getInstance() { return self; }
+    private static DenominationCreatorView self = null;
+    public static DenominationCreatorView getInstance() {
+        if (self == null) {
+            self = new DenominationCreatorView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 

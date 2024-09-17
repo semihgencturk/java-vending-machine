@@ -3,8 +3,13 @@ package Controllers.denomination;
 import Models.Denomination;
 
 public class DenominationUpdater {
-    private static DenominationUpdater self = new DenominationUpdater();
-    public static DenominationUpdater getInstance() { return self; }
+    private static DenominationUpdater self = null;
+    public static DenominationUpdater getInstance() {
+        if (self == null) {
+            self = new DenominationUpdater();
+        }
+        return self;
+    }
 
     public void denominationIdUpdater(Denomination denomination, int denominationId) {
         denomination.setDenominationId(denominationId);

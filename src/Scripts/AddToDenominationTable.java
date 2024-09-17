@@ -1,10 +1,15 @@
-package App_start;
+package Scripts;
 
 import Controllers.denomination.DenominationCreator;
 
 public class AddToDenominationTable {
-    private static AddToDenominationTable self = new AddToDenominationTable();
-    public static AddToDenominationTable getInstance() { return self; }
+    private static AddToDenominationTable self = null;
+    public static AddToDenominationTable getInstance() {
+        if (self == null) {
+            self = new AddToDenominationTable();
+        }
+        return self;
+    }
 
     public void addToDenominationTable() {
         DenominationCreator denominationCreator = DenominationCreator.getInstance();

@@ -4,8 +4,13 @@ import Models.Product;
 import static App_data.ProductTable.productTable;
 
 public class ProductCreator {
-    private static ProductCreator self = new ProductCreator();
-    public static ProductCreator getInstance() { return self; }
+    private static ProductCreator self = null;
+    public static ProductCreator getInstance() {
+        if (self == null) {
+            self = new ProductCreator();
+        }
+        return self;
+    }
 
     public void productCreator() {
         Product product = new Product();

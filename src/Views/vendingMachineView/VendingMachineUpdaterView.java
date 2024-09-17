@@ -9,8 +9,13 @@ import static App_data.ProductTable.productTable;
 import static App_data.VendingMachineTable.vendingMachineTable;
 
 public class VendingMachineUpdaterView {
-    private static VendingMachineUpdaterView self = new VendingMachineUpdaterView();
-    public static VendingMachineUpdaterView getInstance() { return self; }
+    private static VendingMachineUpdaterView self = null;
+    public static VendingMachineUpdaterView getInstance() {
+        if (self == null) {
+            self = new VendingMachineUpdaterView();
+        }
+        return self;
+    }
 
     public void vendingMachineUpdaterView(){
         Scanner myScanner = new Scanner(System.in);

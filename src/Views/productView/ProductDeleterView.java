@@ -4,8 +4,13 @@ import Controllers.product.ProductDeleter;
 import java.util.Scanner;
 
 public class ProductDeleterView {
-    private static ProductDeleterView self = new ProductDeleterView();
-    public static ProductDeleterView getInstance() { return self; }
+    private static ProductDeleterView self = null;
+    public static ProductDeleterView getInstance() {
+        if (self == null) {
+            self = new ProductDeleterView();
+        }
+        return self;
+    }
 
     public void productDeleterView(){
         Scanner myScanner = new Scanner(System.in);

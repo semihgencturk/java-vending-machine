@@ -9,8 +9,13 @@ import static App_data.DenominationTable.denominationTable;
 import static App_data.ProductTable.productTable;
 
 public class VendingMachineCreatorView {
-    private static VendingMachineCreatorView self = new VendingMachineCreatorView();
-    public static VendingMachineCreatorView getInstance() { return self; }
+    private static VendingMachineCreatorView self = null;
+    public static VendingMachineCreatorView getInstance() {
+        if (self == null) {
+            self = new VendingMachineCreatorView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 
@@ -46,11 +51,11 @@ public class VendingMachineCreatorView {
 
         ArrayList<Product> productsOnSale = new ArrayList<Product>();
         ArrayList<Integer> productsOnSaleAvailability = new ArrayList<Integer>();
-        for(int denominationStorageUnit=0; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++){
-            System.out.println("Enter the product on sale for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
+        for(int productStorageUnit=0; productStorageUnit <= totalProductStorageUnitNumber; productStorageUnit++){
+            System.out.println("Enter the product on sale for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productIndex = myScanner.nextInt();
             productsOnSale.add(productTable.get(productIndex));
-            System.out.println("Enter the product availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
+            System.out.println("Enter the product availability for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productPiece = myScanner.nextInt();
             productsOnSaleAvailability.add(productPiece);
         }

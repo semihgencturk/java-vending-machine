@@ -5,8 +5,13 @@ import Models.Product;
 import Models.VendingMachine;
 
 public class VendingMachineUpdater {
-    private static VendingMachineUpdater self = new VendingMachineUpdater();
-    public static VendingMachineUpdater getInstance() { return self; }
+    private static VendingMachineUpdater self = null;
+    public static VendingMachineUpdater getInstance() {
+        if (self == null) {
+            self = new VendingMachineUpdater();
+        }
+        return self;
+    }
 
     public void vendingMachineIdUpdater(VendingMachine vendingMachine, int vendingMachineId) {
         vendingMachine.setVendingMachineId(vendingMachineId);

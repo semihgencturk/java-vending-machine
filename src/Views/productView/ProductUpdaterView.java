@@ -5,8 +5,13 @@ import java.util.Scanner;
 import static App_data.ProductTable.productTable;
 
 public class ProductUpdaterView {
-    private static ProductUpdaterView self = new ProductUpdaterView();
-    public static ProductUpdaterView getInstance() { return self; }
+    private static ProductUpdaterView self = null;
+    public static ProductUpdaterView getInstance() {
+        if (self == null) {
+            self = new ProductUpdaterView();
+        }
+        return self;
+    }
 
     Scanner myScanner = new Scanner(System.in);
 
