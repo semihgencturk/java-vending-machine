@@ -1,9 +1,6 @@
 package Models;
 
 public class Product {
-    private static Product self = new Product();
-    public static Product getInstance() { return self; }
-
     private int productId;
     private String productName;
     private Double productPrice;

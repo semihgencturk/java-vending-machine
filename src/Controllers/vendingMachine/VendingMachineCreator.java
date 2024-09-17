@@ -11,7 +11,8 @@ public class VendingMachineCreator {
     public static VendingMachineCreator getInstance() { return self; }
 
     public void vendingMachineCreator() {
-        vendingMachineTable.add(VendingMachine.getInstance());
+        VendingMachine vendingMachine = new VendingMachine();
+        vendingMachineTable.add(vendingMachine);
     }
 
     public void vendingMachineCreator(int vendingMachineId,
@@ -25,7 +26,7 @@ public class VendingMachineCreator {
                                       ArrayList<Product> productsOnSale,
                                       ArrayList<Integer> productsOnSaleAvailability) {
 
-        VendingMachine vendingMachine = VendingMachine.getInstance();
+        VendingMachine vendingMachine = new VendingMachine();
 
         vendingMachine.setVendingMachineId(vendingMachineId);
         vendingMachine.setVendingMachineName(vendingMachineName);
