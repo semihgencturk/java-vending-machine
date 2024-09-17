@@ -8,11 +8,12 @@ public class ProductCreator {
     public static ProductCreator getInstance() { return self; }
 
     public void productCreator() {
-        productTable.add(Product.getInstance());
+        Product product = new Product();
+        productTable.add(product);
     }
 
     public void productCreator(int productId, String productName, Double productPrice){
-        Product product = Product.getInstance();
+        Product product = new Product();
 
         product.setProductId(productId);
         product.setProductName(productName);

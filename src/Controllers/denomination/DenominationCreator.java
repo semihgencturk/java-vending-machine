@@ -8,11 +8,12 @@ public class DenominationCreator {
     public static DenominationCreator getInstance() { return self; }
 
     public void denominationCreator() {
-        denominationTable.add(Denomination.getInstance());
+        Denomination denomination = new Denomination();
+        denominationTable.add(denomination);
     }
 
     public void denominationCreator(int denominationId, String denominationCurrency, double denominationAmount){
-        Denomination denomination = Denomination.getInstance();
+        Denomination denomination = new Denomination();
 
         denomination.setDenominationId(denominationId);
         denomination.setDenominationCurrency(denominationCurrency);

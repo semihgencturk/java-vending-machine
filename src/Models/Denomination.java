@@ -1,9 +1,6 @@
 package Models;
 
 public class Denomination {
-    private static Denomination self = new Denomination();
-    public static Denomination getInstance() { return self; }
-
     private int denominationId;
     private String denominationCurrency;
     private double denominationAmount;

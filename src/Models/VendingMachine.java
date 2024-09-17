@@ -3,9 +3,6 @@ package Models;
 import java.util.HashMap;
 
 public class VendingMachine {
-    private static VendingMachine self = new VendingMachine();
-    public static VendingMachine getInstance() { return self; }
-
     private int vendingMachineId;
     private String vendingMachineName;
     private int totalProductStorageUnitNumber;
