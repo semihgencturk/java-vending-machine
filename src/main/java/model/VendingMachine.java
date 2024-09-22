@@ -9,9 +9,9 @@ public class VendingMachine {
     private int denominationStorageUnitCapacity;
     private int totalProductStorageUnitNumber;
     private int productStorageUnitCapacity;
-    private HashMap<Integer, Denomination> denominationsOnUsage = new HashMap<Integer, Denomination>();
+    private HashMap<Integer, Integer> denominationsOnUsage = new HashMap<Integer, Integer>();
     private HashMap<Integer, Integer> denominationsOnUsageAvailability = new HashMap<Integer, Integer>();
-    private HashMap<Integer, Product> productsOnSale = new HashMap<Integer, Product>();
+    private HashMap<Integer, Integer> productsOnSale = new HashMap<Integer, Integer>();
     private HashMap<Integer, Integer> productsOnSaleAvailability = new HashMap<Integer, Integer>();
 
     public int getVendingMachineId() {
@@ -56,31 +56,31 @@ public class VendingMachine {
         this.productStorageUnitCapacity = productStorageUnitCapacity;
     }
 
-    public HashMap<Integer, Denomination> getDenominationsOnUsage() {
+    public HashMap<Integer, Integer> getDenominationsOnUsage() {
         return denominationsOnUsage;
     }
-    public void setDenominationsOnUsage(int denominationStorageUnit, Denomination denomination) {
-        denominationsOnUsage.put(denominationStorageUnit, denomination);
+    public void setDenominationsOnUsage(int denominationStorageUnit, int denominationId) {
+        denominationsOnUsage.put(denominationStorageUnit, denominationId);
     }
 
     public HashMap<Integer, Integer> getDenominationsOnUsageAvailability() {
         return denominationsOnUsageAvailability;
     }
-    public void denominationsOnUsageAvailability(int denominationStorageUnit, int denominationPiece) {
+    public void setDenominationsOnUsageAvailability(int denominationStorageUnit, int denominationPiece) {
         denominationsOnUsageAvailability.put(denominationStorageUnit, denominationPiece);
     }
 
-    public HashMap<Integer, Product> getProductsOnSale() {
+    public HashMap<Integer, Integer> getProductsOnSale() {
         return productsOnSale;
     }
-    public void setProductsOnSale(int productStorageUnit, Product product) {
-        productsOnSale.put(productStorageUnit, product);
+    public void setProductsOnSale(int productStorageUnit, int productId) {
+        productsOnSale.put(productStorageUnit, productId);
     }
 
     public HashMap<Integer, Integer> getProductsOnSaleAvailability() {
         return productsOnSaleAvailability;
     }
-    public void productsOnSaleAvailability(int productStorageUnit, int productPiece) {
+    public void setProductsOnSaleAvailability(int productStorageUnit, int productPiece) {
         productsOnSaleAvailability.put(productStorageUnit, productPiece);
     }
 }

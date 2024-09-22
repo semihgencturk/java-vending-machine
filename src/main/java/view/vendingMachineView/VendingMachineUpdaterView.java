@@ -1,11 +1,13 @@
 package view.vendingMachineView;
 
+import controller.DatabaseController;
 import java.util.Scanner;
-
 
 public class VendingMachineUpdaterView {
     public void updateVendingMachine(){
+        DatabaseController databaseController = new DatabaseController();
         Scanner myScanner = new Scanner(System.in);
+
         System.out.println("Please select the vending machine's you want to update:");
         int vendingMachineId = myScanner.nextInt();
 
@@ -24,24 +26,24 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new product Storage Unit Capacity");
         int productStorageUnitCapacity = myScanner.nextInt();
 
+        databaseController.updateVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
+
         System.out.println("Please enter the denomination Storage Unit");
         int denominationStorageUnit = myScanner.nextInt();
         System.out.println("Please enter the new denomination on Usage");
-        int denomination = myScanner.nextInt();
-
-        System.out.println("Please enter the denomination Storage Unit");
-        int denominationStorageUnit2 = myScanner.nextInt();
+        int denominationId = myScanner.nextInt();
         System.out.println("Please enter the new denominationPiece");
         int denominationPiece = myScanner.nextInt();
+
+        databaseController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationPiece);
 
         System.out.println("Please enter the product Storage Unit");
         int productStorageUnit = myScanner.nextInt();
         System.out.println("Please enter the new product on sale");
-        int product = myScanner.nextInt();
-
-        System.out.println("Please enter the product Storage Unit");
-        int productStorageUnit2 = myScanner.nextInt();
+        int productId = myScanner.nextInt();
         System.out.println("Please enter the new product on sale");
         int productPiece = myScanner.nextInt();
+
+        databaseController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, productId, productPiece);
     }
 }

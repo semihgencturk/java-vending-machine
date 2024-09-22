@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class GreetingView {
     public void getGreetingView() {
         AdminView adminView = new AdminView();
+        CustomerView customerView = new CustomerView();
 
         System.out.println("Welcome to Vending Machine! How can I help you?");
         System.out.println("1-Admin");
@@ -18,7 +19,7 @@ public class GreetingView {
                 adminView.getAdminView();
                 break;
             case 2:
-                CustomerView.getInstance().customerView();
+                customerView.getCustomerView();
                 break;
             default:
                 System.out.println("Invalid Entry");

@@ -2,6 +2,8 @@ package controller;
 
 import model.Denomination;
 import model.Product;
+import model.VendingMachine;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -20,190 +22,30 @@ public class DatabaseController {
         }
     }
 
-    // Create A Table
+    // DENOMINATION
 
-    public void createDenominationTable() throws SQLException {
-        statement = connection.createStatement();
-        statement.execute("CREATE TABLE IF NOT EXISTS DENOMINATION("
-                + "denominationId INT NOT NULL,"
-                + "denominationCurrency VARCHAR(255) NOT NULL,"
-                + "denominationAmount DOUBLE NOT NULL,"
-                + "PRIMARY KEY(denominationId))");
-    }
-
-    public void createProductTable() throws SQLException {
-        statement = connection.createStatement();
-        statement.execute("CREATE TABLE IF NOT EXISTS PRODUCT("
-                + "productId INT NOT NULL,"
-                + "productName VARCHAR(255) NOT NULL,"
-                + "productPrice DOUBLE NOT NULL"
-                + "PRIMARY KEY(productId))");
-    }
-
-    public void createVendingMachineTable() throws SQLException {
-        statement = connection.createStatement();
-        statement.execute("CREATE TABLE IF NOT EXISTS VENDING_MACHINE("
-                + "vendingMachineId INT NOT NULL,"
-                + "vendingMachineName VARCHAR(255) NOT NULL,"
-                + "totalDenominationStorageUnitNumber INT NOT NULL,"
-                + "denominationStorageUnitCapacity INT NOT NULL"
-                + "totalProductStorageUnitNumber INT NOT NULL,"
-                + "productStorageUnitCapacity INT NOT NULL,"
-                + "PRIMARY KEY(vendingMachineId))");
-    }
-
-    public void createDenominationOfVendingMachineTable() throws SQLException {
-        statement = connection.createStatement();
-        statement.execute("CREATE TABLE IF NOT EXISTS DENOMINATION_OF_VENDING_MACHINE("
-                + "vendingMachineId INT NOT NULL,"
-                + "denominationId INT NOT NULL,"
-                + "denominationStorageUnit INT NOT NULL,"
-                + "denominationPiece INT NOT NULL,"
-                + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId)"
-                + "FOREIGN KEY (denominationId) REFERENCES DENOMINATION(denominationId)"
-                + "PRIMARY KEY(vendingMachineId, denominationId))");
-    }
-
-    public void createProductOfVendingMachineTable() throws SQLException {
-        statement = connection.createStatement();
-        statement.execute("CREATE TABLE IF NOT EXISTS PRODUCT_OF_VENDING_MACHINE("
-                + "vendingMachineId INT NOT NULL,"
-                + "productId INT NOT NULL,"
-                + "productStorageUnit INT NOT NULL,"
-                + "productPiece INT NOT NULL,"
-                + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId)"
-                + "FOREIGN KEY (productId) REFERENCES PRODUCT(productId)"
-                + "PRIMARY KEY(vendingMachineId, productId))");
-    }
-
-    // Insert A Record To The Table
-
-    public void insertDenominationToTable(int denominationId, String denominationCurrency, double denominationAmount) {
+    public void createDenominationTable() {
         try {
             statement = connection.createStatement();
-            statement.execute("insert into DENOMINATION values (" + denominationId + ",'" + denominationCurrency + "','" + denominationAmount +"')");
-            statement.close();
+            statement.execute("CREATE TABLE DENOMINATION("
+                    + "denominationId INT NOT NULL,"
+                    + "denominationCurrency VARCHAR(255) NOT NULL,"
+                    + "denominationAmount DOUBLE NOT NULL,"
+                    + "PRIMARY KEY (denominationId))");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void insertProductToTable(int productId, String productName, double productPrice){
+    public void insertDenomination(int denominationId, String denominationCurrency, double denominationAmount) {
         try {
             statement = connection.createStatement();
-            statement.execute("insert into DENOMINATION values (" + productId + ",'" + productName + "','" + productPrice +"')");
+            statement.execute("insert into DENOMINATION values (" + denominationId + ",'" + denominationCurrency + "'," + denominationAmount + ")");
             statement.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-
-    public void insertVendingMachineToTable(int vendingMachineId, String vendingMachineName, int totalProductStorageUnitNumber, int productStorageUnitCapacity, int totalDenominationStorageUnitNumber, int denominationStorageUnitCapacity) {
-        try {
-            statement = connection.createStatement();
-            statement.execute("insert into VENDING_MACHINE values (" +
-                    vendingMachineId + ",'" + vendingMachineName + "','" + totalProductStorageUnitNumber + ",'" + productStorageUnitCapacity + "','" + totalDenominationStorageUnitNumber + ",'" + denominationStorageUnitCapacity +"')");
-            statement.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void insertDenominationOfVendingMachineTable(int vendingMachineId, int denominationId, int denominationStorageUnit, int denominationPiece) {
-        try {
-            statement = connection.createStatement();
-            statement.execute("insert into DENOMINATION_OF_VENDING_MACHINE values (" +
-                    vendingMachineId + ",'" + denominationId + "','" + denominationStorageUnit + "','" + denominationPiece +"')");
-            statement.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void insertProductOfVendingMachineTable(int vendingMachineId, int productId, int productStorageUnit, int productPiece) {
-        try {
-            statement = connection.createStatement();
-            statement.execute("insert into PRODUCT_OF_VENDING_MACHINE values (" +
-                    vendingMachineId + ",'" + productId + "','" + productStorageUnit + "','" + productPiece +"')");
-            statement.close();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    // Read The Records From The Table
-
-    public ArrayList<Denomination> getDenominations() {
-        try {
-            Denomination denomination = new Denomination();
-            ArrayList<Denomination> denominations= new ArrayList<>();
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from DENOMINATION");
-
-            while(resultSet.next()) {
-                denomination.setDenominationId(resultSet.getInt(1));
-                denomination.setDenominationCurrency(resultSet.getString(2));
-                denomination.setDenominationAmount(resultSet.getDouble(3));
-
-                denominations.add(denomination);
-            }
-            statement.close();
-
-            return denominations;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public ArrayList<Product> getProducts() {
-        try {
-            Product product = new Product();
-            ArrayList<Product> products = new ArrayList<>();
-            statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from PRODUCT");
-
-            while(resultSet.next()) {
-                product.setProductId(resultSet.getInt(1));
-                product.setProductName(resultSet.getString(2));
-                product.setProductPrice(resultSet.getDouble(3));
-
-                products.add(product);
-            }
-            statement.close();
-
-            return products;
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-//    public ArrayList<VendingMachine> getVendingMachines() {
-//        try {
-//            VendingMachine vendingMachine = new VendingMachine();
-//            ArrayList<VendingMachine> vendingMachines = new ArrayList<>();
-//            statement = connection.createStatement();
-//            ResultSet resultSet = statement.executeQuery("select * from VENDING_MACHINE");
-//            ResultSet resultSet1 = statement.executeQuery("select ")
-//
-//            while(resultSet.next()) {
-//                vendingMachine.setVendingMachineCode(resultSet.getInt(1));
-//                vendingMachine.setVendingMachineName(resultSet.getString(2));
-//                vendingMachine.setTotalDenominationStorageUnitNumber(resultSet.getInt(3));
-//                vendingMachine.setDenominationStorageUnitCapacity(resultSet.getInt(4));
-//                vendingMachine.setTotalProductStorageUnitNumber(resultSet.getInt(5));
-//                vendingMachine.setProductStorageUnitCapacity(resultSet.getInt(6));
-//
-//            vendingMachines.add(vendingMachine);
-//            }
-//            statement.close();
-//
-//            return vendingMachines;
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-
-    // Read A Record From The Table
 
     public Denomination getDenominationById(int denominationId) {
         try {
@@ -226,29 +68,69 @@ public class DatabaseController {
         }
     }
 
-//    public VendingMachine getVendingMachineById(int vendingMachineId) {
-//        try {
-//            VendingMachine vendingMachine = new VendingMachine();
-//            preparedStatement = connection.prepareStatement("select * FROM VENDING_MACHINE.vendingMachineCode FROM VENDING_MACHINE vm JOIN DENOMINATION_OF_VENDING_MACHINE dvm ON vm.vendingMachineId = dvm.vendingMachineId JOIN PRODUCT_OF_VENDING_MACHINE pvm vm.vendingMachineId = pvm.vendingMachineId");
-//            preparedStatement.setInt(1, vendingMachineId);
-//            ResultSet resultSet = preparedStatement.executeQuery();
-//
-//            while(resultSet.next()) {
-//                vendingMachine.setVendingMachineCode(resultSet.getInt(1));
-//                vendingMachine.setVendingMachineName(resultSet.getString(2));
-//                vendingMachine.setTotalDenominationStorageUnitNumber(resultSet.getInt(3));
-//                vendingMachine.setDenominationStorageUnitCapacity(resultSet.getInt(4));
-//                vendingMachine.setTotalProductStorageUnitNumber(resultSet.getInt(5));
-//                vendingMachine.setProductStorageUnitCapacity(resultSet.getInt(6));
-//            }
-//            preparedStatement.close();
-//
-//            return vendingMachine;
-//
-//        } catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+    public ArrayList<Denomination> getDenominations() {
+        try {
+            ArrayList<Denomination> denominations= new ArrayList<>();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select denominationId from DENOMINATION");
+
+            while(resultSet.next()) {
+                denominations.add(getDenominationById(resultSet.getInt("denominationId")));
+            }
+            statement.close();
+
+            return denominations;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateDenomination(int denominationId, String denominationCurrency, Double denominationAmount) {
+        try {
+            preparedStatement = connection.prepareStatement("update DENOMINATION set denominationCurrency = ?, denominationAmount = ? where denominationId = ?");
+            preparedStatement.setString(1, denominationCurrency);
+            preparedStatement.setDouble(2, denominationAmount);
+            preparedStatement.setInt(3, denominationId);
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteDenomination(int denominationId) {
+        try {
+            preparedStatement = connection.prepareStatement("delete * from DENOMINATION WHERE denominationId = ?");
+            preparedStatement.setInt(1, denominationId);
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // PRODUCT
+
+    public void createProductTable() {
+        try {
+            statement = connection.createStatement();
+            statement.execute("CREATE TABLE PRODUCT("
+                    + "productId INT NOT NULL,"
+                    + "productName VARCHAR(255) NOT NULL,"
+                    + "productPrice DOUBLE NOT NULL,"
+                    + "PRIMARY KEY (productId))");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void insertProduct(int productId, String productName, double productPrice){
+        try {
+            statement = connection.createStatement();
+            statement.execute("insert into DENOMINATION values (" + productId + ",'" + productName + "'," + productPrice + ")");
+            statement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public Product getProductById(int productId) {
         try {
@@ -271,12 +153,29 @@ public class DatabaseController {
         }
     }
 
-    // Delete A Record From The Table
-
-    public void deleteDenomination(int denominationId) {
+    public ArrayList<Product> getProducts() {
         try {
-            preparedStatement = connection.prepareStatement("delete * from DENOMINATION WHERE denominationId = ?");
-            preparedStatement.setInt(1, denominationId);
+            ArrayList<Product> products = new ArrayList<>();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select productId from PRODUCT");
+
+            while(resultSet.next()) {
+                products.add(getProductById(resultSet.getInt("productId")));
+            }
+            statement.close();
+
+            return products;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateProduct(int productId, String productName, Double productPrice) {
+        try {
+            preparedStatement = connection.prepareStatement("update PRODUCT set productName = ?, productPrice = ? where productId = ?");
+            preparedStatement.setString(1, productName);
+            preparedStatement.setDouble(2, productPrice);
+            preparedStatement.setInt(3, productId);
             preparedStatement.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -293,30 +192,252 @@ public class DatabaseController {
         }
     }
 
-    // Update A Record In The Table
+    // VENDING_MACHINE
 
-    public void updateDenomination(int denominationId, String denominationCurrency, Double denominationAmount) {
+    public void createVendingMachineTable() {
         try {
-            preparedStatement = connection.prepareStatement("update DENOMINATION set denominationCurrency = ?, denominationAmount = ? where denominationId = ?");
-            preparedStatement.setString(1, denominationCurrency);
-            preparedStatement.setDouble(2, denominationAmount);
-            preparedStatement.setInt(3, denominationId);
+            statement = connection.createStatement();
+            statement.execute("CREATE TABLE VENDING_MACHINE("
+                    + "vendingMachineId INT NOT NULL,"
+                    + "vendingMachineName VARCHAR(255) NOT NULL,"
+                    + "totalDenominationStorageUnitNumber INT NOT NULL,"
+                    + "denominationStorageUnitCapacity INT NOT NULL,"
+                    + "totalProductStorageUnitNumber INT NOT NULL,"
+                    + "productStorageUnitCapacity INT NOT NULL,"
+                    + "PRIMARY KEY (vendingMachineId))");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void insertVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitNumber, int denominationStorageUnitCapacity, int totalProductStorageUnitNumber, int productStorageUnitCapacity) {
+        try {
+            statement = connection.createStatement();
+            statement.execute("insert into VENDING_MACHINE values (" +
+                    vendingMachineId + ",'" + vendingMachineName + "'," + totalDenominationStorageUnitNumber + "," + denominationStorageUnitCapacity + "," + totalProductStorageUnitNumber + "," + productStorageUnitCapacity + ")");
+            statement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public VendingMachine getVendingMachineById(int vendingMachineId) {
+        try {
+            VendingMachine vendingMachine = new VendingMachine();
+            preparedStatement = connection.prepareStatement("select * FROM VENDING_MACHINE where vendingMachineId = ?");
+            preparedStatement.setInt(1, vendingMachineId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            preparedStatement = connection.prepareStatement("select denominationStorageUnit, denominationId, denominationPiece FROM DENOMINATION_OF_VENDING_MACHINE where vendingMachineId = ?");
+            preparedStatement.setInt(1, vendingMachineId);
+            ResultSet resultSet2 = preparedStatement.executeQuery();
+
+            preparedStatement = connection.prepareStatement("select productStorageUnit, productId, productPiece FROM PRODUCT_OF_VENDING_MACHINE where vendingMachineId = ?");
+            preparedStatement.setInt(1, vendingMachineId);
+            ResultSet resultSet3 = preparedStatement.executeQuery();
+
+            while(resultSet.next()) {
+                vendingMachine.setVendingMachineId(resultSet.getInt(1));
+                vendingMachine.setVendingMachineName(resultSet.getString(2));
+                vendingMachine.setTotalDenominationStorageUnitNumber(resultSet.getInt(3));
+                vendingMachine.setDenominationStorageUnitCapacity(resultSet.getInt(4));
+                vendingMachine.setTotalProductStorageUnitNumber(resultSet.getInt(5));
+                vendingMachine.setProductStorageUnitCapacity(resultSet.getInt(6));
+                while(resultSet2.next()) {
+                    vendingMachine.setDenominationsOnUsage(resultSet2.getInt("denominationStorageUnit"), resultSet2.getInt("denominationId"));
+                    vendingMachine.setDenominationsOnUsageAvailability(resultSet2.getInt("denominationStorageUnit"), resultSet2.getInt("denominationPiece"));
+                }
+                while(resultSet3.next()) {
+                    vendingMachine.setProductsOnSale(resultSet2.getInt("productStorageUnit"), resultSet2.getInt("productId"));
+                    vendingMachine.setProductsOnSale(resultSet2.getInt("productStorageUnit"), resultSet2.getInt("productPiece"));
+                }
+            }
+            preparedStatement.close();
+
+            return vendingMachine;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public ArrayList<VendingMachine> getVendingMachines() {
+        try {
+            ArrayList<VendingMachine> vendingMachines = new ArrayList<>();
+            statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select vendingMachineId from VENDING_MACHINE");
+
+            while(resultSet.next()) {
+                vendingMachines.add(getVendingMachineById(resultSet.getInt("vendingMachineId")));
+            }
+            statement.close();
+
+            return vendingMachines;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitNumber, int denominationStorageUnitCapacity, int totalProductStorageUnitNumber, int productStorageUnitCapacity) {
+        try {
+            preparedStatement = connection.prepareStatement("update PRODUCT set vendingMachineName = ?, totalDenominationStorageUnitNumber = ?, denominationStorageUnitCapacity = ?, totalProductStorageUnitNumber = ?, productStorageUnitCapacity = ? where productId = ?");
+            preparedStatement.setString(1, vendingMachineName);
+            preparedStatement.setInt(2, totalDenominationStorageUnitNumber);
+            preparedStatement.setInt(3, denominationStorageUnitCapacity);
+            preparedStatement.setInt(4, totalProductStorageUnitNumber);
+            preparedStatement.setInt(5, productStorageUnitCapacity);
+            preparedStatement.setInt(6, vendingMachineId);
+
             preparedStatement.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void updateProduct(int productId, int productCode, String productName, Double productPrice) {
+    public void deleteVendingMachine(int vendingMachineId) {
         try {
-            preparedStatement = connection.prepareStatement("update PRODUCT set productCode = ?, productName = ?, productPrice = ? where productId = ?");
-            preparedStatement.setInt(1, productCode);
-            preparedStatement.setString(2, productName);
-            preparedStatement.setDouble(3, productPrice);
-            preparedStatement.setInt(4, productId);
+            preparedStatement = connection.prepareStatement("delete * from DENOMINATION_OF_VENDING_MACHINE WHERE vendingMachineId = ?");
+            preparedStatement.setInt(1, vendingMachineId);
+            preparedStatement = connection.prepareStatement("delete * from PRODUCT_OF_VENDING_MACHINE WHERE vendingMachineId = ?");
+            preparedStatement.setInt(1, vendingMachineId);
+            preparedStatement = connection.prepareStatement("delete * from VENDING_MACHINE WHERE vendingMachineId = ?");
+            preparedStatement.setInt(1, vendingMachineId);
             preparedStatement.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
+
+    // DENOMINATION_OF_VENDING_MACHINE
+
+    public void createDenominationOfVendingMachineTable() {
+        try {
+            statement = connection.createStatement();
+            statement.execute("CREATE TABLE DENOMINATION_OF_VENDING_MACHINE("
+                    + "vendingMachineId INT NOT NULL,"
+                    + "denominationStorageUnit INT NOT NULL,"
+                    + "denominationId INT NOT NULL,"
+                    + "denominationPiece INT NOT NULL,"
+                    + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId),"
+                    + "FOREIGN KEY (denominationId) REFERENCES DENOMINATION(denominationId),"
+                    + "PRIMARY KEY (vendingMachineId, denominationStorageUnit))");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void insertDenominationToVendingMachine(int vendingMachineId,  int denominationStorageUnit, int denominationId, int denominationPiece) {
+        try {
+            statement = connection.createStatement();
+            statement.execute("insert into DENOMINATION_OF_VENDING_MACHINE values (" +
+                    vendingMachineId + "," + denominationStorageUnit + "," + denominationId + "," + denominationPiece +")");
+            statement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateDenominationOfVendingMachine(int vendingMachineId, int denominationStorageUnit, int denominationId, int denominationPiece) {
+        try {
+            preparedStatement = connection.prepareStatement("update DENOMINATION_OF_VENDING_MACHINE set denominationId = ?, denominationPiece = ? where vendingMachineId = ? and denominationStorageUnit = ?");
+            preparedStatement.setInt(1, denominationId);
+            preparedStatement.setInt(2, denominationPiece);
+            preparedStatement.setInt(3, vendingMachineId);
+            preparedStatement.setInt(4, denominationStorageUnit);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // PRODUCT_OF_VENDING_MACHINE
+
+    public void createProductOfVendingMachineTable() {
+        try {
+            statement = connection.createStatement();
+            statement.execute("CREATE TABLE PRODUCT_OF_VENDING_MACHINE("
+                    + "vendingMachineId INT NOT NULL,"
+                    + "productStorageUnit INT NOT NULL,"
+                    + "productId INT NOT NULL,"
+                    + "productPiece INT NOT NULL,"
+                    + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId),"
+                    + "FOREIGN KEY (productId) REFERENCES PRODUCT(productId),"
+                    + "PRIMARY KEY (vendingMachineId, productStorageUnit))");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void insertProductToVendingMachine(int vendingMachineId, int productStorageUnit, int productId, int productPiece) {
+        try {
+            statement = connection.createStatement();
+            statement.execute("insert into PRODUCT_OF_VENDING_MACHINE values (" +
+                    vendingMachineId + "," + productStorageUnit + "," + productId + "," + productPiece + ")");
+            statement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void updateProductOfVendingMachine(int vendingMachineId, int productStorageUnit , int productId, int productPiece) {
+        try {
+            preparedStatement = connection.prepareStatement("update PRODUCT_OF_VENDING_MACHINE set productId = ?, productPiece = ? where vendingMachineId = ? AND productStorageUnit = ?");
+            preparedStatement.setInt(1, productId);
+            preparedStatement.setInt(2, productPiece);
+            preparedStatement.setInt(3, vendingMachineId);
+            preparedStatement.setInt(4, productStorageUnit);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+//
+//    public void dropDenominationTable() {
+//        try {
+//            statement = connection.createStatement();
+//            statement.execute("DROP TABLE DENOMINATION");
+//        }
+//        catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    public void dropProductTable() {
+//        try {
+//            statement = connection.createStatement();
+//            statement.execute("DROP TABLE PRODUCT");
+//        }
+//        catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    public void dropVendingMachineTable() {
+//        try {
+//            statement = connection.createStatement();
+//            statement.execute("DROP TABLE VENDING_MACHINE");
+//        }
+//        catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    public void dropDenominationOfVendingMachineTable() {
+//        try {
+//            statement = connection.createStatement();
+//            statement.execute("DROP TABLE DENOMINATION_OF_VENDING_MACHINE");
+//        }
+//        catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
+//
+//    public void dropProductOfVendingMachineTable() {
+//        try {
+//            statement = connection.createStatement();
+//            statement.execute("DROP TABLE PRODUCT_OF_VENDING_MACHINE");
+//        }
+//        catch (Exception e) {
+//            throw new RuntimeException(e);
+//        }
+//    }
 }

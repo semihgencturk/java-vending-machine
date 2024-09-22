@@ -17,6 +17,6 @@ public class DenominationCreatorView {
         System.out.println("Enter the Denomination Amount");
         double denominationAmount = myScanner.nextInt();
 
-        databaseController.insertDenominationToTable(denominationId, denominationCurrency, denominationAmount);
+        databaseController.insertDenomination(denominationId, denominationCurrency, denominationAmount);
     }
 }

@@ -17,6 +17,6 @@ public class ProductCreatorView {
         System.out.println("Enter the productPrice");
         double productPrice = myScanner.nextDouble();
 
-        databaseController.insertProductToTable(productId, productName, productPrice);
+        databaseController.insertProduct(productId, productName, productPrice);
     }
 }

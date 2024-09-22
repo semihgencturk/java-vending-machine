@@ -6,8 +6,8 @@ public class Denomination {
     private double denominationAmount;
 
     public Denomination() {}
-    public Denomination(int denominationCode, String denominationCurrency, double denominationAmount) {
-        this.denominationId = denominationCode;
+    public Denomination(int denominationId, String denominationCurrency, double denominationAmount) {
+        this.denominationId = denominationId;
         this.denominationCurrency = denominationCurrency;
         this.denominationAmount = denominationAmount;
     }

@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Sat Sep 21 15:27:13 TRT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0192-148c-efee-00000f87c0b0 
+Sun Sep 22 15:01:44 TRT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0192-199b-f537-00000f8fba78 
 on database directory /Users/semihgencturk/Desktop/Codes/learning/learning-java/javaVendingMachineMaven/myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
 Loaded from file:/Users/semihgencturk/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
@@ -11,6 +11,3 @@ os.arch=aarch64
 os.version=14.6.1
 derby.system.home=null
 Database Class Loader started - derby.database.classpath=''
-----------------------------------------------------------------
-Sat Sep 21 15:27:14 TRT 2024:
-Shutting down instance a816c00e-0192-148c-efee-00000f87c0b0 on database directory /Users/semihgencturk/Desktop/Codes/learning/learning-java/javaVendingMachineMaven/myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 

@@ -17,7 +17,7 @@ public class ProductUpdaterView {
         System.out.println("Please enter the new total productPrice");
         Double productPrice = myScanner.nextDouble();
 
-        databaseController.updateDenomination(productId, productName, productPrice);
+        databaseController.updateProduct(productId, productName, productPrice);
 
     }
 }
