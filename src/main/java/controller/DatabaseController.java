@@ -125,7 +125,7 @@ public class DatabaseController {
     public void insertProduct(int productId, String productName, double productPrice){
         try {
             statement = connection.createStatement();
-            statement.execute("insert into DENOMINATION values (" + productId + ",'" + productName + "'," + productPrice + ")");
+            statement.execute("insert into PRODUCT values (" + productId + ",'" + productName + "'," + productPrice + ")");
             statement.close();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -248,8 +248,8 @@ public class DatabaseController {
                     vendingMachine.setDenominationsOnUsageAvailability(resultSet2.getInt("denominationStorageUnit"), resultSet2.getInt("denominationPiece"));
                 }
                 while(resultSet3.next()) {
-                    vendingMachine.setProductsOnSale(resultSet2.getInt("productStorageUnit"), resultSet2.getInt("productId"));
-                    vendingMachine.setProductsOnSale(resultSet2.getInt("productStorageUnit"), resultSet2.getInt("productPiece"));
+                    vendingMachine.setProductsOnSale(resultSet3.getInt("productStorageUnit"), resultSet3.getInt("productId"));
+                    vendingMachine.setProductsOnSaleAvailability(resultSet3.getInt("productStorageUnit"), resultSet3.getInt("productPiece"));
                 }
             }
             preparedStatement.close();
@@ -381,7 +381,7 @@ public class DatabaseController {
 
     public void updateProductOfVendingMachine(int vendingMachineId, int productStorageUnit , int productId, int productPiece) {
         try {
-            preparedStatement = connection.prepareStatement("update PRODUCT_OF_VENDING_MACHINE set productId = ?, productPiece = ? where vendingMachineId = ? AND productStorageUnit = ?");
+            preparedStatement = connection.prepareStatement("update PRODUCT_OF_VENDING_MACHINE set productId = ?, productPiece = ? where vendingMachineId = ? and productStorageUnit = ?");
             preparedStatement.setInt(1, productId);
             preparedStatement.setInt(2, productPiece);
             preparedStatement.setInt(3, vendingMachineId);
@@ -390,54 +390,54 @@ public class DatabaseController {
             throw new RuntimeException(e);
         }
     }
-//
-//    public void dropDenominationTable() {
-//        try {
-//            statement = connection.createStatement();
-//            statement.execute("DROP TABLE DENOMINATION");
-//        }
-//        catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    public void dropProductTable() {
-//        try {
-//            statement = connection.createStatement();
-//            statement.execute("DROP TABLE PRODUCT");
-//        }
-//        catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    public void dropVendingMachineTable() {
-//        try {
-//            statement = connection.createStatement();
-//            statement.execute("DROP TABLE VENDING_MACHINE");
-//        }
-//        catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    public void dropDenominationOfVendingMachineTable() {
-//        try {
-//            statement = connection.createStatement();
-//            statement.execute("DROP TABLE DENOMINATION_OF_VENDING_MACHINE");
-//        }
-//        catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
-//
-//    public void dropProductOfVendingMachineTable() {
-//        try {
-//            statement = connection.createStatement();
-//            statement.execute("DROP TABLE PRODUCT_OF_VENDING_MACHINE");
-//        }
-//        catch (Exception e) {
-//            throw new RuntimeException(e);
-//        }
-//    }
+
+    public void dropDenominationTable() {
+        try {
+            statement = connection.createStatement();
+            statement.execute("DROP TABLE DENOMINATION");
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void dropProductTable() {
+        try {
+            statement = connection.createStatement();
+            statement.execute("DROP TABLE PRODUCT");
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void dropVendingMachineTable() {
+        try {
+            statement = connection.createStatement();
+            statement.execute("DROP TABLE VENDING_MACHINE");
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void dropDenominationOfVendingMachineTable() {
+        try {
+            statement = connection.createStatement();
+            statement.execute("DROP TABLE DENOMINATION_OF_VENDING_MACHINE");
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void dropProductOfVendingMachineTable() {
+        try {
+            statement = connection.createStatement();
+            statement.execute("DROP TABLE PRODUCT_OF_VENDING_MACHINE");
+        }
+        catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
