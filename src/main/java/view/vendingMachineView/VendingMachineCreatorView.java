@@ -1,25 +1,16 @@
 package view.vendingMachineView;
 
-import controller.vendingMachine.VendingMachineCreator;
+import controller.DatabaseController;
 import model.Denomination;
 import model.Product;
 import java.util.ArrayList;
 import java.util.Scanner;
-import static app_data.DenominationTable.denominationTable;
-import static app_data.ProductTable.productTable;
 
 public class VendingMachineCreatorView {
-    private static VendingMachineCreatorView self = null;
-    public static VendingMachineCreatorView getInstance() {
-        if (self == null) {
-            self = new VendingMachineCreatorView();
-        }
-        return self;
-    }
+    public void createVendingMachine() {
+        DatabaseController databaseController = new DatabaseController();
+        Scanner myScanner = new Scanner(System.in);
 
-    Scanner myScanner = new Scanner(System.in);
-
-    public void vendingMachineCreatorView() {
         System.out.println("Enter the Vending Machine Id");
         int vendingMachineId = myScanner.nextInt();
 
@@ -42,8 +33,8 @@ public class VendingMachineCreatorView {
         ArrayList<Integer> denominationsOnUsageAvailability = new ArrayList<Integer>();
         for(int denominationStorageUnit=0; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++){
             System.out.println("Enter the denomination on usage for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
-            int denominationIndex = myScanner.nextInt();
-            denominationsOnUsage.add(denominationTable.get(denominationIndex));
+            int denominationId = myScanner.nextInt();
+            denominationsOnUsage.add(databaseController.getDenominationById(denominationId));
             System.out.println("Enter the denomination availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationPiece = myScanner.nextInt();
             denominationsOnUsageAvailability.add(denominationPiece);

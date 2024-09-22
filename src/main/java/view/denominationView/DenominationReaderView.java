@@ -1,31 +1,30 @@
 package view.denominationView;
 
-import controller.denomination.DenominationReader;
+import controller.DatabaseController;
 import model.Denomination;
 import java.util.Scanner;
-import static app_data.DenominationTable.denominationTable;
 
 public class DenominationReaderView {
-    private static DenominationReaderView self = null;
-    public static DenominationReaderView getInstance() {
-        if (self == null) {
-            self = new DenominationReaderView();
-        }
-        return self;
+    DatabaseController databaseController = new DatabaseController();
+
+    public void getDenominationById() {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Enter the vending machine id you want to see its details:");
+        int denominationId = myScanner.nextInt();
+
+        printDenomination(databaseController.getDenominationById(denominationId));
     }
 
-    public void denominationReaderView() {
-        Scanner myScanner = new Scanner(System.in);
-        System.out.println("Enter the vending machine you want to see its details:");
-        int denominationIndex = myScanner.nextInt();
+    public void getDenominations() {
+        for (Denomination denomination : databaseController.getDenominations()) {
+            printDenomination(denomination);
+        }
+    }
 
-        Denomination denomination = denominationTable.get(denominationIndex);
-
-        DenominationReader denominationReader = DenominationReader.getInstance();
-
-        System.out.println("1-denominationId: " + denominationReader.denominationIdReader(denomination));
-        System.out.println("2-denominationCurrency: " + denominationReader.denominationCurrencyReader(denomination));
-        System.out.println("3-denominationAmount: " + denominationReader.denominationAmountReader(denomination));
+    private void printDenomination(Denomination denomination) {
+        System.out.println("1-denominationId: " + denomination.getDenominationId());
+        System.out.println("2-denominationCurrency: " + denomination.getDenominationCurrency());
+        System.out.println("3-denominationAmount: " + denomination.getDenominationAmount());
     }
 }
 

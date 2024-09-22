@@ -3,7 +3,14 @@ package model;
 public class Product {
     private int productId;
     private String productName;
-    private Double productPrice;
+    private double productPrice;
+
+    public Product() {}
+    public Product(int productCode, String productName, double productPrice) {
+        this.productId = productCode;
+        this.productName = productName;
+        this.productPrice = productPrice;
+    }
 
     public int getProductId() {
         return productId;

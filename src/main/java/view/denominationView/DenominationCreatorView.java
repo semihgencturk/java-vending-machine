@@ -1,20 +1,13 @@
 package view.denominationView;
 
-import controller.denomination.DenominationCreator;
+import controller.DatabaseController;
 import java.util.Scanner;
 
 public class DenominationCreatorView {
-    private static DenominationCreatorView self = null;
-    public static DenominationCreatorView getInstance() {
-        if (self == null) {
-            self = new DenominationCreatorView();
-        }
-        return self;
-    }
+    public void createDenomination() {
+        DatabaseController databaseController = new DatabaseController();
+        Scanner myScanner = new Scanner(System.in);
 
-    Scanner myScanner = new Scanner(System.in);
-
-    public void denominationCreatorView() {
         System.out.println("Enter the Denomination Id");
         int denominationId = myScanner.nextInt();
 
@@ -22,8 +15,8 @@ public class DenominationCreatorView {
         String denominationCurrency = myScanner.nextLine();
 
         System.out.println("Enter the Denomination Amount");
-        int denominationAmount = myScanner.nextInt();
+        double denominationAmount = myScanner.nextInt();
 
-        DenominationCreator.getInstance().denominationCreator(denominationId, denominationCurrency, denominationAmount);
+        databaseController.insertDenominationToTable(denominationId, denominationCurrency, denominationAmount);
     }
 }

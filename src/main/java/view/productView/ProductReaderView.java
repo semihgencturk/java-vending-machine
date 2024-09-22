@@ -1,29 +1,29 @@
 package view.productView;
 
-import controller.product.ProductReader;
+import controller.DatabaseController;
 import model.Product;
 import java.util.Scanner;
-import static app_data.ProductTable.productTable;
 
 public class ProductReaderView {
-    private static ProductReaderView self = null;
-    public static ProductReaderView getInstance() {
-        if (self == null) {
-            self = new ProductReaderView();
-        }
-        return self;
+    DatabaseController databaseController = new DatabaseController();
+
+    public void getProductById() {
+        Scanner myScanner = new Scanner(System.in);
+        System.out.println("Enter the product id you want to see its details:");
+        int productId = myScanner.nextInt();
+
+        printProduct(databaseController.getProductById(productId));
     }
 
-    public void productReaderView() {
-        Scanner myScanner = new Scanner(System.in);
-        System.out.println("Enter the vending machine you want to see its details:");
-        int productIndex = myScanner.nextInt();
-        Product product = productTable.get(productIndex);
+    public void getProducts() {
+        for (Product product : databaseController.getProducts()) {
+            printProduct(product);
+        }
+    }
 
-        ProductReader productReader = ProductReader.getInstance();
-
-        System.out.println("1-productId: " + productReader.productIdReader(product));
-        System.out.println("2-productName: " + productReader.productNameReader(product));
-        System.out.println("3-productPrice: " + productReader.productPriceReader(product));
+    private void printProduct(Product product) {
+        System.out.println("1-productId: " + product.getProductId());
+        System.out.println("2-productName: " + product.getProductName());
+        System.out.println("3-productPrice: " + product.getProductPrice());
     }
 }

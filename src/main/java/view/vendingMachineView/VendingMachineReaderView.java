@@ -1,39 +1,39 @@
 package view.vendingMachineView;
 
-import controller.vendingMachine.VendingMachineReader;
+import controller.DatabaseController;
 import model.VendingMachine;
-
 import java.util.Scanner;
 
-import static app_data.VendingMachineTable.vendingMachineTable;
 
 public class VendingMachineReaderView {
-    private static VendingMachineReaderView self = null;
-    public static VendingMachineReaderView getInstance() {
-        if (self == null) {
-            self = new VendingMachineReaderView();
-        }
-        return self;
-    }
+    DatabaseController databaseController = new DatabaseController();
 
-    public void vendingMachineReaderView(){
+    public void getVendingMachineById() {
         Scanner myScanner = new Scanner(System.in);
-        System.out.println("Enter the vending machine you want to see its details:");
-        int vendingMachineIndex = myScanner.nextInt();
-        VendingMachine vendingMachine = vendingMachineTable.get(vendingMachineIndex);
+        System.out.println("Enter the product id you want to see its details:");
+        int vendingMachineId = myScanner.nextInt();
 
-        VendingMachineReader vendingMachineReader = VendingMachineReader.getInstance();
+        printVendingMachine(databaseController.getVendingMachineById(vendingMachineId));
+    }
 
-        System.out.println("1-vendingMachineId: " + vendingMachineReader.vendingMachineIdReader(vendingMachine));
-        System.out.println("2-vendingMachineName: " + vendingMachineReader.vendingMachineNameReader(vendingMachine));
-        System.out.println("3-totalProductStorageUnitNumber: " + vendingMachineReader.totalProductStorageUnitNumberReader(vendingMachine));
-        System.out.println("4-productStorageUnitCapacity: " + vendingMachineReader.productStorageUnitCapacityReader(vendingMachine));
-        System.out.println("5-totalDenominationStorageUnitNumber: " + vendingMachineReader.totalDenominationStorageUnitNumberReader(vendingMachine));
-        System.out.println("6-denominationStorageUnitCapacity: " + vendingMachineReader.denominationStorageUnitCapacityReader(vendingMachine));
-        System.out.println("7-denominationsOnUsage: " + vendingMachineReader.denominationsOnUsageReader(vendingMachine));
-        System.out.println("8-denominationOnUsageAvailability: " + vendingMachineReader.getDenominationsOnUsageAvailability(vendingMachine));
-        System.out.println("9-productsOnSale: " + vendingMachineReader.productsOnSaleReader(vendingMachine));
-        System.out.println("10-productsAvailability: " + vendingMachineReader.productsAvailabilityReader(vendingMachine));
+    public void getVendingMachines() {
+        for (VendingMachine vendingMachine : databaseController.getVendingMachines()) {
+            printVendingMachine(vendingMachine);
+        }
+    }
+
+    private void printVendingMachine(VendingMachine vendingMachine) {
+        System.out.println("1-vendingMachineId: " + vendingMachine.getVendingMachineId());
+        System.out.println("2-vendingMachineName: " + vendingMachine.getVendingMachineName());
+        System.out.println("3-totalDenominationStorageUnitNumber: " + vendingMachine.getTotalDenominationStorageUnitNumber());
+        System.out.println("4-denominationStorageUnitCapacity: " + vendingMachine.getDenominationStorageUnitCapacity());
+        System.out.println("5-totalProductStorageUnitNumber: " + vendingMachine.getTotalProductStorageUnitNumber());
+        System.out.println("6-productStorageUnitCapacity: " + vendingMachine.getProductStorageUnitCapacity());
+        System.out.println("7-denominationsOnUsage: " + vendingMachine.getDenominationsOnUsage());
+        System.out.println("8-denominationOnUsageAvailability: " + vendingMachine.getDenominationsOnUsageAvailability());
+        System.out.println("9-productsOnSale: " + vendingMachine.getProductsOnSale());
+        System.out.println("10-productsAvailability: " + vendingMachine.getProductsOnSaleAvailability());
 
     }
+
 }
