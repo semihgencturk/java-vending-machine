@@ -2,12 +2,14 @@ package view.vendingMachineView;
 
 import controller.VendingMachineController;
 import model.VendingMachine;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class VendingMachineReaderView {
     VendingMachineController vendingMachineController = new VendingMachineController();
 
-    public void getVendingMachineById() {
+    public void getVendingMachineById() throws SQLException {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter the product id you want to see its details:");
         int vendingMachineId = myScanner.nextInt();
@@ -15,7 +17,7 @@ public class VendingMachineReaderView {
         printVendingMachine(vendingMachineController.getVendingMachineById(vendingMachineId));
     }
 
-    public void getVendingMachines() {
+    public void getVendingMachines() throws SQLException {
         for (VendingMachine vendingMachine : vendingMachineController.getVendingMachines()) {
             printVendingMachine(vendingMachine);
         }

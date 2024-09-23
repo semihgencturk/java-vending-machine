@@ -1,9 +1,10 @@
 package view;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class GreetingView {
-    public void getGreetingView() {
+    public void getGreetingView() throws SQLException {
         AdminView adminView = new AdminView();
         CustomerView customerView = new CustomerView();
 

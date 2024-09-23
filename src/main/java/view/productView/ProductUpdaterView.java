@@ -1,10 +1,12 @@
 package view.productView;
 
 import controller.ProductController;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ProductUpdaterView {
-    public void updateProduct(){
+    public void updateProduct() throws SQLException {
         ProductController productController = new ProductController();
         Scanner myScanner = new Scanner(System.in);
 

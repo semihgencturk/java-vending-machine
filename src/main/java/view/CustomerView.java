@@ -5,11 +5,13 @@ import controller.ProductController;
 import controller.VendingMachineController;
 import model.VendingMachine;
 import view.vendingMachineView.VendingMachineReaderView;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class CustomerView {
     Scanner myScanner = new Scanner(System.in);
-    public void getCustomerView() {
+    public void getCustomerView() throws SQLException {
         System.out.println("Customer View");
 
         System.out.println("Available Vending Machines: ");
@@ -24,7 +26,7 @@ public class CustomerView {
         getCustomerTransactionView(vendingMachineId, productStorageUnit);
     }
 
-    public void getCustomerTransactionView(int vendingMachineId, int productStorageUnit) {
+    public void getCustomerTransactionView(int vendingMachineId, int productStorageUnit) throws SQLException {
         VendingMachineController vendingMachineController = new VendingMachineController();
         ProductController productController = new ProductController();
         DenominationController denominationController = new DenominationController();
@@ -59,7 +61,7 @@ public class CustomerView {
         vendingMachineReaderView.getVendingMachines();
     }
 
-    private void giveChangeToCustomer(double changeAmount, int totalDenominationStorageUnitNumber, double totalAddedDenominationAmount, VendingMachine vendingMachine) {
+    private void giveChangeToCustomer(double changeAmount, int totalDenominationStorageUnitNumber, double totalAddedDenominationAmount, VendingMachine vendingMachine) throws SQLException {
         VendingMachineController vendingMachineController = new VendingMachineController();
         DenominationController denominationController = new DenominationController();
 

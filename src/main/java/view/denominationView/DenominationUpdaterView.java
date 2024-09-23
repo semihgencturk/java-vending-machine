@@ -1,10 +1,12 @@
 package view.denominationView;
 
 import controller.DenominationController;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DenominationUpdaterView {
-    public void updateDenomination(){
+    public void updateDenomination() throws SQLException {
         DenominationController denominationController = new DenominationController();
         Scanner myScanner = new Scanner(System.in);
 

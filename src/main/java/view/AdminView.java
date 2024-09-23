@@ -3,10 +3,12 @@ package view;
 import view.denominationView.DenominationManagementView;
 import view.productView.ProductManagementView;
 import view.vendingMachineView.VendingMachineManagementView;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class AdminView {
-    public void getAdminView() {
+    public void getAdminView() throws SQLException {
         System.out.println("This is the Admin Page. Please select the operations:");
         System.out.println("1- Denomination Management (List Of Defined Denominations -> Add, Update, Delete, Detail Denomination)");
         System.out.println("2- Product Management (List Of Defined Products -> Add, Update, Delete, Detail Product)");
@@ -17,7 +19,7 @@ public class AdminView {
         getAdminViewRouter(selectedOption);
     }
 
-    public void getAdminViewRouter(int selectedOption) {
+    public void getAdminViewRouter(int selectedOption) throws SQLException {
         DenominationManagementView denominationView = new DenominationManagementView();
         ProductManagementView productView = new ProductManagementView();
         VendingMachineManagementView vendingMachineView = new VendingMachineManagementView();

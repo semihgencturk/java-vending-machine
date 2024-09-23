@@ -1,9 +1,10 @@
 package view.productView;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ProductManagementView {
-    public void getProductManagementView() {
+    public void getProductManagementView() throws SQLException {
         ProductCreatorView productCreatorView = new ProductCreatorView();
         ProductReaderView productReaderView = new ProductReaderView();
         ProductUpdaterView productUpdaterView = new ProductUpdaterView();

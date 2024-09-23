@@ -1,10 +1,12 @@
 package view.vendingMachineView;
 
 import controller.VendingMachineController;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class VendingMachineUpdaterView {
-    public void updateVendingMachine(){
+    public void updateVendingMachine() throws SQLException {
         VendingMachineController vendingMachineController = new VendingMachineController();
         Scanner myScanner = new Scanner(System.in);
 

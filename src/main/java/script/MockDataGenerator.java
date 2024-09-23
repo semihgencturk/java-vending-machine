@@ -4,8 +4,10 @@ import controller.DenominationController;
 import controller.ProductController;
 import controller.VendingMachineController;
 
+import java.sql.SQLException;
+
 public class MockDataGenerator {
-    public void generateMockData() {
+    public void generateMockData() throws SQLException {
         DenominationController denominationController = new DenominationController();
         ProductController productController = new ProductController();
         VendingMachineController vendingMachineController = new VendingMachineController();

@@ -1,9 +1,10 @@
 package view.vendingMachineView;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class VendingMachineManagementView {
-    public void getVendingMachineManagementView() {
+    public void getVendingMachineManagementView() throws SQLException {
         VendingMachineCreatorView vendingMachineCreatorView = new VendingMachineCreatorView();
         VendingMachineReaderView vendingMachineReaderView = new VendingMachineReaderView();
         VendingMachineUpdaterView vendingMachineUpdaterView = new VendingMachineUpdaterView();

@@ -2,12 +2,14 @@ package view.productView;
 
 import controller.ProductController;
 import model.Product;
+
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class ProductReaderView {
     ProductController productController = new ProductController();
 
-    public void getProductById() {
+    public void getProductById() throws SQLException {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter the product id you want to see its details:");
         int productId = myScanner.nextInt();
@@ -15,7 +17,7 @@ public class ProductReaderView {
         printProduct(productController.getProductById(productId));
     }
 
-    public void getProducts() {
+    public void getProducts() throws SQLException {
         for (Product product : productController.getProducts()) {
             printProduct(product);
         }

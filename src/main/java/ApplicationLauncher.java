@@ -3,8 +3,10 @@ import database.DatabaseConnector;
 import script.MockDataGenerator;
 import view.GreetingView;
 
+import java.sql.SQLException;
+
 public class ApplicationLauncher {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         DatabaseConnector databaseConnector = new DatabaseConnector();
         DatabaseBuilder databaseBuilder = new DatabaseBuilder();
         MockDataGenerator mockDataGenerator = new MockDataGenerator();
