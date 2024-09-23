@@ -2,8 +2,8 @@ package view.vendingMachineView;
 
 import java.util.Scanner;
 
-public class VendingMachineView {
-    public void getVendingMachineView() {
+public class VendingMachineManagementView {
+    public void getVendingMachineManagementView() {
         VendingMachineCreatorView vendingMachineCreatorView = new VendingMachineCreatorView();
         VendingMachineReaderView vendingMachineReaderView = new VendingMachineReaderView();
         VendingMachineUpdaterView vendingMachineUpdaterView = new VendingMachineUpdaterView();

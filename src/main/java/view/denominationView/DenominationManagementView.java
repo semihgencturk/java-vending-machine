@@ -2,8 +2,8 @@ package view.denominationView;
 
 import java.util.Scanner;
 
-public class DenominationView {
-    public void getDenominationView() {
+public class DenominationManagementView {
+    public void getDenominationManagementView() {
         DenominationCreatorView denominationCreatorView = new DenominationCreatorView();
         DenominationReaderView denominationReaderView = new DenominationReaderView();
         DenominationUpdaterView denominationUpdaterView = new DenominationUpdaterView();

@@ -1,22 +1,22 @@
 package view.productView;
 
-import controller.DatabaseController;
+import controller.ProductController;
 import model.Product;
 import java.util.Scanner;
 
 public class ProductReaderView {
-    DatabaseController databaseController = new DatabaseController();
+    ProductController productController = new ProductController();
 
     public void getProductById() {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter the product id you want to see its details:");
         int productId = myScanner.nextInt();
 
-        printProduct(databaseController.getProductById(productId));
+        printProduct(productController.getProductById(productId));
     }
 
     public void getProducts() {
-        for (Product product : databaseController.getProducts()) {
+        for (Product product : productController.getProducts()) {
             printProduct(product);
         }
     }

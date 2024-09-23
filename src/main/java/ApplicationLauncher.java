@@ -1,23 +1,28 @@
-import controller.DatabaseController;
+import database.DatabaseBuilder;
+import database.DatabaseConnector;
+import controller.DenominationController;
+import controller.ProductController;
+import controller.VendingMachineController;
 import script.MockDataGenerator;
 import view.GreetingView;
 
 
 public class ApplicationLauncher {
     public static void main(String[] args) {
-        DatabaseController databaseController = new DatabaseController();
+        DenominationController denominationController = new DenominationController();
+        ProductController productController = new ProductController();
+        VendingMachineController vendingMachineController = new VendingMachineController();
+
+        DatabaseConnector databaseConnector = new DatabaseConnector();
+        DatabaseBuilder databaseBuilder = new DatabaseBuilder();
 
         // Connecting to the database
-        databaseController.createConnection();
+        databaseConnector.createDerbyDatabaseConnection();
 
         // Create Table in the Database
-        databaseController.createDenominationTable();
-        databaseController.createProductTable();
-        databaseController.createVendingMachineTable();
-        databaseController.createDenominationOfVendingMachineTable();
-        databaseController.createProductOfVendingMachineTable();
+        databaseBuilder.createDatabaseTable();
 
-        // Create And Insert Mock Data To Table
+        // Insert Mock Data To Table
         MockDataGenerator mockDataGenerator = new MockDataGenerator();
         mockDataGenerator.generateMockData();
 
@@ -26,12 +31,10 @@ public class ApplicationLauncher {
         greetingView.getGreetingView();
 
         // Drop Table From The Memory
-        databaseController.dropDenominationOfVendingMachineTable();
-        databaseController.dropProductOfVendingMachineTable();
-        databaseController.dropDenominationTable();
-        databaseController.dropProductTable();
-        databaseController.dropVendingMachineTable();
-
-
+        vendingMachineController.dropDenominationOfVendingMachineTable();
+        vendingMachineController.dropProductOfVendingMachineTable();
+        vendingMachineController.dropVendingMachineTable();
+        denominationController.dropDenominationTable();
+        productController.dropProductTable();
     }
 }

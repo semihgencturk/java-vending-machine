@@ -2,8 +2,8 @@ package view.productView;
 
 import java.util.Scanner;
 
-public class ProductView {
-    public void getProductView() {
+public class ProductManagementView {
+    public void getProductManagementView() {
         ProductCreatorView productCreatorView = new ProductCreatorView();
         ProductReaderView productReaderView = new ProductReaderView();
         ProductUpdaterView productUpdaterView = new ProductUpdaterView();

@@ -1,11 +1,11 @@
 package view.vendingMachineView;
 
-import controller.DatabaseController;
+import controller.VendingMachineController;
 import java.util.Scanner;
 
 public class VendingMachineUpdaterView {
     public void updateVendingMachine(){
-        DatabaseController databaseController = new DatabaseController();
+        VendingMachineController vendingMachineController = new VendingMachineController();
         Scanner myScanner = new Scanner(System.in);
 
         System.out.println("Please select the vending machine's you want to update:");
@@ -26,7 +26,7 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new product Storage Unit Capacity");
         int productStorageUnitCapacity = myScanner.nextInt();
 
-        databaseController.updateVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
+        vendingMachineController.updateVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
 
         System.out.println("Please enter the denomination Storage Unit");
         int denominationStorageUnit = myScanner.nextInt();
@@ -35,7 +35,7 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new denominationPiece");
         int denominationPiece = myScanner.nextInt();
 
-        databaseController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationPiece);
+        vendingMachineController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationPiece);
 
         System.out.println("Please enter the product Storage Unit");
         int productStorageUnit = myScanner.nextInt();
@@ -44,6 +44,6 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new product on sale");
         int productPiece = myScanner.nextInt();
 
-        databaseController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, productId, productPiece);
+        vendingMachineController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, productId, productPiece);
     }
 }

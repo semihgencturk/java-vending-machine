@@ -1,11 +1,11 @@
 package view.denominationView;
 
-import controller.DatabaseController;
+import controller.DenominationController;
 import java.util.Scanner;
 
 public class DenominationUpdaterView {
     public void updateDenomination(){
-        DatabaseController databaseController = new DatabaseController();
+        DenominationController denominationController = new DenominationController();
         Scanner myScanner = new Scanner(System.in);
 
         System.out.println("Enter the denomination's id you want to update:");
@@ -17,6 +17,6 @@ public class DenominationUpdaterView {
         System.out.println("Please enter the new total denominationAmount");
         Double denominationAmount = myScanner.nextDouble();
 
-        databaseController.updateDenomination(denominationId, denominationCurrency, denominationAmount);
+        denominationController.updateDenomination(denominationId, denominationCurrency, denominationAmount);
     }
 }

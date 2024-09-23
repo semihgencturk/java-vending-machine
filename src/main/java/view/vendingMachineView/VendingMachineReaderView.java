@@ -1,23 +1,22 @@
 package view.vendingMachineView;
 
-import controller.DatabaseController;
+import controller.VendingMachineController;
 import model.VendingMachine;
 import java.util.Scanner;
 
-
 public class VendingMachineReaderView {
-    DatabaseController databaseController = new DatabaseController();
+    VendingMachineController vendingMachineController = new VendingMachineController();
 
     public void getVendingMachineById() {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter the product id you want to see its details:");
         int vendingMachineId = myScanner.nextInt();
 
-        printVendingMachine(databaseController.getVendingMachineById(vendingMachineId));
+        printVendingMachine(vendingMachineController.getVendingMachineById(vendingMachineId));
     }
 
     public void getVendingMachines() {
-        for (VendingMachine vendingMachine : databaseController.getVendingMachines()) {
+        for (VendingMachine vendingMachine : vendingMachineController.getVendingMachines()) {
             printVendingMachine(vendingMachine);
         }
     }

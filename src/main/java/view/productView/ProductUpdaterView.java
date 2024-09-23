@@ -1,11 +1,11 @@
 package view.productView;
 
-import controller.DatabaseController;
+import controller.ProductController;
 import java.util.Scanner;
 
 public class ProductUpdaterView {
     public void updateProduct(){
-        DatabaseController databaseController = new DatabaseController();
+        ProductController productController = new ProductController();
         Scanner myScanner = new Scanner(System.in);
 
         System.out.println("Enter the the product's you want to update:");
@@ -17,7 +17,7 @@ public class ProductUpdaterView {
         System.out.println("Please enter the new total productPrice");
         Double productPrice = myScanner.nextDouble();
 
-        databaseController.updateProduct(productId, productName, productPrice);
+        productController.updateProduct(productId, productName, productPrice);
 
     }
 }

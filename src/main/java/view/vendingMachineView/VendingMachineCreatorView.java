@@ -1,11 +1,11 @@
 package view.vendingMachineView;
 
-import controller.DatabaseController;
+import controller.VendingMachineController;
 import java.util.Scanner;
 
 public class VendingMachineCreatorView {
     public void createVendingMachine() {
-        DatabaseController databaseController = new DatabaseController();
+        VendingMachineController vendingMachineController = new VendingMachineController();
         Scanner myScanner = new Scanner(System.in);
 
         System.out.println("Enter the Vending Machine Id");
@@ -26,15 +26,14 @@ public class VendingMachineCreatorView {
         System.out.println("Enter the productStorageUnitCapacity");
         int productStorageUnitCapacity = myScanner.nextInt();
 
-        databaseController.insertVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
-
+        vendingMachineController.insertVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
 
         for (int denominationStorageUnit = 0; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++) {
             System.out.println("Enter the denomination on usage for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationId = myScanner.nextInt();
             System.out.println("Enter the denomination availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationPiece = myScanner.nextInt();
-            databaseController.insertDenominationToVendingMachine(vendingMachineId, denominationId, denominationStorageUnit, denominationPiece);
+            vendingMachineController.insertDenominationToVendingMachine(vendingMachineId, denominationId, denominationStorageUnit, denominationPiece);
         }
 
         for (int productStorageUnit = 0; productStorageUnit <= totalProductStorageUnitNumber; productStorageUnit++) {
@@ -42,7 +41,7 @@ public class VendingMachineCreatorView {
             int productId = myScanner.nextInt();
             System.out.println("Enter the product availability for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productPiece = myScanner.nextInt();
-            databaseController.insertProductToVendingMachine(vendingMachineId, productId, productStorageUnit, productPiece);
+            vendingMachineController.insertProductToVendingMachine(vendingMachineId, productId, productStorageUnit, productPiece);
         }
     }
 }

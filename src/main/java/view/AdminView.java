@@ -1,16 +1,12 @@
 package view;
 
-import view.denominationView.DenominationView;
-import view.productView.ProductView;
-import view.vendingMachineView.VendingMachineView;
+import view.denominationView.DenominationManagementView;
+import view.productView.ProductManagementView;
+import view.vendingMachineView.VendingMachineManagementView;
 import java.util.Scanner;
 
 public class AdminView {
     public void getAdminView() {
-        DenominationView denominationView = new DenominationView();
-        ProductView productView = new ProductView();
-        VendingMachineView vendingMachineView = new VendingMachineView();
-
         System.out.println("This is the Admin Page. Please select the operations:");
         System.out.println("1- Denomination Management (List Of Defined Denominations -> Add, Update, Delete, Detail Denomination)");
         System.out.println("2- Product Management (List Of Defined Products -> Add, Update, Delete, Detail Product)");
@@ -18,16 +14,23 @@ public class AdminView {
 
         Scanner myScanner = new Scanner(System.in);
         int selectedOption = myScanner.nextInt();
+        getAdminViewRouter(selectedOption);
+    }
+
+    public void getAdminViewRouter(int selectedOption) {
+        DenominationManagementView denominationView = new DenominationManagementView();
+        ProductManagementView productView = new ProductManagementView();
+        VendingMachineManagementView vendingMachineView = new VendingMachineManagementView();
 
         switch (selectedOption) {
             case 1:
-                denominationView.getDenominationView();
+                denominationView.getDenominationManagementView();
                 break;
             case 2:
-                productView.getProductView();
+                productView.getProductManagementView();
                 break;
             case 3:
-                vendingMachineView.getVendingMachineView();
+                vendingMachineView.getVendingMachineManagementView();
                 break;
             default:
                 System.out.println("Invalid Entry");
