@@ -5,16 +5,23 @@ import controller.ProductController;
 import controller.VendingMachineController;
 
 public class DatabaseBuilder {
-    public void createDatabaseTable() {
-        DenominationController denominationController = new DenominationController();
-        ProductController productController = new ProductController();
-        VendingMachineController vendingMachineController = new VendingMachineController();
+    DenominationController denominationController = new DenominationController();
+    ProductController productController = new ProductController();
+    VendingMachineController vendingMachineController = new VendingMachineController();
 
-        // Create Table in the Database
+    public void createDatabaseTable() {
         denominationController.createDenominationTable();
         productController.createProductTable();
         vendingMachineController.createVendingMachineTable();
         vendingMachineController.createDenominationOfVendingMachineTable();
         vendingMachineController.createProductOfVendingMachineTable();
+    }
+
+    public void dropDatabaseTable() {
+        vendingMachineController.dropDenominationOfVendingMachineTable();
+        vendingMachineController.dropProductOfVendingMachineTable();
+        vendingMachineController.dropVendingMachineTable();
+        denominationController.dropDenominationTable();
+        productController.dropProductTable();
     }
 }
