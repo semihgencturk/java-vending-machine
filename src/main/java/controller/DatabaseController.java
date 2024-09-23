@@ -345,6 +345,7 @@ public class DatabaseController {
             preparedStatement.setInt(2, denominationPiece);
             preparedStatement.setInt(3, vendingMachineId);
             preparedStatement.setInt(4, denominationStorageUnit);
+            preparedStatement.execute();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -386,6 +387,7 @@ public class DatabaseController {
             preparedStatement.setInt(2, productPiece);
             preparedStatement.setInt(3, vendingMachineId);
             preparedStatement.setInt(4, productStorageUnit);
+            preparedStatement.execute();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
