@@ -1,7 +1,6 @@
 package view.vendingMachineView;
 
 import controller.VendingMachineController;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 

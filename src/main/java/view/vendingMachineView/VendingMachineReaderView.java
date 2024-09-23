@@ -2,7 +2,6 @@ package view.vendingMachineView;
 
 import controller.VendingMachineController;
 import model.VendingMachine;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 

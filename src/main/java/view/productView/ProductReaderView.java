@@ -2,7 +2,6 @@ package view.productView;
 
 import controller.ProductController;
 import model.Product;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 

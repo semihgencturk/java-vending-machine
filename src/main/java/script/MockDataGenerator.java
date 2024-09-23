@@ -3,7 +3,6 @@ package script;
 import controller.DenominationController;
 import controller.ProductController;
 import controller.VendingMachineController;
-
 import java.sql.SQLException;
 
 public class MockDataGenerator {

@@ -3,7 +3,6 @@ package view;
 import view.denominationView.DenominationManagementView;
 import view.productView.ProductManagementView;
 import view.vendingMachineView.VendingMachineManagementView;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 

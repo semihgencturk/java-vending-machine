@@ -2,7 +2,6 @@ import database.DatabaseBuilder;
 import database.DatabaseConnector;
 import script.MockDataGenerator;
 import view.GreetingView;
-
 import java.sql.SQLException;
 
 public class ApplicationLauncher {

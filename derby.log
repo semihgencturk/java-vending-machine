@@ -1,11 +1,11 @@
 ----------------------------------------------------------------
-Mon Sep 23 16:18:49 TRT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0192-1f08-e309-00000f87f5d0 
-on database directory /Users/semihgencturk/Desktop/Codes/learning/learning-java/javaVendingMachineMaven/myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
+Mon Sep 23 16:26:51 TRT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0192-1f10-3fb4-00000f8fba78 
+on database directory /Users/semihgencturk/Desktop/Codes/learning/learning-java/javaVendingMachine/myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
 Loaded from file:/Users/semihgencturk/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation
 java.runtime.version=22.0.2+9-70
-user.dir=/Users/semihgencturk/Desktop/Codes/learning/learning-java/javaVendingMachineMaven
+user.dir=/Users/semihgencturk/Desktop/Codes/learning/learning-java/javaVendingMachine
 os.name=Mac OS X
 os.arch=aarch64
 os.version=14.6.1

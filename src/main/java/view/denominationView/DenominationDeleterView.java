@@ -1,7 +1,6 @@
 package view.denominationView;
 
 import controller.DenominationController;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 

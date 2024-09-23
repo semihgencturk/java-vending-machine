@@ -5,7 +5,6 @@ import controller.ProductController;
 import controller.VendingMachineController;
 import model.VendingMachine;
 import view.vendingMachineView.VendingMachineReaderView;
-
 import java.sql.SQLException;
 import java.util.Scanner;
 
