@@ -23,6 +23,7 @@ public class VendingMachineController {
                     + "totalProductStorageUnitNumber INT NOT NULL,"
                     + "productStorageUnitCapacity INT NOT NULL,"
                     + "PRIMARY KEY (vendingMachineId))");
+            statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
@@ -31,7 +32,7 @@ public class VendingMachineController {
     public void insertVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitNumber, int denominationStorageUnitCapacity, int totalProductStorageUnitNumber, int productStorageUnitCapacity) throws SQLException {
         try {
             statement = connection.createStatement();
-            statement.execute("insert into VENDING_MACHINE values (" +
+            statement.executeUpdate("insert into VENDING_MACHINE values (" +
                     vendingMachineId + ",'" + vendingMachineName + "'," + totalDenominationStorageUnitNumber + "," + denominationStorageUnitCapacity + "," + totalProductStorageUnitNumber + "," + productStorageUnitCapacity + ")");
             statement.close();
         } catch (SQLException e) {
@@ -88,10 +89,9 @@ public class VendingMachineController {
             while(resultSet.next()) {
                 vendingMachines.add(getVendingMachineById(resultSet.getInt("vendingMachineId")));
             }
+
             statement.close();
-
             return vendingMachines;
-
         } catch (SQLException e) {
             throw new SQLException(e);
         }
@@ -106,7 +106,7 @@ public class VendingMachineController {
             preparedStatement.setInt(4, totalProductStorageUnitNumber);
             preparedStatement.setInt(5, productStorageUnitCapacity);
             preparedStatement.setInt(6, vendingMachineId);
-
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -115,12 +115,9 @@ public class VendingMachineController {
 
     public void deleteVendingMachine(int vendingMachineId) throws SQLException {
         try {
-            preparedStatement = connection.prepareStatement("delete * from DENOMINATION_OF_VENDING_MACHINE WHERE vendingMachineId = ?");
-            preparedStatement.setInt(1, vendingMachineId);
-            preparedStatement = connection.prepareStatement("delete * from PRODUCT_OF_VENDING_MACHINE WHERE vendingMachineId = ?");
-            preparedStatement.setInt(1, vendingMachineId);
             preparedStatement = connection.prepareStatement("delete * from VENDING_MACHINE WHERE vendingMachineId = ?");
             preparedStatement.setInt(1, vendingMachineId);
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -137,9 +134,10 @@ public class VendingMachineController {
                     + "denominationStorageUnit INT NOT NULL,"
                     + "denominationId INT NOT NULL,"
                     + "denominationPiece INT NOT NULL,"
-                    + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId),"
-                    + "FOREIGN KEY (denominationId) REFERENCES DENOMINATION(denominationId),"
+                    + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId) ON DELETE CASCADE,"
+                    + "FOREIGN KEY (denominationId) REFERENCES DENOMINATION(denominationId) ON DELETE CASCADE,"
                     + "PRIMARY KEY (vendingMachineId, denominationStorageUnit))");
+            statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
@@ -148,7 +146,7 @@ public class VendingMachineController {
     public void insertDenominationToVendingMachine(int vendingMachineId,  int denominationStorageUnit, int denominationId, int denominationPiece) throws SQLException {
         try {
             statement = connection.createStatement();
-            statement.execute("insert into DENOMINATION_OF_VENDING_MACHINE values (" +
+            statement.executeUpdate("insert into DENOMINATION_OF_VENDING_MACHINE values (" +
                     vendingMachineId + "," + denominationStorageUnit + "," + denominationId + "," + denominationPiece +")");
             statement.close();
         } catch (SQLException e) {
@@ -163,7 +161,8 @@ public class VendingMachineController {
             preparedStatement.setInt(2, denominationPiece);
             preparedStatement.setInt(3, vendingMachineId);
             preparedStatement.setInt(4, denominationStorageUnit);
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
@@ -179,9 +178,10 @@ public class VendingMachineController {
                     + "productStorageUnit INT NOT NULL,"
                     + "productId INT NOT NULL,"
                     + "productPiece INT NOT NULL,"
-                    + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId),"
-                    + "FOREIGN KEY (productId) REFERENCES PRODUCT(productId),"
+                    + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId) ON DELETE CASCADE,"
+                    + "FOREIGN KEY (productId) REFERENCES PRODUCT(productId) ON DELETE CASCADE,"
                     + "PRIMARY KEY (vendingMachineId, productStorageUnit))");
+            statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
@@ -190,7 +190,7 @@ public class VendingMachineController {
     public void insertProductToVendingMachine(int vendingMachineId, int productStorageUnit, int productId, int productPiece) throws SQLException {
         try {
             statement = connection.createStatement();
-            statement.execute("insert into PRODUCT_OF_VENDING_MACHINE values (" +
+            statement.executeUpdate("insert into PRODUCT_OF_VENDING_MACHINE values (" +
                     vendingMachineId + "," + productStorageUnit + "," + productId + "," + productPiece + ")");
             statement.close();
         } catch (SQLException e) {
@@ -205,7 +205,8 @@ public class VendingMachineController {
             preparedStatement.setInt(2, productPiece);
             preparedStatement.setInt(3, vendingMachineId);
             preparedStatement.setInt(4, productStorageUnit);
-            preparedStatement.execute();
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
@@ -215,6 +216,7 @@ public class VendingMachineController {
         try {
             statement = connection.createStatement();
             statement.execute("DROP TABLE VENDING_MACHINE");
+            statement.close();
         }
         catch (SQLException e) {
             throw new SQLException(e);
@@ -225,6 +227,7 @@ public class VendingMachineController {
         try {
             statement = connection.createStatement();
             statement.execute("DROP TABLE DENOMINATION_OF_VENDING_MACHINE");
+            statement.close();
         }
         catch (SQLException e) {
             throw new SQLException(e);
@@ -235,6 +238,7 @@ public class VendingMachineController {
         try {
             statement = connection.createStatement();
             statement.execute("DROP TABLE PRODUCT_OF_VENDING_MACHINE");
+            statement.close();
         }
         catch (SQLException e) {
             throw new SQLException(e);

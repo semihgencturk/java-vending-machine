@@ -49,7 +49,6 @@ public class CustomerView {
             totalAddedDenominationAmount = totalAddedDenominationAmount + denominationAmount * addedDenominationPiece;
         }
 
-
         if (totalAddedDenominationAmount >= purchaseAmount) {
             vendingMachineController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, vendingMachine.getProductsOnSale().get(productStorageUnit), (vendingMachine.getProductsOnSaleAvailability().get(productStorageUnit) - 1));
             giveChangeToCustomer(totalAddedDenominationAmount-purchaseAmount, totalDenominationStorageUnitNumber, totalAddedDenominationAmount, vendingMachine);

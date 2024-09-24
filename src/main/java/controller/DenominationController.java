@@ -1,5 +1,6 @@
 package controller;
 
+import model.Denomination;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,6 +20,7 @@ public class DenominationController {
                     + "denominationCurrency VARCHAR(255) NOT NULL,"
                     + "denominationAmount DOUBLE NOT NULL,"
                     + "PRIMARY KEY (denominationId))");
+            statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
@@ -27,16 +29,16 @@ public class DenominationController {
     public void insertDenomination(int denominationId, String denominationCurrency, double denominationAmount) throws SQLException {
         try {
             statement = connection.createStatement();
-            statement.execute("insert into DENOMINATION values (" + denominationId + ",'" + denominationCurrency + "'," + denominationAmount + ")");
+            statement.executeUpdate("insert into DENOMINATION values (" + denominationId + ",'" + denominationCurrency + "'," + denominationAmount + ")");
             statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
     }
 
-    public model.Denomination getDenominationById(int denominationId) throws SQLException {
+    public Denomination getDenominationById(int denominationId) throws SQLException {
         try {
-            model.Denomination denomination = new model.Denomination();
+            Denomination denomination = new Denomination();
             preparedStatement = connection.prepareStatement("select * from DENOMINATION WHERE denominationId = ?");
             preparedStatement.setInt(1, denominationId);
             ResultSet resultSet = preparedStatement.executeQuery();
@@ -55,9 +57,9 @@ public class DenominationController {
         }
     }
 
-    public ArrayList<model.Denomination> getDenominations() throws SQLException {
+    public ArrayList<Denomination> getDenominations() throws SQLException {
         try {
-            ArrayList<model.Denomination> denominations= new ArrayList<>();
+            ArrayList<Denomination> denominations= new ArrayList<>();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select denominationId from DENOMINATION");
 
@@ -78,6 +80,7 @@ public class DenominationController {
             preparedStatement.setString(1, denominationCurrency);
             preparedStatement.setDouble(2, denominationAmount);
             preparedStatement.setInt(3, denominationId);
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -88,6 +91,7 @@ public class DenominationController {
         try {
             preparedStatement = connection.prepareStatement("delete * from DENOMINATION WHERE denominationId = ?");
             preparedStatement.setInt(1, denominationId);
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -98,6 +102,7 @@ public class DenominationController {
         try {
             statement = connection.createStatement();
             statement.execute("DROP TABLE DENOMINATION");
+            statement.close();
         }
         catch (SQLException e) {
             throw new SQLException(e);

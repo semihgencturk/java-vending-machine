@@ -9,6 +9,7 @@ public class VendingMachine {
     private int denominationStorageUnitCapacity;
     private int totalProductStorageUnitNumber;
     private int productStorageUnitCapacity;
+
     private HashMap<Integer, Integer> denominationsOnUsage = new HashMap<Integer, Integer>();
     private HashMap<Integer, Integer> denominationsOnUsageAvailability = new HashMap<Integer, Integer>();
     private HashMap<Integer, Integer> productsOnSale = new HashMap<Integer, Integer>();

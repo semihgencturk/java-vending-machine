@@ -20,6 +20,7 @@ public class ProductController {
                     + "productName VARCHAR(255) NOT NULL,"
                     + "productPrice DOUBLE NOT NULL,"
                     + "PRIMARY KEY (productId))");
+            statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
@@ -28,7 +29,7 @@ public class ProductController {
     public void insertProduct(int productId, String productName, double productPrice) throws SQLException {
         try {
             statement = connection.createStatement();
-            statement.execute("insert into PRODUCT values (" + productId + ",'" + productName + "'," + productPrice + ")");
+            statement.executeUpdate("insert into PRODUCT values (" + productId + ",'" + productName + "'," + productPrice + ")");
             statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -79,6 +80,7 @@ public class ProductController {
             preparedStatement.setString(1, productName);
             preparedStatement.setDouble(2, productPrice);
             preparedStatement.setInt(3, productId);
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -89,6 +91,7 @@ public class ProductController {
         try {
             preparedStatement = connection.prepareStatement("delete * from PRODUCT WHERE productId = ?");
             preparedStatement.setInt(1, productId);
+            preparedStatement.executeUpdate();
             preparedStatement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -99,6 +102,7 @@ public class ProductController {
         try {
             statement = connection.createStatement();
             statement.execute("DROP TABLE PRODUCT");
+            statement.close();
         }
         catch (SQLException e) {
             throw new SQLException(e);
