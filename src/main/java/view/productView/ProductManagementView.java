@@ -12,9 +12,9 @@ public class ProductManagementView {
 
         // List of operations for admin in the product view
         System.out.println("You can manage the product in there. Please select the operation:");
-        System.out.println("3- Create A New Product");
-        System.out.println("1- List Of Products");
-        System.out.println("2- Detail Of A Product");
+        System.out.println("1- Create A New Product");
+        System.out.println("2- List Of Products");
+        System.out.println("3- Detail Of A Product");
         System.out.println("4- Update A Product");
         System.out.println("5- Delete A Product");
 
@@ -28,7 +28,7 @@ public class ProductManagementView {
                 productCreatorView.createProduct();
                 break;
             case 2:
-                productReaderView.getProducts();
+                productReaderView.printProducts();
                 break;
             case 3:
                 productReaderView.printProductById();

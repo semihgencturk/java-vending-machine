@@ -16,7 +16,7 @@ public class DenominationDatabaseController {
         try {
             statement = connection.createStatement();
             statement.execute("CREATE TABLE DENOMINATION("
-                    + "denominationId INT NOT NULL,"
+                    + "denominationId INT NOT NULL GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
                     + "denominationCurrency VARCHAR(255) NOT NULL,"
                     + "denominationAmount DOUBLE NOT NULL,"
                     + "PRIMARY KEY (denominationId))");
@@ -26,10 +26,10 @@ public class DenominationDatabaseController {
         }
     }
 
-    public void insertDenomination(int denominationId, String denominationCurrency, double denominationAmount) throws SQLException {
+    public void insertDenomination(String denominationCurrency, double denominationAmount) throws SQLException {
         try {
             statement = connection.createStatement();
-            statement.executeUpdate("insert into DENOMINATION values (" + denominationId + ",'" + denominationCurrency + "'," + denominationAmount + ")");
+            statement.executeUpdate("insert into DENOMINATION (denominationCurrency, denominationAmount) values('" + denominationCurrency + "'," + denominationAmount + ")");
             statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);

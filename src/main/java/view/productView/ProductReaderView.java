@@ -11,14 +11,19 @@ public class ProductReaderView {
     // Print all attributes of a product
     public void printProductById() throws SQLException {
         Scanner myScanner = new Scanner(System.in);
+
+        // Show the products to the user
+        printProducts();
+
         System.out.println("Enter the product id you want to see its details:");
         int productId = myScanner.nextInt();
+        Product product = productController.getProductById(productId);
 
-        printProduct(productController.getProductById(productId));
+        printProduct(product);
     }
 
     // Print all products with their details
-    public void getProducts() throws SQLException {
+    public void printProducts() throws SQLException {
         for (Product product : productController.getProducts()) {
             printProduct(product);
         }

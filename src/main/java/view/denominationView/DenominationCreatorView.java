@@ -10,9 +10,6 @@ public class DenominationCreatorView {
         Scanner myScanner = new Scanner(System.in);
 
         // Get all necessary information from the user to create a new denomination
-        System.out.println("Enter the Denomination Id");
-        int denominationId = myScanner.nextInt();
-
         System.out.println("Enter the Denomination Currency");
         String denominationCurrency = myScanner.nextLine();
 
@@ -20,6 +17,8 @@ public class DenominationCreatorView {
         double denominationAmount = myScanner.nextInt();
 
         // Insert the denomination into the database
-        denominationController.insertDenomination(denominationId, denominationCurrency, denominationAmount);
+        denominationController.insertDenomination(denominationCurrency, denominationAmount);
+
+        System.out.println("Denomination is created successfully!");
     }
 }

@@ -11,10 +11,15 @@ public class DenominationReaderView {
     // Print all attributes of a denomination
     public void printDenominationById() throws SQLException {
         Scanner myScanner = new Scanner(System.in);
+
+        // Show the denominations to the user
+        printDenominations();
+
         System.out.println("Enter the vending machine id you want to see its details:");
         int denominationId = myScanner.nextInt();
+        Denomination denomination = denominationController.getDenominationById(denominationId);
 
-        printDenomination(denominationController.getDenominationById(denominationId));
+        printDenomination(denomination);
     }
 
     // Print all denominations with their details

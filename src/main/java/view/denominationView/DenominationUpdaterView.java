@@ -7,7 +7,11 @@ import java.util.Scanner;
 public class DenominationUpdaterView {
     public void updateDenomination() throws SQLException {
         DenominationDatabaseController denominationController = new DenominationDatabaseController();
+        DenominationReaderView denominationReaderView = new DenominationReaderView();
         Scanner myScanner = new Scanner(System.in);
+
+        // Show the denominations to the user
+        denominationReaderView.printDenominations();
 
         // Get all necessary information from the user to update a new denomination
         System.out.println("Enter the denomination's id you want to update:");
@@ -21,5 +25,7 @@ public class DenominationUpdaterView {
 
         // Update the denomination into the database
         denominationController.updateDenomination(denominationId, denominationCurrency, denominationAmount);
+
+        System.out.println("Denomination is updated successfully!");
     }
 }

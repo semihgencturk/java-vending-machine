@@ -16,7 +16,7 @@ public class ProductDatabaseController {
         try {
             statement = connection.createStatement();
             statement.execute("CREATE TABLE PRODUCT("
-                    + "productId INT NOT NULL,"
+                    + "productId INT NOT NULL GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
                     + "productName VARCHAR(255) NOT NULL,"
                     + "productPrice DOUBLE NOT NULL,"
                     + "PRIMARY KEY (productId))");
@@ -26,10 +26,10 @@ public class ProductDatabaseController {
         }
     }
 
-    public void insertProduct(int productId, String productName, double productPrice) throws SQLException {
+    public void insertProduct(String productName, double productPrice) throws SQLException {
         try {
             statement = connection.createStatement();
-            statement.executeUpdate("insert into PRODUCT values (" + productId + ",'" + productName + "'," + productPrice + ")");
+            statement.executeUpdate("insert into PRODUCT (productName, productPrice) values('" + productName + "'," + productPrice + ")");
             statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);

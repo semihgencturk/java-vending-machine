@@ -11,25 +11,29 @@ public class MockDataGenerator {
         ProductDatabaseController productController = new ProductDatabaseController();
         VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
 
-        denominationController.insertDenomination(1, "TRY", 0.1);
-        denominationController.insertDenomination(2, "TRY", 0.5);
-        denominationController.insertDenomination(3, "TRY", 1);
-        denominationController.insertDenomination(4, "TRY", 5);
-        denominationController.insertDenomination(5, "TRY", 10);
-        denominationController.insertDenomination(6, "TRY", 20);
-        denominationController.insertDenomination(7, "TRY", 50);
-        denominationController.insertDenomination(8, "TRY", 100);
-        denominationController.insertDenomination(9, "TRY", 200);
+        // Insert some predefined denominations to the database
+        denominationController.insertDenomination("TRY", 0.1);
+        denominationController.insertDenomination("TRY", 0.5);
+        denominationController.insertDenomination("TRY", 1);
+        denominationController.insertDenomination("TRY", 5);
+        denominationController.insertDenomination("TRY", 10);
+        denominationController.insertDenomination("TRY", 20);
+        denominationController.insertDenomination("TRY", 50);
+        denominationController.insertDenomination("TRY", 100);
+        denominationController.insertDenomination("TRY", 200);
 
-        productController.insertProduct(1, "myProduct1", 1.99);
-        productController.insertProduct(2, "myProduct2", 2.99);
-        productController.insertProduct(3, "myProduct3", 3.99);
-        productController.insertProduct(4, "myProduct4", 4.99);
-        productController.insertProduct(5, "myProduct5", 5.99);
+        // Insert some predefined products to the database
+        productController.insertProduct("myProduct1", 1.99);
+        productController.insertProduct("myProduct2", 2.99);
+        productController.insertProduct("myProduct3", 3.99);
+        productController.insertProduct("myProduct4", 4.99);
+        productController.insertProduct("myProduct5", 5.99);
 
+        // Insert some predefined vending machines to the database
         vendingMachineController.insertVendingMachine(1,"myVendingMachine1", 3, 11, 9, 99);
         vendingMachineController.insertVendingMachine(2,"myVendingMachine2", 3, 11, 9, 99);
 
+        // Insert some predefined denominations of vending machine to the database
         vendingMachineController.insertDenominationToVendingMachine(1,1,1,10);
         vendingMachineController.insertDenominationToVendingMachine(1,2,2,10);
         vendingMachineController.insertDenominationToVendingMachine(1,3,3,10);
@@ -37,6 +41,7 @@ public class MockDataGenerator {
         vendingMachineController.insertDenominationToVendingMachine(2,2,2,10);
         vendingMachineController.insertDenominationToVendingMachine(2,3,3,10);
 
+        // Insert some predefined products of vending machine to the database
         vendingMachineController.insertProductToVendingMachine(1, 1, 1, 10);
         vendingMachineController.insertProductToVendingMachine(1, 2, 2, 10);
         vendingMachineController.insertProductToVendingMachine(1, 3, 3, 10);

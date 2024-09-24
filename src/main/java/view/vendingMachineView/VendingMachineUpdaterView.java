@@ -7,7 +7,11 @@ import java.util.Scanner;
 public class VendingMachineUpdaterView {
     public void updateVendingMachine() throws SQLException {
         VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
+        VendingMachineReaderView vendingMachineReaderView = new VendingMachineReaderView();
         Scanner myScanner = new Scanner(System.in);
+
+        // Show the vending machines to the user
+        vendingMachineReaderView.printVendingMachines();
 
         // Get all necessary information from the user to update a new vending machine
         System.out.println("Please select the vending machine's you want to update:");
@@ -52,5 +56,7 @@ public class VendingMachineUpdaterView {
 
         // Update products of vending machine into the database
         vendingMachineController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, productId, productPiece);
+
+        System.out.println("Vending machine is updated successfully!");
     }
 }

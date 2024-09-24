@@ -28,7 +28,7 @@ public class VendingMachineManagementView {
                 vendingMachineCreatorView.createVendingMachine();
                 break;
             case 2:
-                vendingMachineReaderView.getVendingMachines();
+                vendingMachineReaderView.printVendingMachines();
                 break;
             case 3:
                 vendingMachineReaderView.printVendingMachineById();

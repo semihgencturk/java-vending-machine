@@ -11,6 +11,10 @@ public class VendingMachineReaderView {
     // Print all attributes of a vending machine
     public void printVendingMachineById() throws SQLException {
         Scanner myScanner = new Scanner(System.in);
+
+        // Show the vending machines to the user
+        printVendingMachines();
+
         System.out.println("Enter the product id you want to see its details:");
         int vendingMachineId = myScanner.nextInt();
 
@@ -18,7 +22,7 @@ public class VendingMachineReaderView {
     }
 
     // Print all vending machines with their details
-    public void getVendingMachines() throws SQLException {
+    public void printVendingMachines() throws SQLException {
         for (VendingMachine vendingMachine : vendingMachineController.getVendingMachines()) {
             printVendingMachine(vendingMachine);
         }
@@ -32,11 +36,15 @@ public class VendingMachineReaderView {
         System.out.println("4-denominationStorageUnitCapacity: " + vendingMachine.getDenominationStorageUnitCapacity());
         System.out.println("5-totalProductStorageUnitNumber: " + vendingMachine.getTotalProductStorageUnitNumber());
         System.out.println("6-productStorageUnitCapacity: " + vendingMachine.getProductStorageUnitCapacity());
-        System.out.println("7-denominationsOnUsage: " + vendingMachine.getDenominationsOnUsage());
-        System.out.println("8-denominationOnUsageAvailability: " + vendingMachine.getDenominationsOnUsageAvailability());
-        System.out.println("9-productsOnSale: " + vendingMachine.getProductsOnSale());
-        System.out.println("10-productsAvailability: " + vendingMachine.getProductsOnSaleAvailability());
 
+        System.out.println("7-denominationsOnUsage & denominationOnUsageAvailability:");
+        for (int denominationStorageUnit = 1; denominationStorageUnit <= vendingMachine.getTotalDenominationStorageUnitNumber(); denominationStorageUnit++) {
+            System.out.println("denominationId: " + vendingMachine.getDenominationsOnUsage().get(denominationStorageUnit) + " = " +"denominationCount: " + vendingMachine.getDenominationsOnUsageAvailability().get(denominationStorageUnit));
+        }
+
+        System.out.println("7-productsOnSale & productOnSaleAvailability:");
+        for (int productStorageUnit = 1; productStorageUnit <= vendingMachine.getTotalDenominationStorageUnitNumber(); productStorageUnit++) {
+            System.out.println("productsId: " + vendingMachine.getProductsOnSale().get(productStorageUnit) + " = " + "productCount: " + vendingMachine.getProductsOnSaleAvailability().get(productStorageUnit));
+        }
     }
-
 }
