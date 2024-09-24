@@ -10,7 +10,6 @@ public class ProductUpdaterView {
         ProductReaderView productReaderView = new ProductReaderView();
         Scanner myScanner = new Scanner(System.in);
 
-        // Show the products to the user
         productReaderView.printProducts();
 
         // Get all necessary information from the user to update a new product
@@ -23,7 +22,6 @@ public class ProductUpdaterView {
         System.out.println("Please enter the new total productPrice");
         Double productPrice = myScanner.nextDouble();
 
-        // Update the product into the database
         productController.updateProduct(productId, productName, productPrice);
 
         System.out.println("Product is updated successfully!");

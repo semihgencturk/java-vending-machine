@@ -18,7 +18,6 @@ public class VendingMachineManagementView {
         System.out.println("4- Update An Existing Vending Machine");
         System.out.println("5- Delete An Existing Vending Machine");
 
-        // Get the operation from the user
         Scanner myScanner = new Scanner(System.in);
         int selectedOption = myScanner.nextInt();
 

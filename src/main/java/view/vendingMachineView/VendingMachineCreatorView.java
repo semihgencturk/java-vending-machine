@@ -29,7 +29,6 @@ public class VendingMachineCreatorView {
         System.out.println("Enter the productStorageUnitCapacity");
         int productStorageUnitCapacity = myScanner.nextInt();
 
-        // Insert the vending machine into the database
         vendingMachineController.insertVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
         System.out.println("Vending machine is created successfully!");
 
@@ -42,7 +41,6 @@ public class VendingMachineCreatorView {
             System.out.println("Enter the denomination availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationPiece = myScanner.nextInt();
 
-            // Insert denominations of vending machine into the database
             vendingMachineController.insertDenominationToVendingMachine(vendingMachineId, denominationId, denominationStorageUnit, denominationPiece);
             System.out.println("Denominations are added to the vending machine successfully!");
         }
@@ -56,7 +54,6 @@ public class VendingMachineCreatorView {
             System.out.println("Enter the product availability for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productPiece = myScanner.nextInt();
 
-            // Insert products of vending machine into the database
             vendingMachineController.insertProductToVendingMachine(vendingMachineId, productId, productStorageUnit, productPiece);
             System.out.println("Products are added to the vending machine successfully!");
         }

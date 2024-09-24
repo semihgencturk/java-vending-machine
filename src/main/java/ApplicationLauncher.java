@@ -1,6 +1,6 @@
 import database.DatabaseBuilder;
 import database.DatabaseConnector;
-import script.MockDataGenerator;
+import script.MockDataManager;
 import view.GreetingView;
 import java.sql.SQLException;
 
@@ -8,22 +8,18 @@ public class ApplicationLauncher {
     public static void main(String[] args) throws SQLException {
         DatabaseConnector databaseConnector = new DatabaseConnector();
         DatabaseBuilder databaseBuilder = new DatabaseBuilder();
-        MockDataGenerator mockDataGenerator = new MockDataGenerator();
+        MockDataManager mockDataGenerator = new MockDataManager();
         GreetingView greetingView = new GreetingView();
 
-        // Connecting to the database
         databaseConnector.createDerbyDatabaseConnection();
 
-        // Create table in the database
         databaseBuilder.createDatabaseTable();
 
-        // Insert mock data to the database
-        mockDataGenerator.generateMockData();
+        mockDataGenerator.insertDatabaseMockData();
 
-        // Application Interface
+        // Vending Machine Application Starter View
         greetingView.getGreetingView();
 
-        // Drop Table From The Memory
         databaseBuilder.dropDatabaseTable();
     }
 }

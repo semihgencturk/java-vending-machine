@@ -10,14 +10,12 @@ public class ProductDeleterView {
         ProductReaderView productReaderView = new ProductReaderView();
         Scanner myScanner = new Scanner(System.in);
 
-        // Show the products to the user
         productReaderView.printProducts();
 
         // Get all necessary information from the user to delete a product
         System.out.println("Enter the product id you want to delete: ");
         int productId = myScanner.nextInt();
 
-        // Delete the product from the database
         productController.deleteProduct(productId);
 
         System.out.println("Product is deleted successfully!");

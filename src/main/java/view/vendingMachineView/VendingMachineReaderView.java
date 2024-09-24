@@ -8,30 +8,24 @@ import java.util.Scanner;
 public class VendingMachineReaderView {
     VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
 
-    // Print all attributes of a vending machine
     public void printVendingMachineById() throws SQLException {
         Scanner myScanner = new Scanner(System.in);
 
-        // Show the vending machines to the user
         printVendingMachines();
 
-        // Get the vending machine by id
         System.out.println("Enter the product id you want to see its details:");
         int vendingMachineId = myScanner.nextInt();
         VendingMachine vendingMachine = vendingMachineController.getVendingMachineById(vendingMachineId);
 
-        // print the vending machine
         printVendingMachine(vendingMachine);
     }
 
-    // Print all vending machines with their details
     public void printVendingMachines() throws SQLException {
         for (VendingMachine vendingMachine : vendingMachineController.getVendingMachines()) {
             printVendingMachine(vendingMachine);
         }
     }
 
-    // Create a GUI and print the attributes of the vending machine
     private void printVendingMachine(VendingMachine vendingMachine) {
         System.out.println("1-vendingMachineId: " + vendingMachine.getVendingMachineId());
         System.out.println("2-vendingMachineName: " + vendingMachine.getVendingMachineName());

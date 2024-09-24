@@ -10,14 +10,12 @@ public class DenominationDeleterView {
         DenominationReaderView denominationReaderView = new DenominationReaderView();
         Scanner myScanner = new Scanner(System.in);
 
-        // Show the denominations to the user
         denominationReaderView.printDenominations();
 
         // Get all necessary information from the user to delete a denomination
         System.out.println("Enter the denomination id you want to delete: ");
         int denominationId = myScanner.nextInt();
 
-        // Delete the denomination from the database
         denominationController.deleteDenomination(denominationId);
 
         System.out.println("Denomination is deleted successfully!");

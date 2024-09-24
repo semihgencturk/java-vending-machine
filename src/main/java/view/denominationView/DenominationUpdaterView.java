@@ -10,7 +10,6 @@ public class DenominationUpdaterView {
         DenominationReaderView denominationReaderView = new DenominationReaderView();
         Scanner myScanner = new Scanner(System.in);
 
-        // Show the denominations to the user
         denominationReaderView.printDenominations();
 
         // Get all necessary information from the user to update a new denomination
@@ -23,7 +22,6 @@ public class DenominationUpdaterView {
         System.out.println("Please enter the new total denominationAmount");
         Double denominationAmount = myScanner.nextDouble();
 
-        // Update the denomination into the database
         denominationController.updateDenomination(denominationId, denominationCurrency, denominationAmount);
 
         System.out.println("Denomination is updated successfully!");

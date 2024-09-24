@@ -10,7 +10,6 @@ public class VendingMachineUpdaterView {
         VendingMachineReaderView vendingMachineReaderView = new VendingMachineReaderView();
         Scanner myScanner = new Scanner(System.in);
 
-        // Show the vending machines to the user
         vendingMachineReaderView.printVendingMachines();
 
         // Get all necessary information from the user to update a new vending machine
@@ -32,7 +31,6 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new product Storage Unit Capacity");
         int productStorageUnitCapacity = myScanner.nextInt();
 
-        // Update the vending machine into the database
         vendingMachineController.updateVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
 
         // Get all necessary information from the user to update denominations of the vending machine
@@ -45,7 +43,6 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new denominationPiece");
         int denominationPiece = myScanner.nextInt();
 
-        // Update denominations of vending machine into the database
         vendingMachineController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationPiece);
 
         // Get all necessary information from the user to update products of the vending machine
@@ -58,7 +55,6 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new product on sale");
         int productPiece = myScanner.nextInt();
 
-        // Update products of vending machine into the database
         vendingMachineController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, productId, productPiece);
 
         System.out.println("Vending machine is updated successfully!");

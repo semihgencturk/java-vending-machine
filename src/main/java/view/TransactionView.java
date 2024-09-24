@@ -17,14 +17,13 @@ public class TransactionView {
         DenominationDatabaseController denominationController = new DenominationDatabaseController();
         VendingMachineController vendingMachineController = new VendingMachineController();
 
-        // Get the vending machine according to given id
         VendingMachine vendingMachine = vendingMachineDatabaseController.getVendingMachineById(vendingMachineId);
 
         // Get and show the product price corresponds to the given vendingMachine and productStorageUnit
         int productId = vendingMachine.getProductsOnSale().get(productStorageUnit);
         Product product = productController.getProductById(productId);
-        double purchaseAmount = product.getProductPrice();
-        System.out.println("The Amount:" + purchaseAmount);
+        double productPrice = product.getProductPrice();
+        System.out.println("The Amount:" + productPrice);
 
         // Get the valid denominations for the selected vending machine and get denominations from the user for purchasing
         System.out.println("Enter The Denominations: ");
@@ -46,17 +45,17 @@ public class TransactionView {
             totalAddedDenominationAmount = totalAddedDenominationAmount + denominationAmount * addedDenominationPiece;
         }
 
-        // Check the added denominations and purchaseAmount to give product or not
-        if (totalAddedDenominationAmount >= purchaseAmount) {
-            int productOnSaleAvailabilityBeforeTransaction = vendingMachine.getProductsOnSaleAvailability().get(productStorageUnit);
-            int productOnSaleAvailabilityAfterTransaction = productOnSaleAvailabilityBeforeTransaction - 1;
+        // Check the added denominations and productPrice to give product or not
+        if (totalAddedDenominationAmount >= productPrice) {
+            int productStockBeforeSale = vendingMachine.getProductsOnSaleAvailability().get(productStorageUnit);
+            int productStockAfterSale = productStockBeforeSale - 1;
 
             // Update the products of vending machine according to the sold product
-            vendingMachineDatabaseController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, productId , productOnSaleAvailabilityAfterTransaction);
+            vendingMachineDatabaseController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, productId , productStockAfterSale);
             System.out.println("The product is sold successfully!");
 
             // Give the change according to difference between added denominations and purchase amount
-            vendingMachineController.giveChangeToCustomer(totalAddedDenominationAmount-purchaseAmount, vendingMachine);
+            vendingMachineController.giveChangeToCustomer(totalAddedDenominationAmount-productPrice, vendingMachine);
             System.out.println("The change is given successfully!");
         } else {
             // Give the all added money without selling the product because of insufficient payment

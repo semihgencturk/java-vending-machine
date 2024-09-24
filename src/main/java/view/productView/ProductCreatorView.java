@@ -16,7 +16,6 @@ public class ProductCreatorView {
         System.out.println("Enter the productPrice");
         double productPrice = myScanner.nextDouble();
 
-        // Insert the product into the database
         productController.insertProduct(productName, productPrice);
 
         System.out.println("Product is created successfully!");

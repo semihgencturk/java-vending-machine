@@ -13,7 +13,6 @@ public class CustomerView {
 
         System.out.println("Customer View");
 
-        // List of available vending machine to user
         System.out.println("Available Vending Machines: ");
         VendingMachineReaderView vendingMachineReaderView = new VendingMachineReaderView();
         vendingMachineReaderView.printVendingMachines();
@@ -25,9 +24,7 @@ public class CustomerView {
         System.out.println("Enter the Product's Storage Unit you want to buy: ");
         int productStorageUnit = myScanner.nextInt();
 
-        // Check the availability of the product
         if(vendingMachineController.isProductAvailable(vendingMachineId, productStorageUnit)) {
-            // Route to transaction view with the necessary information to start transaction
             transactionView.getCustomerTransactionView(vendingMachineId, productStorageUnit);
         } else {
             System.out.println("The product is out-of-stock!");

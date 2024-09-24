@@ -17,7 +17,6 @@ public class GreetingView {
             System.out.println("2-Customer");
             System.out.println("3-Exit");
 
-            // Get the operation from the user
             selectedOption = myScanner.nextInt();
 
             // Route the related page according to selected operation

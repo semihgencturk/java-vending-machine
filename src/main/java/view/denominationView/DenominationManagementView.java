@@ -18,7 +18,6 @@ public class DenominationManagementView {
         System.out.println("4- Update A Denomination");
         System.out.println("5- Delete A Denomination");
 
-        // Get the operation from the user
         Scanner myScanner = new Scanner(System.in);
         int selectedOperation = myScanner.nextInt();
 

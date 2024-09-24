@@ -8,15 +8,15 @@ public class VendingMachineController {
     public boolean isProductAvailable(int vendingMachineId, int productStorageUnitNumber) throws SQLException {
         VendingMachineDatabaseController vendingMachineDatabaseController = new VendingMachineDatabaseController();
         VendingMachine vendingMachine = vendingMachineDatabaseController.getVendingMachineById(vendingMachineId);
-        int productPiece = vendingMachine.getProductsOnSaleAvailability().get(productStorageUnitNumber);
-        return productPiece > 0;
+
+        int productStock = vendingMachine.getProductsOnSaleAvailability().get(productStorageUnitNumber);
+        return productStock > 0;
     }
 
     public void giveChangeToCustomer(double changeAmount, VendingMachine vendingMachine) throws SQLException {
         VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
         DenominationDatabaseController denominationController = new DenominationDatabaseController();
 
-        // Get the total denomination storage number to give change to the user
         int totalDenominationStorageUnitNumber = vendingMachine.getTotalDenominationStorageUnitCount();
 
         for (int denominationStorageUnit = totalDenominationStorageUnitNumber; denominationStorageUnit >= 1; denominationStorageUnit--) {
@@ -26,25 +26,20 @@ public class VendingMachineController {
             Denomination denomination = denominationController.getDenominationById(denominationId);
             double denominationAmount = denomination.getDenominationAmount();
 
-            // Compare the denominations amount and change amount to give change to the user
             if (denominationAmount <= changeAmount) {
+                int denominationPieceToBeGiven = (int) (changeAmount / denominationAmount);
+                double amountToBeGiven = denominationPieceToBeGiven * denominationAmount;
 
-                // Calculate how many of the current denomination should be given as a change to user
-                int givenDenominationPiece = (int) (changeAmount / denominationAmount);
+                // Calculate the new stock count of given denominations as a change to the user
+                int denominationStockBeforeTransaction = vendingMachine.getDenominationsOnUsageAvailability().get(denominationStorageUnit);
+                int denominationStockAfterTransaction = denominationStockBeforeTransaction - denominationPieceToBeGiven;
 
-                // Calculate the given amount to the user
-                double givenAmount = givenDenominationPiece * denominationAmount;
-
-                // Decrease the given amount from
-                changeAmount = changeAmount - givenAmount;
-
-                // Calculate the new piece of number of given denominations as a change to the user
-                int denominationOnUsageAvailabilityBeforeTransaction = vendingMachine.getDenominationsOnUsageAvailability().get(denominationStorageUnit);
-                int denominationOnUsageAvailabilityAfterTransaction = denominationOnUsageAvailabilityBeforeTransaction - givenDenominationPiece;
-
-                // Update the database according the new piece of number
+                // Update the database according to the new stock count of the denomination
                 int vendingMachineId = vendingMachine.getVendingMachineId();
-                vendingMachineController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationOnUsageAvailabilityAfterTransaction);
+                vendingMachineController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationStockAfterTransaction);
+
+                // Decrease the given amount from change amount
+                changeAmount = changeAmount - amountToBeGiven;
             }
         }
     }

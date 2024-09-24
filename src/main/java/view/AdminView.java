@@ -18,7 +18,6 @@ public class AdminView {
         System.out.println("2- Product Management (List Of Defined Products -> Add, Update, Delete, Detail Product)");
         System.out.println("3- Vending Machine Management (List Of Defined Machines -> Add, Update, Delete, Detail Vending Machine)");
 
-        // Get the operation from the user
         Scanner myScanner = new Scanner(System.in);
         int selectedOption = myScanner.nextInt();
 

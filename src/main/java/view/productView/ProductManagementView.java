@@ -18,7 +18,6 @@ public class ProductManagementView {
         System.out.println("4- Update A Product");
         System.out.println("5- Delete A Product");
 
-        // Get the operation from the user
         Scanner myScanner = new Scanner(System.in);
         int selectedOption = myScanner.nextInt();
 
