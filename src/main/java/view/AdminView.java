@@ -8,21 +8,21 @@ import java.util.Scanner;
 
 public class AdminView {
     public void getAdminView() throws SQLException {
+        DenominationManagementView denominationView = new DenominationManagementView();
+        ProductManagementView productView = new ProductManagementView();
+        VendingMachineManagementView vendingMachineView = new VendingMachineManagementView();
+
+        // List of operations for admin in the admin view
         System.out.println("This is the Admin Page. Please select the operations:");
         System.out.println("1- Denomination Management (List Of Defined Denominations -> Add, Update, Delete, Detail Denomination)");
         System.out.println("2- Product Management (List Of Defined Products -> Add, Update, Delete, Detail Product)");
         System.out.println("3- Vending Machine Management (List Of Defined Machines -> Add, Update, Delete, Detail Vending Machine)");
 
+        // Get the operation from the user
         Scanner myScanner = new Scanner(System.in);
         int selectedOption = myScanner.nextInt();
-        getAdminViewRouter(selectedOption);
-    }
 
-    public void getAdminViewRouter(int selectedOption) throws SQLException {
-        DenominationManagementView denominationView = new DenominationManagementView();
-        ProductManagementView productView = new ProductManagementView();
-        VendingMachineManagementView vendingMachineView = new VendingMachineManagementView();
-
+        // Route the related page according to selected operation
         switch (selectedOption) {
             case 1:
                 denominationView.getDenominationManagementView();

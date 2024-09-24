@@ -1,14 +1,15 @@
 package view.vendingMachineView;
 
-import controller.VendingMachineController;
+import controller.VendingMachineDatabaseController;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class VendingMachineCreatorView {
     public void createVendingMachine() throws SQLException {
-        VendingMachineController vendingMachineController = new VendingMachineController();
+        VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
         Scanner myScanner = new Scanner(System.in);
 
+        // Get all necessary information from the user to create a new vending machine
         System.out.println("Enter the Vending Machine Id");
         int vendingMachineId = myScanner.nextInt();
 
@@ -27,21 +28,30 @@ public class VendingMachineCreatorView {
         System.out.println("Enter the productStorageUnitCapacity");
         int productStorageUnitCapacity = myScanner.nextInt();
 
+        // Insert the vending machine into the database
         vendingMachineController.insertVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
 
         for (int denominationStorageUnit = 0; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++) {
+
+            // Get all necessary information from the user to add denominations of the vending machine
             System.out.println("Enter the denomination on usage for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationId = myScanner.nextInt();
             System.out.println("Enter the denomination availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationPiece = myScanner.nextInt();
+
+            // Insert denominations of vending machine into the database
             vendingMachineController.insertDenominationToVendingMachine(vendingMachineId, denominationId, denominationStorageUnit, denominationPiece);
         }
 
         for (int productStorageUnit = 0; productStorageUnit <= totalProductStorageUnitNumber; productStorageUnit++) {
+
+            // Get all necessary information from the user to add products of the vending machine
             System.out.println("Enter the product on sale for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productId = myScanner.nextInt();
             System.out.println("Enter the product availability for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productPiece = myScanner.nextInt();
+
+            // Insert products of vending machine into the database
             vendingMachineController.insertProductToVendingMachine(vendingMachineId, productId, productStorageUnit, productPiece);
         }
     }

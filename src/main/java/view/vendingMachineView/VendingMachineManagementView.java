@@ -10,6 +10,7 @@ public class VendingMachineManagementView {
         VendingMachineUpdaterView vendingMachineUpdaterView = new VendingMachineUpdaterView();
         VendingMachineDeleterView vendingMachineDeleterView = new VendingMachineDeleterView();
 
+        // List of operations for admin in the vending machine view
         System.out.println("You can manage the vending machines in there. Please select the operation:");
         System.out.println("1- Create A New Vending Machine");
         System.out.println("2- List Of Defined Vending Machines");
@@ -17,9 +18,11 @@ public class VendingMachineManagementView {
         System.out.println("4- Update An Existing Vending Machine");
         System.out.println("5- Delete An Existing Vending Machine");
 
+        // Get the operation from the user
         Scanner myScanner = new Scanner(System.in);
         int selectedOption = myScanner.nextInt();
 
+        // Route the related page according to selected operation
         switch (selectedOption) {
             case 1:
                 vendingMachineCreatorView.createVendingMachine();
@@ -28,7 +31,7 @@ public class VendingMachineManagementView {
                 vendingMachineReaderView.getVendingMachines();
                 break;
             case 3:
-                vendingMachineReaderView.getVendingMachineById();
+                vendingMachineReaderView.printVendingMachineById();
                 break;
             case 4:
                 vendingMachineUpdaterView.updateVendingMachine();

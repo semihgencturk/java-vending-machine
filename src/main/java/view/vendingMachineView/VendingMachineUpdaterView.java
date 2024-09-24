@@ -1,14 +1,15 @@
 package view.vendingMachineView;
 
-import controller.VendingMachineController;
+import controller.VendingMachineDatabaseController;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class VendingMachineUpdaterView {
     public void updateVendingMachine() throws SQLException {
-        VendingMachineController vendingMachineController = new VendingMachineController();
+        VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
         Scanner myScanner = new Scanner(System.in);
 
+        // Get all necessary information from the user to update a new vending machine
         System.out.println("Please select the vending machine's you want to update:");
         int vendingMachineId = myScanner.nextInt();
 
@@ -27,8 +28,10 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new product Storage Unit Capacity");
         int productStorageUnitCapacity = myScanner.nextInt();
 
+        // Update the vending machine into the database
         vendingMachineController.updateVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
 
+        // Get all necessary information from the user to update denominations of the vending machine
         System.out.println("Please enter the denomination Storage Unit");
         int denominationStorageUnit = myScanner.nextInt();
         System.out.println("Please enter the new denomination on Usage");
@@ -36,8 +39,10 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new denominationPiece");
         int denominationPiece = myScanner.nextInt();
 
+        // Update denominations of vending machine into the database
         vendingMachineController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationPiece);
 
+        // Get all necessary information from the user to update products of the vending machine
         System.out.println("Please enter the product Storage Unit");
         int productStorageUnit = myScanner.nextInt();
         System.out.println("Please enter the new product on sale");
@@ -45,6 +50,7 @@ public class VendingMachineUpdaterView {
         System.out.println("Please enter the new product on sale");
         int productPiece = myScanner.nextInt();
 
+        // Update products of vending machine into the database
         vendingMachineController.updateProductOfVendingMachine(vendingMachineId, productStorageUnit, productId, productPiece);
     }
 }

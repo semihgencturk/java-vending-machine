@@ -8,7 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import static database.DatabaseConnector.connection;
 
-public class ProductController {
+public class ProductDatabaseController {
     private static Statement statement = null;
     private static PreparedStatement preparedStatement = null;
 

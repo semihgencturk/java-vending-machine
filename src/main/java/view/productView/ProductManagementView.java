@@ -10,6 +10,7 @@ public class ProductManagementView {
         ProductUpdaterView productUpdaterView = new ProductUpdaterView();
         ProductDeleterView productDeleterView = new ProductDeleterView();
 
+        // List of operations for admin in the product view
         System.out.println("You can manage the product in there. Please select the operation:");
         System.out.println("3- Create A New Product");
         System.out.println("1- List Of Products");
@@ -17,9 +18,11 @@ public class ProductManagementView {
         System.out.println("4- Update A Product");
         System.out.println("5- Delete A Product");
 
+        // Get the operation from the user
         Scanner myScanner = new Scanner(System.in);
         int selectedOption = myScanner.nextInt();
 
+        // Route the related page according to selected operation
         switch (selectedOption) {
             case 1:
                 productCreatorView.createProduct();
@@ -28,7 +31,7 @@ public class ProductManagementView {
                 productReaderView.getProducts();
                 break;
             case 3:
-                productReaderView.getProductById();
+                productReaderView.printProductById();
                 break;
             case 4:
                 productUpdaterView.updateProduct();

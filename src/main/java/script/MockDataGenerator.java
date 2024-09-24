@@ -1,15 +1,15 @@
 package script;
 
-import controller.DenominationController;
-import controller.ProductController;
-import controller.VendingMachineController;
+import controller.DenominationDatabaseController;
+import controller.ProductDatabaseController;
+import controller.VendingMachineDatabaseController;
 import java.sql.SQLException;
 
 public class MockDataGenerator {
     public void generateMockData() throws SQLException {
-        DenominationController denominationController = new DenominationController();
-        ProductController productController = new ProductController();
-        VendingMachineController vendingMachineController = new VendingMachineController();
+        DenominationDatabaseController denominationController = new DenominationDatabaseController();
+        ProductDatabaseController productController = new ProductDatabaseController();
+        VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
 
         denominationController.insertDenomination(1, "TRY", 0.1);
         denominationController.insertDenomination(2, "TRY", 0.5);

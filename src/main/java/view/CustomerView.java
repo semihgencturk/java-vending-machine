@@ -1,8 +1,8 @@
 package view;
 
-import controller.DenominationController;
-import controller.ProductController;
-import controller.VendingMachineController;
+import controller.DenominationDatabaseController;
+import controller.ProductDatabaseController;
+import controller.VendingMachineDatabaseController;
 import model.VendingMachine;
 import view.vendingMachineView.VendingMachineReaderView;
 import java.sql.SQLException;
@@ -26,9 +26,9 @@ public class CustomerView {
     }
 
     public void getCustomerTransactionView(int vendingMachineId, int productStorageUnit) throws SQLException {
-        VendingMachineController vendingMachineController = new VendingMachineController();
-        ProductController productController = new ProductController();
-        DenominationController denominationController = new DenominationController();
+        VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
+        ProductDatabaseController productController = new ProductDatabaseController();
+        DenominationDatabaseController denominationController = new DenominationDatabaseController();
         VendingMachineReaderView vendingMachineReaderView = new VendingMachineReaderView();
 
         VendingMachine vendingMachine = vendingMachineController.getVendingMachineById(vendingMachineId);
@@ -60,8 +60,8 @@ public class CustomerView {
     }
 
     private void giveChangeToCustomer(double changeAmount, int totalDenominationStorageUnitNumber, double totalAddedDenominationAmount, VendingMachine vendingMachine) throws SQLException {
-        VendingMachineController vendingMachineController = new VendingMachineController();
-        DenominationController denominationController = new DenominationController();
+        VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
+        DenominationDatabaseController denominationController = new DenominationDatabaseController();
 
         for (int denominationStorageUnit = totalDenominationStorageUnitNumber; denominationStorageUnit >= 1; denominationStorageUnit--) {
             double denominationAmount = denominationController.getDenominationById(vendingMachine.getDenominationsOnUsage().get(denominationStorageUnit)).getDenominationAmount();

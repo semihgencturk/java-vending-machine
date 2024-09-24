@@ -1,14 +1,15 @@
 package view.vendingMachineView;
 
-import controller.VendingMachineController;
+import controller.VendingMachineDatabaseController;
 import model.VendingMachine;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class VendingMachineReaderView {
-    VendingMachineController vendingMachineController = new VendingMachineController();
+    VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
 
-    public void getVendingMachineById() throws SQLException {
+    // Print all attributes of a vending machine
+    public void printVendingMachineById() throws SQLException {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter the product id you want to see its details:");
         int vendingMachineId = myScanner.nextInt();
@@ -16,12 +17,14 @@ public class VendingMachineReaderView {
         printVendingMachine(vendingMachineController.getVendingMachineById(vendingMachineId));
     }
 
+    // Print all vending machines with their details
     public void getVendingMachines() throws SQLException {
         for (VendingMachine vendingMachine : vendingMachineController.getVendingMachines()) {
             printVendingMachine(vendingMachine);
         }
     }
 
+    // Create a GUI and print the attributes of the vending machine
     private void printVendingMachine(VendingMachine vendingMachine) {
         System.out.println("1-vendingMachineId: " + vendingMachine.getVendingMachineId());
         System.out.println("2-vendingMachineName: " + vendingMachine.getVendingMachineName());

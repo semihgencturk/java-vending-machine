@@ -1,14 +1,15 @@
 package view.denominationView;
 
-import controller.DenominationController;
+import controller.DenominationDatabaseController;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DenominationCreatorView {
     public void createDenomination() throws SQLException {
-        DenominationController denominationController = new DenominationController();
+        DenominationDatabaseController denominationController = new DenominationDatabaseController();
         Scanner myScanner = new Scanner(System.in);
 
+        // Get all necessary information from the user to create a new denomination
         System.out.println("Enter the Denomination Id");
         int denominationId = myScanner.nextInt();
 
@@ -18,6 +19,7 @@ public class DenominationCreatorView {
         System.out.println("Enter the Denomination Amount");
         double denominationAmount = myScanner.nextInt();
 
+        // Insert the denomination into the database
         denominationController.insertDenomination(denominationId, denominationCurrency, denominationAmount);
     }
 }

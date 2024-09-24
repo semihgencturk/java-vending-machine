@@ -10,6 +10,7 @@ public class DenominationManagementView {
         DenominationUpdaterView denominationUpdaterView = new DenominationUpdaterView();
         DenominationDeleterView denominationDeleterView = new DenominationDeleterView();
 
+        // List of operations for admin in the denomination view
         System.out.println("You can manage the denomination in there. Please select the operation:");
         System.out.println("1- Create A New Denomination");
         System.out.println("2- List Of Denominations");
@@ -17,18 +18,20 @@ public class DenominationManagementView {
         System.out.println("4- Update A Denomination");
         System.out.println("5- Delete A Denomination");
 
+        // Get the operation from the user
         Scanner myScanner = new Scanner(System.in);
-        int selectedOption = myScanner.nextInt();
+        int selectedOperation = myScanner.nextInt();
 
-        switch (selectedOption) {
+        // Route the related page according to selected operation
+        switch (selectedOperation) {
             case 1:
                 denominationCreatorView.createDenomination();
                 break;
             case 2:
-                denominationReaderView.getDenominations();
+                denominationReaderView.printDenominations();
                 break;
             case 3:
-                denominationReaderView.getDenominationById();
+                denominationReaderView.printDenominationById();
                 break;
             case 4:
                 denominationUpdaterView.updateDenomination();

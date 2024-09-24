@@ -1,15 +1,16 @@
 package database;
 
-import controller.DenominationController;
-import controller.ProductController;
-import controller.VendingMachineController;
+import controller.DenominationDatabaseController;
+import controller.ProductDatabaseController;
+import controller.VendingMachineDatabaseController;
 import java.sql.SQLException;
 
 public class DatabaseBuilder {
-    DenominationController denominationController = new DenominationController();
-    ProductController productController = new ProductController();
-    VendingMachineController vendingMachineController = new VendingMachineController();
+    DenominationDatabaseController denominationController = new DenominationDatabaseController();
+    ProductDatabaseController productController = new ProductDatabaseController();
+    VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
 
+    // Create all necessary tables for entities in the project
     public void createDatabaseTable() throws SQLException {
         denominationController.createDenominationTable();
         productController.createProductTable();
@@ -18,6 +19,7 @@ public class DatabaseBuilder {
         vendingMachineController.createProductOfVendingMachineTable();
     }
 
+    // Drop all tables in the database
     public void dropDatabaseTable() throws SQLException {
         vendingMachineController.dropDenominationOfVendingMachineTable();
         vendingMachineController.dropProductOfVendingMachineTable();

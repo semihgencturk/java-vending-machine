@@ -1,14 +1,15 @@
 package view.denominationView;
 
-import controller.DenominationController;
+import controller.DenominationDatabaseController;
 import model.Denomination;
 import java.sql.SQLException;
 import java.util.Scanner;
 
 public class DenominationReaderView {
-    DenominationController denominationController = new DenominationController();
+    DenominationDatabaseController denominationController = new DenominationDatabaseController();
 
-    public void getDenominationById() throws SQLException {
+    // Print all attributes of a denomination
+    public void printDenominationById() throws SQLException {
         Scanner myScanner = new Scanner(System.in);
         System.out.println("Enter the vending machine id you want to see its details:");
         int denominationId = myScanner.nextInt();
@@ -16,12 +17,14 @@ public class DenominationReaderView {
         printDenomination(denominationController.getDenominationById(denominationId));
     }
 
-    public void getDenominations() throws SQLException {
+    // Print all denominations with their details
+    public void printDenominations() throws SQLException {
         for (Denomination denomination : denominationController.getDenominations()) {
             printDenomination(denomination);
         }
     }
 
+    // Create a GUI and print the attributes of the denomination
     private void printDenomination(Denomination denomination) {
         System.out.println("1-denominationId: " + denomination.getDenominationId());
         System.out.println("2-denominationCurrency: " + denomination.getDenominationCurrency());
