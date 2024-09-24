@@ -15,10 +15,12 @@ public class DenominationReaderView {
         // Show the denominations to the user
         printDenominations();
 
+        // Get the denomination by id
         System.out.println("Enter the vending machine id you want to see its details:");
         int denominationId = myScanner.nextInt();
         Denomination denomination = denominationController.getDenominationById(denominationId);
 
+        // print the denomination
         printDenomination(denomination);
     }
 

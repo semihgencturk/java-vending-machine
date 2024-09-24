@@ -18,9 +18,9 @@ public class VendingMachineDatabaseController {
             statement.execute("CREATE TABLE VENDING_MACHINE("
                     + "vendingMachineId INT NOT NULL,"
                     + "vendingMachineName VARCHAR(255) NOT NULL,"
-                    + "totalDenominationStorageUnitNumber INT NOT NULL,"
+                    + "totalDenominationStorageUnitCount INT NOT NULL,"
                     + "denominationStorageUnitCapacity INT NOT NULL,"
-                    + "totalProductStorageUnitNumber INT NOT NULL,"
+                    + "totalProductStorageUnitCount INT NOT NULL,"
                     + "productStorageUnitCapacity INT NOT NULL,"
                     + "PRIMARY KEY (vendingMachineId))");
             statement.close();
@@ -29,11 +29,11 @@ public class VendingMachineDatabaseController {
         }
     }
 
-    public void insertVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitNumber, int denominationStorageUnitCapacity, int totalProductStorageUnitNumber, int productStorageUnitCapacity) throws SQLException {
+    public void insertVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitCount, int denominationStorageUnitCapacity, int totalProductStorageUnitCount, int productStorageUnitCapacity) throws SQLException {
         try {
             statement = connection.createStatement();
             statement.executeUpdate("insert into VENDING_MACHINE values (" +
-                    vendingMachineId + ",'" + vendingMachineName + "'," + totalDenominationStorageUnitNumber + "," + denominationStorageUnitCapacity + "," + totalProductStorageUnitNumber + "," + productStorageUnitCapacity + ")");
+                    vendingMachineId + ",'" + vendingMachineName + "'," + totalDenominationStorageUnitCount + "," + denominationStorageUnitCapacity + "," + totalProductStorageUnitCount + "," + productStorageUnitCapacity + ")");
             statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -58,9 +58,9 @@ public class VendingMachineDatabaseController {
             while(resultSet.next()) {
                 vendingMachine.setVendingMachineId(resultSet.getInt(1));
                 vendingMachine.setVendingMachineName(resultSet.getString(2));
-                vendingMachine.setTotalDenominationStorageUnitNumber(resultSet.getInt(3));
+                vendingMachine.setTotalDenominationStorageUnitCount(resultSet.getInt(3));
                 vendingMachine.setDenominationStorageUnitCapacity(resultSet.getInt(4));
-                vendingMachine.setTotalProductStorageUnitNumber(resultSet.getInt(5));
+                vendingMachine.setTotalProductStorageUnitCount(resultSet.getInt(5));
                 vendingMachine.setProductStorageUnitCapacity(resultSet.getInt(6));
                 while(resultSet2.next()) {
                     vendingMachine.setDenominationsOnUsage(resultSet2.getInt("denominationStorageUnit"), resultSet2.getInt("denominationId"));
@@ -97,13 +97,14 @@ public class VendingMachineDatabaseController {
         }
     }
 
-    public void updateVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitNumber, int denominationStorageUnitCapacity, int totalProductStorageUnitNumber, int productStorageUnitCapacity) throws SQLException {
+    public void updateVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitCount
+            , int denominationStorageUnitCapacity, int totalProductStorageUnitCount, int productStorageUnitCapacity) throws SQLException {
         try {
-            preparedStatement = connection.prepareStatement("update PRODUCT set vendingMachineName = ?, totalDenominationStorageUnitNumber = ?, denominationStorageUnitCapacity = ?, totalProductStorageUnitNumber = ?, productStorageUnitCapacity = ? where productId = ?");
+            preparedStatement = connection.prepareStatement("update PRODUCT set vendingMachineName = ?, totalDenominationStorageUnitCount = ?, denominationStorageUnitCapacity = ?, totalProductStorageUnitCount = ?, productStorageUnitCapacity = ? where productId = ?");
             preparedStatement.setString(1, vendingMachineName);
-            preparedStatement.setInt(2, totalDenominationStorageUnitNumber);
+            preparedStatement.setInt(2, totalDenominationStorageUnitCount);
             preparedStatement.setInt(3, denominationStorageUnitCapacity);
-            preparedStatement.setInt(4, totalProductStorageUnitNumber);
+            preparedStatement.setInt(4, totalProductStorageUnitCount);
             preparedStatement.setInt(5, productStorageUnitCapacity);
             preparedStatement.setInt(6, vendingMachineId);
             preparedStatement.executeUpdate();

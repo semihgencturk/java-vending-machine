@@ -33,11 +33,12 @@ public class VendingMachineCreatorView {
         vendingMachineController.insertVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
         System.out.println("Vending machine is created successfully!");
 
-        for (int denominationStorageUnit = 0; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++) {
+        for (int denominationStorageUnit = 1; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++) {
 
             // Get all necessary information from the user to add denominations of the vending machine
             System.out.println("Enter the denomination on usage for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationId = myScanner.nextInt();
+
             System.out.println("Enter the denomination availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationPiece = myScanner.nextInt();
 
@@ -46,11 +47,12 @@ public class VendingMachineCreatorView {
             System.out.println("Denominations are added to the vending machine successfully!");
         }
 
-        for (int productStorageUnit = 0; productStorageUnit <= totalProductStorageUnitNumber; productStorageUnit++) {
+        for (int productStorageUnit = 1; productStorageUnit <= totalProductStorageUnitNumber; productStorageUnit++) {
 
             // Get all necessary information from the user to add products of the vending machine
             System.out.println("Enter the product on sale for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productId = myScanner.nextInt();
+
             System.out.println("Enter the product availability for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productPiece = myScanner.nextInt();
 

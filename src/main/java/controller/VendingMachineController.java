@@ -5,12 +5,19 @@ import model.VendingMachine;
 import java.sql.SQLException;
 
 public class VendingMachineController {
+    public boolean isProductAvailable(int vendingMachineId, int productStorageUnitNumber) throws SQLException {
+        VendingMachineDatabaseController vendingMachineDatabaseController = new VendingMachineDatabaseController();
+        VendingMachine vendingMachine = vendingMachineDatabaseController.getVendingMachineById(vendingMachineId);
+        int productPiece = vendingMachine.getProductsOnSaleAvailability().get(productStorageUnitNumber);
+        return productPiece > 0;
+    }
+
     public void giveChangeToCustomer(double changeAmount, VendingMachine vendingMachine) throws SQLException {
         VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
         DenominationDatabaseController denominationController = new DenominationDatabaseController();
 
         // Get the total denomination storage number to give change to the user
-        int totalDenominationStorageUnitNumber = vendingMachine.getTotalDenominationStorageUnitNumber();
+        int totalDenominationStorageUnitNumber = vendingMachine.getTotalDenominationStorageUnitCount();
 
         for (int denominationStorageUnit = totalDenominationStorageUnitNumber; denominationStorageUnit >= 1; denominationStorageUnit--) {
 
@@ -21,10 +28,13 @@ public class VendingMachineController {
 
             // Compare the denominations amount and change amount to give change to the user
             if (denominationAmount <= changeAmount) {
+
                 // Calculate how many of the current denomination should be given as a change to user
                 int givenDenominationPiece = (int) (changeAmount / denominationAmount);
+
                 // Calculate the given amount to the user
                 double givenAmount = givenDenominationPiece * denominationAmount;
+
                 // Decrease the given amount from
                 changeAmount = changeAmount - givenAmount;
 

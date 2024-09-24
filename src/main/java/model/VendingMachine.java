@@ -5,9 +5,9 @@ import java.util.HashMap;
 public class VendingMachine {
     private int vendingMachineId;
     private String vendingMachineName;
-    private int totalDenominationStorageUnitNumber;
+    private int totalDenominationStorageUnitCount;
     private int denominationStorageUnitCapacity;
-    private int totalProductStorageUnitNumber;
+    private int totalProductStorageUnitCount;
     private int productStorageUnitCapacity;
 
     private HashMap<Integer, Integer> denominationsOnUsage = new HashMap<Integer, Integer>();
@@ -29,11 +29,11 @@ public class VendingMachine {
         this.vendingMachineName = vendingMachineName;
     }
 
-    public int getTotalDenominationStorageUnitNumber() {
-        return totalDenominationStorageUnitNumber;
+    public int getTotalDenominationStorageUnitCount() {
+        return totalDenominationStorageUnitCount;
     }
-    public void setTotalDenominationStorageUnitNumber(int totalDenominationStorageUnitNumber) {
-        this.totalDenominationStorageUnitNumber = totalDenominationStorageUnitNumber;
+    public void setTotalDenominationStorageUnitCount(int totalDenominationStorageUnitCount) {
+        this.totalDenominationStorageUnitCount = totalDenominationStorageUnitCount;
     }
 
     public int getDenominationStorageUnitCapacity() {
@@ -43,11 +43,11 @@ public class VendingMachine {
         this.denominationStorageUnitCapacity = denominationStorageUnitCapacity;
     }
 
-    public int getTotalProductStorageUnitNumber() {
-        return totalProductStorageUnitNumber;
+    public int getTotalProductStorageUnitCount() {
+        return totalProductStorageUnitCount;
     }
-    public void setTotalProductStorageUnitNumber(int totalProductStorageUnitNumber) {
-        this.totalProductStorageUnitNumber = totalProductStorageUnitNumber;
+    public void setTotalProductStorageUnitCount(int totalProductStorageUnitCount) {
+        this.totalProductStorageUnitCount = totalProductStorageUnitCount;
     }
 
     public int getProductStorageUnitCapacity() {

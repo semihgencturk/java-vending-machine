@@ -38,8 +38,10 @@ public class VendingMachineUpdaterView {
         // Get all necessary information from the user to update denominations of the vending machine
         System.out.println("Please enter the denomination Storage Unit");
         int denominationStorageUnit = myScanner.nextInt();
+
         System.out.println("Please enter the new denomination on Usage");
         int denominationId = myScanner.nextInt();
+
         System.out.println("Please enter the new denominationPiece");
         int denominationPiece = myScanner.nextInt();
 
@@ -49,8 +51,10 @@ public class VendingMachineUpdaterView {
         // Get all necessary information from the user to update products of the vending machine
         System.out.println("Please enter the product Storage Unit");
         int productStorageUnit = myScanner.nextInt();
+
         System.out.println("Please enter the new product on sale");
         int productId = myScanner.nextInt();
+
         System.out.println("Please enter the new product on sale");
         int productPiece = myScanner.nextInt();
 

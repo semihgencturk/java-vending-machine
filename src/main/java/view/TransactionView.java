@@ -17,8 +17,10 @@ public class TransactionView {
         DenominationDatabaseController denominationController = new DenominationDatabaseController();
         VendingMachineController vendingMachineController = new VendingMachineController();
 
-        // Get and show the product price corresponds to the given vendingMachine and productStorageUnit
+        // Get the vending machine according to given id
         VendingMachine vendingMachine = vendingMachineDatabaseController.getVendingMachineById(vendingMachineId);
+
+        // Get and show the product price corresponds to the given vendingMachine and productStorageUnit
         int productId = vendingMachine.getProductsOnSale().get(productStorageUnit);
         Product product = productController.getProductById(productId);
         double purchaseAmount = product.getProductPrice();
@@ -26,7 +28,7 @@ public class TransactionView {
 
         // Get the valid denominations for the selected vending machine and get denominations from the user for purchasing
         System.out.println("Enter The Denominations: ");
-        int totalDenominationStorageUnitNumber = vendingMachine.getTotalDenominationStorageUnitNumber();
+        int totalDenominationStorageUnitNumber = vendingMachine.getTotalDenominationStorageUnitCount();
         double totalAddedDenominationAmount = 0;
         for (int denominationStorageUnit = 1; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++) {
             double denominationAmount = denominationController.getDenominationById(vendingMachine.getDenominationsOnUsage().get(denominationStorageUnit)).getDenominationAmount();
@@ -34,7 +36,7 @@ public class TransactionView {
             System.out.println("Enter the denomination" + denominationAmount);
             int addedDenominationPiece = myScanner.nextInt();
 
-            //Add the denominations of vending machine according to the added denominations by user
+            // Add the denominations of vending machine according to the added denominations by user
             int denominationId = vendingMachine.getDenominationsOnUsage().get(denominationStorageUnit);
             int denominationCountOfVendingMachineBeforeTransaction = vendingMachine.getDenominationsOnUsageAvailability().get(denominationStorageUnit);
             int denominationCountOfVendingMachineAfterTransaction = denominationCountOfVendingMachineBeforeTransaction + addedDenominationPiece;

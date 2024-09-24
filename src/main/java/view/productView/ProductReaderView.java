@@ -15,10 +15,12 @@ public class ProductReaderView {
         // Show the products to the user
         printProducts();
 
+        // Get the product by id
         System.out.println("Enter the product id you want to see its details:");
         int productId = myScanner.nextInt();
         Product product = productController.getProductById(productId);
 
+        // print the product
         printProduct(product);
     }
 
