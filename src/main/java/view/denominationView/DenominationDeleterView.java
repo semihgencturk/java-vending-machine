@@ -13,7 +13,7 @@ public class DenominationDeleterView {
         denominationReaderView.printDenominations();
 
         // Get all necessary information from the user to delete a denomination
-        System.out.println("Enter the denomination id you want to delete: ");
+        System.out.println("Enter the denomination id you want to delete: (Expected integer - Example entry: 4)");
         int denominationId = myScanner.nextInt();
 
         denominationController.deleteDenomination(denominationId);

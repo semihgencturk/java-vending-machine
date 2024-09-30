@@ -11,7 +11,7 @@ import static database.DatabaseConnector.connection;
 public class DatabaseBuilder {
     DenominationDatabaseController denominationController = new DenominationDatabaseController();
     ProductDatabaseController productController = new ProductDatabaseController();
-    VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
+    VendingMachineDatabaseController vendingMachineDatabaseController = new VendingMachineDatabaseController();
 
     // Drop all tables in the database
     public void dropDatabaseTable() throws SQLException{
@@ -21,13 +21,13 @@ public class DatabaseBuilder {
             while (resultSet.next()) {
                 switch(resultSet.getString(3)) {
                     case "DENOMINATION":
-                        vendingMachineController.dropDenominationOfVendingMachineTable();
+                        vendingMachineDatabaseController.dropDenominationOfVendingMachineTable();
                         break;
                     case "PRODUCT":
-                        vendingMachineController.dropProductOfVendingMachineTable();
+                        vendingMachineDatabaseController.dropProductOfVendingMachineTable();
                         break;
                     case "VENDING_MACHINE":
-                        vendingMachineController.dropVendingMachineTable();
+                        vendingMachineDatabaseController.dropVendingMachineTable();
                         break;
                     case "DENOMINATION_OF_VENDING_MACHINE":
                         denominationController.dropDenominationTable();
@@ -48,12 +48,13 @@ public class DatabaseBuilder {
     // Create all necessary tables for entities in the project
     public void createDatabaseTable() throws SQLException {
 
+        // Drop database before creating if the table exist in the database from previous session
         dropDatabaseTable();
 
         denominationController.createDenominationTable();
         productController.createProductTable();
-        vendingMachineController.createVendingMachineTable();
-        vendingMachineController.createDenominationOfVendingMachineTable();
-        vendingMachineController.createProductOfVendingMachineTable();
+        vendingMachineDatabaseController.createVendingMachineTable();
+        vendingMachineDatabaseController.createDenominationOfVendingMachineTable();
+        vendingMachineDatabaseController.createProductOfVendingMachineTable();
     }
 }

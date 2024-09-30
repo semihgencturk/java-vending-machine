@@ -13,14 +13,14 @@ public class DenominationUpdaterView {
         denominationReaderView.printDenominations();
 
         // Get all necessary information from the user to update a new denomination
-        System.out.println("Enter the denomination's id you want to update:");
+        System.out.println("Enter the denomination's id you want to update: (Expected integer - Example entry: 3)");
         int denominationId = myScanner.nextInt();
 
-        System.out.println("Please enter the new denominationCurrency");
+        System.out.println("Please enter the new denominationCurrency: (Expected String - Example entry: TRY)");
         String denominationCurrency = myScanner.nextLine();
 
-        System.out.println("Please enter the new total denominationAmount");
-        Double denominationAmount = myScanner.nextDouble();
+        System.out.println("Please enter the new total denominationAmount: (Expected double - Example entry: 1.99)");
+        double denominationAmount = myScanner.nextDouble();
 
         denominationController.updateDenomination(denominationId, denominationCurrency, denominationAmount);
 

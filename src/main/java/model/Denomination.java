@@ -6,11 +6,6 @@ public class Denomination {
     private double denominationAmount;
 
     public Denomination() {}
-    public Denomination(int denominationId, String denominationCurrency, double denominationAmount) {
-        this.denominationId = denominationId;
-        this.denominationCurrency = denominationCurrency;
-        this.denominationAmount = denominationAmount;
-    }
 
     public int getDenominationId() {
         return denominationId;

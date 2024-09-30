@@ -14,7 +14,7 @@ public class VendingMachineController {
     }
 
     public void giveChangeToCustomer(double changeAmount, VendingMachine vendingMachine) throws SQLException {
-        VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
+        VendingMachineDatabaseController vendingMachineDatabaseController = new VendingMachineDatabaseController();
         DenominationDatabaseController denominationController = new DenominationDatabaseController();
 
         int totalDenominationStorageUnitNumber = vendingMachine.getTotalDenominationStorageUnitCount();
@@ -36,7 +36,7 @@ public class VendingMachineController {
 
                 // Update the database according to the new stock count of the denomination
                 int vendingMachineId = vendingMachine.getVendingMachineId();
-                vendingMachineController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationStockAfterTransaction);
+                vendingMachineDatabaseController.updateDenominationOfVendingMachine(vendingMachineId, denominationStorageUnit, denominationId, denominationStockAfterTransaction);
 
                 // Decrease the given amount from change amount
                 changeAmount = changeAmount - amountToBeGiven;

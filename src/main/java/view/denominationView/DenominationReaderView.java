@@ -13,7 +13,7 @@ public class DenominationReaderView {
 
         printDenominations();
 
-        System.out.println("Enter the vending machine id you want to see its details:");
+        System.out.println("Enter the vending machine id you want to see its details: (Expected integer - Example entry: 1)");
         int denominationId = myScanner.nextInt();
         Denomination denomination = denominationController.getDenominationById(denominationId);
 

@@ -62,7 +62,6 @@ public class DenominationDatabaseController {
             ArrayList<Denomination> denominations= new ArrayList<>();
             statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery("select denominationId from DENOMINATION");
-
             while(resultSet.next()) {
                 denominations.add(getDenominationById(resultSet.getInt("denominationId")));
             }

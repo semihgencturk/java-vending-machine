@@ -12,7 +12,7 @@ public class GreetingView {
 
         do {
             // List of operations for admin in the admin view
-            System.out.println("How can I help you?");
+            System.out.println("How can I help you? (Expected integer - Example entry: 1)");
             System.out.println("1-Admin");
             System.out.println("2-Customer");
             System.out.println("3-Exit");

@@ -11,7 +11,7 @@ public class VendingMachineManagementView {
         VendingMachineDeleterView vendingMachineDeleterView = new VendingMachineDeleterView();
 
         // List of operations for admin in the vending machine view
-        System.out.println("You can manage the vending machines in there. Please select the operation:");
+        System.out.println("You can manage the vending machines in there. Please select the operation: (Expected integer - Example entry: 3)");
         System.out.println("1- Create A New Vending Machine");
         System.out.println("2- List Of Defined Vending Machines");
         System.out.println("3- See Details of An Existing Vending Machine");

@@ -6,11 +6,6 @@ public class Product {
     private double productPrice;
 
     public Product() {}
-    public Product(int productCode, String productName, double productPrice) {
-        this.productId = productCode;
-        this.productName = productName;
-        this.productPrice = productPrice;
-    }
 
     public int getProductId() {
         return productId;
@@ -28,11 +23,11 @@ public class Product {
         this.productName = productName;
     }
 
-    public Double getProductPrice() {
+    public double getProductPrice() {
         return productPrice;
     }
 
-    public void setProductPrice(Double productPrice) {
+    public void setProductPrice(double productPrice) {
         this.productPrice = productPrice;
     }
 }

@@ -13,7 +13,7 @@ public class ProductReaderView {
 
         printProducts();
 
-        System.out.println("Enter the product id you want to see its details:");
+        System.out.println("Enter the product id you want to see its details: (Expected integer - Example entry: 2)");
         int productId = myScanner.nextInt();
         Product product = productController.getProductById(productId);
 

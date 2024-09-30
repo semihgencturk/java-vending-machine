@@ -13,7 +13,6 @@ public class ApplicationLauncher {
 
         databaseConnector.createDerbyDatabaseConnection();
 
-
         databaseBuilder.createDatabaseTable();
 
         mockDataGenerator.insertDatabaseMockData();

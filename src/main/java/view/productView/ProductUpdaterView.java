@@ -13,14 +13,14 @@ public class ProductUpdaterView {
         productReaderView.printProducts();
 
         // Get all necessary information from the user to update a new product
-        System.out.println("Enter the the product's you want to update:");
+        System.out.println("Enter the the product's you want to update: (Expected integer - Example entry: 3)");
         int productId = myScanner.nextInt();
 
-        System.out.println("Please enter the new productName");
+        System.out.println("Please enter the new productName: (Expected String - Example entry: Zuber)");
         String productName = myScanner.nextLine();
 
-        System.out.println("Please enter the new total productPrice");
-        Double productPrice = myScanner.nextDouble();
+        System.out.println("Please enter the new total productPrice: (Expected double - Example entry: 1.99)");
+        double productPrice = myScanner.nextDouble();
 
         productController.updateProduct(productId, productName, productPrice);
 

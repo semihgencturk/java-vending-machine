@@ -13,7 +13,7 @@ public class VendingMachineReaderView {
 
         printVendingMachines();
 
-        System.out.println("Enter the product id you want to see its details:");
+        System.out.println("Enter the product id you want to see its details: (Expected integer - Example entry: 3)");
         int vendingMachineId = myScanner.nextInt();
         VendingMachine vendingMachine = vendingMachineDatabaseController.getVendingMachineById(vendingMachineId);
 

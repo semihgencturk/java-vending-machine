@@ -10,10 +10,10 @@ public class DenominationCreatorView {
         Scanner myScanner = new Scanner(System.in);
 
         // Get all necessary information from the user to create a new denomination
-        System.out.println("Enter the Denomination Currency");
+        System.out.println("Enter the Denomination Currency: (Expected integer - Example entry: USD)");
         String denominationCurrency = myScanner.nextLine();
 
-        System.out.println("Enter the Denomination Amount");
+        System.out.println("Enter the Denomination Amount: (Expected double - Example entry: 0.1)");
         double denominationAmount = myScanner.nextInt();
 
         denominationController.insertDenomination(denominationCurrency, denominationAmount);

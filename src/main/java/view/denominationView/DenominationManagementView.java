@@ -11,7 +11,7 @@ public class DenominationManagementView {
         DenominationDeleterView denominationDeleterView = new DenominationDeleterView();
 
         // List of operations for admin in the denomination view
-        System.out.println("You can manage the denomination in there. Please select the operation:");
+        System.out.println("You can manage the denomination in there. Please select the operation: (Expected integer - Example entry: 5)");
         System.out.println("1- Create A New Denomination");
         System.out.println("2- List Of Denominations");
         System.out.println("3- Detail Of A Denomination");

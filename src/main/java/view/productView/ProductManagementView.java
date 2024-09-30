@@ -11,7 +11,7 @@ public class ProductManagementView {
         ProductDeleterView productDeleterView = new ProductDeleterView();
 
         // List of operations for admin in the product view
-        System.out.println("You can manage the product in there. Please select the operation:");
+        System.out.println("You can manage the product in there. Please select the operation: (Expected integer - Example entry: 4)");
         System.out.println("1- Create A New Product");
         System.out.println("2- List Of Products");
         System.out.println("3- Detail Of A Product");

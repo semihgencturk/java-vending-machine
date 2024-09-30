@@ -13,7 +13,7 @@ public class AdminView {
         VendingMachineManagementView vendingMachineView = new VendingMachineManagementView();
 
         // List of operations for admin in the admin view
-        System.out.println("This is the Admin Page. Please select the operations:");
+        System.out.println("This is the Admin Page. Please select the operations: (Expected integer - Example entry: 2)");
         System.out.println("1- Denomination Management (List Of Defined Denominations -> Add, Update, Delete, Detail Denomination)");
         System.out.println("2- Product Management (List Of Defined Products -> Add, Update, Delete, Detail Product)");
         System.out.println("3- Vending Machine Management (List Of Defined Machines -> Add, Update, Delete, Detail Vending Machine)");

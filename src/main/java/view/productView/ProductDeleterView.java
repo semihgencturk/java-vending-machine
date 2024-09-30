@@ -13,7 +13,7 @@ public class ProductDeleterView {
         productReaderView.printProducts();
 
         // Get all necessary information from the user to delete a product
-        System.out.println("Enter the product id you want to delete: ");
+        System.out.println("Enter the product id you want to delete: (Expected integer - Example entry: 4)");
         int productId = myScanner.nextInt();
 
         productController.deleteProduct(productId);
