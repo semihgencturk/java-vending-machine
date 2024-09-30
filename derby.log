@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Mon Sep 30 13:35:54 TRT 2024:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0192-4280-3ef2-00000f8fba78 
+Mon Sep 30 13:59:59 TRT 2024:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-0192-4296-4e0b-00000f875d90 
 on database directory /Users/semihgencturk/Desktop/Codes/learning/learning-java/javaVendingMachine/myDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@76ed5528 
 Loaded from file:/Users/semihgencturk/.m2/repository/org/apache/derby/derby/10.11.1.1/derby-10.11.1.1.jar
 java.vendor=Oracle Corporation

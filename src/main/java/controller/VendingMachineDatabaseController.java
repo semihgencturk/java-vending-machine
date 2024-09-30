@@ -20,7 +20,7 @@ public class VendingMachineDatabaseController {
         try {
             statement = connection.createStatement();
             statement.execute("CREATE TABLE VENDING_MACHINE("
-                    + "vendingMachineId INT NOT NULL,"
+                    + "vendingMachineId INT NOT NULL GENERATED ALWAYS AS IDENTITY(Start with 1, Increment by 1),"
                     + "vendingMachineName VARCHAR(255) NOT NULL,"
                     + "totalDenominationStorageUnitCount INT NOT NULL,"
                     + "denominationStorageUnitCapacity INT NOT NULL,"
@@ -33,11 +33,10 @@ public class VendingMachineDatabaseController {
         }
     }
 
-    public void insertVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitCount, int denominationStorageUnitCapacity, int totalProductStorageUnitCount, int productStorageUnitCapacity) throws SQLException {
+    public void insertVendingMachine(String vendingMachineName, int totalDenominationStorageUnitCount, int denominationStorageUnitCapacity, int totalProductStorageUnitCount, int productStorageUnitCapacity) throws SQLException {
         try {
             statement = connection.createStatement();
-            statement.executeUpdate("insert into VENDING_MACHINE values (" +
-                    vendingMachineId + ",'" + vendingMachineName + "'," + totalDenominationStorageUnitCount + "," + denominationStorageUnitCapacity + "," + totalProductStorageUnitCount + "," + productStorageUnitCapacity + ")");
+            statement.executeUpdate("insert into VENDING_MACHINE (vendingMachineName, totalDenominationStorageUnitCount, denominationStorageUnitCapacity, totalProductStorageUnitCount, productStorageUnitCapacity) values('" + vendingMachineName + "'," + totalDenominationStorageUnitCount + "," + denominationStorageUnitCapacity + "," + totalProductStorageUnitCount + "," + productStorageUnitCapacity + ")");
             statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
@@ -67,8 +66,6 @@ public class VendingMachineDatabaseController {
                 vendingMachine.setDenominationStorageUnitCapacity(resultSet.getInt(4));
                 vendingMachine.setTotalProductStorageUnitCount(resultSet.getInt(5));
                 vendingMachine.setProductStorageUnitCapacity(resultSet.getInt(6));
-
-                System.out.println("3.result set created. VendingMachineId'si == " + vendingMachine.getVendingMachineId() + "Olmasi gereken 1 ve 2");
 
                 while(resultSet2.next()) {
                     Denomination denomination = new Denomination();
@@ -124,7 +121,7 @@ public class VendingMachineDatabaseController {
     public void updateVendingMachine(int vendingMachineId, String vendingMachineName, int totalDenominationStorageUnitCount
             , int denominationStorageUnitCapacity, int totalProductStorageUnitCount, int productStorageUnitCapacity) throws SQLException {
         try {
-            preparedStatement = connection.prepareStatement("update PRODUCT set vendingMachineName = ?, totalDenominationStorageUnitCount = ?, denominationStorageUnitCapacity = ?, totalProductStorageUnitCount = ?, productStorageUnitCapacity = ? where productId = ?");
+            preparedStatement = connection.prepareStatement("update VENDING_MACHINE set vendingMachineName = ?, totalDenominationStorageUnitCount = ?, denominationStorageUnitCapacity = ?, totalProductStorageUnitCount = ?, productStorageUnitCapacity = ? where productId = ?");
             preparedStatement.setString(1, vendingMachineName);
             preparedStatement.setInt(2, totalDenominationStorageUnitCount);
             preparedStatement.setInt(3, denominationStorageUnitCapacity);

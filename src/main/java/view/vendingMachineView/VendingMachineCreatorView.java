@@ -1,18 +1,18 @@
 package view.vendingMachineView;
 
 import controller.VendingMachineDatabaseController;
+import model.vendingMachine.VendingMachine;
+
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class VendingMachineCreatorView {
     public void createVendingMachine() throws SQLException {
-        VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
+        VendingMachineDatabaseController vendingMachineDatabaseController = new VendingMachineDatabaseController();
         Scanner myScanner = new Scanner(System.in);
 
         // Get all necessary information from the user to create a new vending machine
-        System.out.println("Enter the Vending Machine Id");
-        int vendingMachineId = myScanner.nextInt();
-
         System.out.println("Enter the Vending Machine Name");
         myScanner.nextLine();
         String vendingMachineName = myScanner.nextLine();
@@ -29,7 +29,8 @@ public class VendingMachineCreatorView {
         System.out.println("Enter the productStorageUnitCapacity");
         int productStorageUnitCapacity = myScanner.nextInt();
 
-        vendingMachineController.insertVendingMachine(vendingMachineId, vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
+        vendingMachineDatabaseController.insertVendingMachine(vendingMachineName, totalDenominationStorageUnitNumber, denominationStorageUnitCapacity, totalProductStorageUnitNumber, productStorageUnitCapacity);
+        int lastVendingMachineId = vendingMachineDatabaseController.getVendingMachines().getLast().getVendingMachineId();
         System.out.println("Vending machine is created successfully!");
 
         for (int denominationStorageUnit = 1; denominationStorageUnit <= totalDenominationStorageUnitNumber; denominationStorageUnit++) {
@@ -41,7 +42,7 @@ public class VendingMachineCreatorView {
             System.out.println("Enter the denomination availability for unit" + denominationStorageUnit + "of" + totalDenominationStorageUnitNumber);
             int denominationPiece = myScanner.nextInt();
 
-            vendingMachineController.insertDenominationToVendingMachine(vendingMachineId, denominationId, denominationStorageUnit, denominationPiece);
+            vendingMachineDatabaseController.insertDenominationToVendingMachine(lastVendingMachineId, denominationId, denominationStorageUnit, denominationPiece);
             System.out.println("Denominations are added to the vending machine successfully!");
         }
 
@@ -54,7 +55,7 @@ public class VendingMachineCreatorView {
             System.out.println("Enter the product availability for unit" + productStorageUnit + "of" + totalProductStorageUnitNumber);
             int productPiece = myScanner.nextInt();
 
-            vendingMachineController.insertProductToVendingMachine(vendingMachineId, productId, productStorageUnit, productPiece);
+            vendingMachineDatabaseController.insertProductToVendingMachine(lastVendingMachineId, productId, productStorageUnit, productPiece);
             System.out.println("Products are added to the vending machine successfully!");
         }
     }

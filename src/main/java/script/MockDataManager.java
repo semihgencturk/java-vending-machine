@@ -30,8 +30,8 @@ public class MockDataManager {
         productController.insertProduct("myProduct5", 5.99);
 
         // Insert some mock vending machines to the database
-        vendingMachineDatabaseController.insertVendingMachine(1,"myVendingMachine1", 3, 11, 3, 99);
-        vendingMachineDatabaseController.insertVendingMachine(2,"myVendingMachine2", 3, 11, 3, 99);
+        vendingMachineDatabaseController.insertVendingMachine("myVendingMachine1", 3, 11, 3, 99);
+        vendingMachineDatabaseController.insertVendingMachine("myVendingMachine2", 3, 11, 3, 99);
 
         // Insert some mock denominations of vending machine to the database
         vendingMachineDatabaseController.insertDenominationToVendingMachine(1,1,1,10);
