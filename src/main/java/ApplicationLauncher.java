@@ -13,13 +13,12 @@ public class ApplicationLauncher {
 
         databaseConnector.createDerbyDatabaseConnection();
 
+
         databaseBuilder.createDatabaseTable();
 
         mockDataGenerator.insertDatabaseMockData();
 
         // Vending Machine Application Starter View
         greetingView.getGreetingView();
-
-        databaseBuilder.dropDatabaseTable();
     }
 }
