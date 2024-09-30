@@ -1,7 +1,7 @@
 package controller;
 
+import model.vendingMachine.VendingMachine;
 import model.Denomination;
-import model.VendingMachine;
 import java.sql.SQLException;
 
 public class VendingMachineController {
@@ -9,7 +9,7 @@ public class VendingMachineController {
         VendingMachineDatabaseController vendingMachineDatabaseController = new VendingMachineDatabaseController();
         VendingMachine vendingMachine = vendingMachineDatabaseController.getVendingMachineById(vendingMachineId);
 
-        int productStock = vendingMachine.getProductsOnSaleAvailability().get(productStorageUnitNumber);
+        int productStock = vendingMachine.getProductOnSale().get(productStorageUnitNumber).getProductCountOnStock();
         return productStock > 0;
     }
 
@@ -22,7 +22,7 @@ public class VendingMachineController {
         for (int denominationStorageUnit = totalDenominationStorageUnitNumber; denominationStorageUnit >= 1; denominationStorageUnit--) {
 
             // Get denomination amounts in the machines to give change to the user
-            int denominationId = vendingMachine.getDenominationsOnUsage().get(denominationStorageUnit);
+            int denominationId = vendingMachine.getDenominationOnUsage().get(denominationStorageUnit).getDenomination().getDenominationId();
             Denomination denomination = denominationController.getDenominationById(denominationId);
             double denominationAmount = denomination.getDenominationAmount();
 
@@ -31,7 +31,7 @@ public class VendingMachineController {
                 double amountToBeGiven = denominationPieceToBeGiven * denominationAmount;
 
                 // Calculate the new stock count of given denominations as a change to the user
-                int denominationStockBeforeTransaction = vendingMachine.getDenominationsOnUsageAvailability().get(denominationStorageUnit);
+                int denominationStockBeforeTransaction = vendingMachine.getDenominationOnUsage().get(denominationStorageUnit).getDenominationCountOnUsage();
                 int denominationStockAfterTransaction = denominationStockBeforeTransaction - denominationPieceToBeGiven;
 
                 // Update the database according to the new stock count of the denomination

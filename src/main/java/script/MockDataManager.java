@@ -9,7 +9,7 @@ public class MockDataManager {
     public void insertDatabaseMockData() throws SQLException {
         DenominationDatabaseController denominationController = new DenominationDatabaseController();
         ProductDatabaseController productController = new ProductDatabaseController();
-        VendingMachineDatabaseController vendingMachineController = new VendingMachineDatabaseController();
+        VendingMachineDatabaseController vendingMachineDatabaseController = new VendingMachineDatabaseController();
 
         // Insert some mock denominations to the database
         denominationController.insertDenomination("TRY", 0.1);
@@ -30,24 +30,24 @@ public class MockDataManager {
         productController.insertProduct("myProduct5", 5.99);
 
         // Insert some mock vending machines to the database
-        vendingMachineController.insertVendingMachine(1,"myVendingMachine1", 3, 11, 9, 99);
-        vendingMachineController.insertVendingMachine(2,"myVendingMachine2", 3, 11, 9, 99);
+        vendingMachineDatabaseController.insertVendingMachine(1,"myVendingMachine1", 3, 11, 3, 99);
+        vendingMachineDatabaseController.insertVendingMachine(2,"myVendingMachine2", 3, 11, 3, 99);
 
         // Insert some mock denominations of vending machine to the database
-        vendingMachineController.insertDenominationToVendingMachine(1,1,1,10);
-        vendingMachineController.insertDenominationToVendingMachine(1,2,2,10);
-        vendingMachineController.insertDenominationToVendingMachine(1,3,3,10);
-        vendingMachineController.insertDenominationToVendingMachine(2,1,1,10);
-        vendingMachineController.insertDenominationToVendingMachine(2,2,2,10);
-        vendingMachineController.insertDenominationToVendingMachine(2,3,3,10);
+        vendingMachineDatabaseController.insertDenominationToVendingMachine(1,1,1,10);
+        vendingMachineDatabaseController.insertDenominationToVendingMachine(1,2,2,10);
+        vendingMachineDatabaseController.insertDenominationToVendingMachine(1,3,3,10);
+        vendingMachineDatabaseController.insertDenominationToVendingMachine(2,1,1,10);
+        vendingMachineDatabaseController.insertDenominationToVendingMachine(2,2,2,10);
+        vendingMachineDatabaseController.insertDenominationToVendingMachine(2,3,3,10);
 
         // Insert some mock products of vending machine to the database
-        vendingMachineController.insertProductToVendingMachine(1, 1, 1, 10);
-        vendingMachineController.insertProductToVendingMachine(1, 2, 2, 10);
-        vendingMachineController.insertProductToVendingMachine(1, 3, 3, 10);
-        vendingMachineController.insertProductToVendingMachine(2, 1, 1, 10);
-        vendingMachineController.insertProductToVendingMachine(2, 2, 2, 10);
-        vendingMachineController.insertProductToVendingMachine(2, 3, 3, 10);
+        vendingMachineDatabaseController.insertProductToVendingMachine(1, 1, 1, 10);
+        vendingMachineDatabaseController.insertProductToVendingMachine(1, 2, 2, 10);
+        vendingMachineDatabaseController.insertProductToVendingMachine(1, 3, 3, 10);
+        vendingMachineDatabaseController.insertProductToVendingMachine(2, 1, 1, 10);
+        vendingMachineDatabaseController.insertProductToVendingMachine(2, 2, 2, 10);
+        vendingMachineDatabaseController.insertProductToVendingMachine(2, 3, 3, 10);
     }
 
 }

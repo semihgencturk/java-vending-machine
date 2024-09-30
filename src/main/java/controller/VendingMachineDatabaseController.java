@@ -1,6 +1,10 @@
 package controller;
 
-import model.VendingMachine;
+import model.Denomination;
+import model.Product;
+import model.vendingMachine.DenominationAvailability;
+import model.vendingMachine.ProductAvailability;
+import model.vendingMachine.VendingMachine;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -43,15 +47,16 @@ public class VendingMachineDatabaseController {
     public VendingMachine getVendingMachineById(int vendingMachineId) throws SQLException {
         try {
             VendingMachine vendingMachine = new VendingMachine();
+
             preparedStatement = connection.prepareStatement("select * FROM VENDING_MACHINE where vendingMachineId = ?");
             preparedStatement.setInt(1, vendingMachineId);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            preparedStatement = connection.prepareStatement("select denominationStorageUnit, denominationId, denominationPiece FROM DENOMINATION_OF_VENDING_MACHINE where vendingMachineId = ?");
+            preparedStatement = connection.prepareStatement("select dovm.denominationStorageUnit, dovm.denominationId, dovm.denominationCountOnStorage, d.denominationCurrency, d.denominationAmount FROM DENOMINATION_OF_VENDING_MACHINE dovm INNER JOIN DENOMINATION d ON dovm.denominationId = d.denominationId where dovm.vendingMachineId = ?");
             preparedStatement.setInt(1, vendingMachineId);
             ResultSet resultSet2 = preparedStatement.executeQuery();
 
-            preparedStatement = connection.prepareStatement("select productStorageUnit, productId, productPiece FROM PRODUCT_OF_VENDING_MACHINE where vendingMachineId = ?");
+            preparedStatement = connection.prepareStatement("select povm.productStorageUnit, povm.productId, povm.productCountOnStorage, p.productName, p.productPrice FROM PRODUCT_OF_VENDING_MACHINE povm INNER JOIN PRODUCT p ON povm.productId = p.productId where povm.vendingMachineId = ?");
             preparedStatement.setInt(1, vendingMachineId);
             ResultSet resultSet3 = preparedStatement.executeQuery();
 
@@ -62,13 +67,32 @@ public class VendingMachineDatabaseController {
                 vendingMachine.setDenominationStorageUnitCapacity(resultSet.getInt(4));
                 vendingMachine.setTotalProductStorageUnitCount(resultSet.getInt(5));
                 vendingMachine.setProductStorageUnitCapacity(resultSet.getInt(6));
+
+                System.out.println("3.result set created. VendingMachineId'si == " + vendingMachine.getVendingMachineId() + "Olmasi gereken 1 ve 2");
+
                 while(resultSet2.next()) {
-                    vendingMachine.setDenominationsOnUsage(resultSet2.getInt("denominationStorageUnit"), resultSet2.getInt("denominationId"));
-                    vendingMachine.setDenominationsOnUsageAvailability(resultSet2.getInt("denominationStorageUnit"), resultSet2.getInt("denominationPiece"));
+                    Denomination denomination = new Denomination();
+                    denomination.setDenominationId(resultSet2.getInt("denominationId"));
+                    denomination.setDenominationCurrency(resultSet2.getString("denominationCurrency"));
+                    denomination.setDenominationAmount(resultSet2.getDouble("denominationAmount"));
+
+                    DenominationAvailability denominationAvailability = new DenominationAvailability();
+                    denominationAvailability.setDenomination(denomination);
+                    denominationAvailability.setDenominationCountOnUsage(resultSet2.getInt("denominationCountOnStorage"));
+
+                    vendingMachine.setDenominationOnUsage(resultSet2.getInt("denominationStorageUnit"), denominationAvailability);
                 }
-                while(resultSet3.next()) {
-                    vendingMachine.setProductsOnSale(resultSet3.getInt("productStorageUnit"), resultSet3.getInt("productId"));
-                    vendingMachine.setProductsOnSaleAvailability(resultSet3.getInt("productStorageUnit"), resultSet3.getInt("productPiece"));
+                while (resultSet3.next()) {
+                    Product product = new Product();
+                    product.setProductId(resultSet3.getInt("productId"));
+                    product.setProductName(resultSet3.getString("productName"));
+                    product.setProductPrice(resultSet3.getDouble("productPrice"));
+
+                    ProductAvailability productAvailability = new ProductAvailability();
+                    productAvailability.setProduct(product);
+                    productAvailability.setProductCountOnStock(resultSet3.getInt("productCountOnStorage"));
+
+                    vendingMachine.setProductOnSale(resultSet3.getInt("productStorageUnit"), productAvailability);
                 }
             }
             preparedStatement.close();
@@ -134,7 +158,7 @@ public class VendingMachineDatabaseController {
                     + "vendingMachineId INT NOT NULL,"
                     + "denominationStorageUnit INT NOT NULL,"
                     + "denominationId INT NOT NULL,"
-                    + "denominationPiece INT NOT NULL,"
+                    + "denominationCountOnStorage INT NOT NULL,"
                     + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId) ON DELETE CASCADE,"
                     + "FOREIGN KEY (denominationId) REFERENCES DENOMINATION(denominationId) ON DELETE CASCADE,"
                     + "PRIMARY KEY (vendingMachineId, denominationStorageUnit))");
@@ -144,22 +168,22 @@ public class VendingMachineDatabaseController {
         }
     }
 
-    public void insertDenominationToVendingMachine(int vendingMachineId,  int denominationStorageUnit, int denominationId, int denominationPiece) throws SQLException {
+    public void insertDenominationToVendingMachine(int vendingMachineId,  int denominationStorageUnit, int denominationId, int denominationCountOnStorage) throws SQLException {
         try {
             statement = connection.createStatement();
             statement.executeUpdate("insert into DENOMINATION_OF_VENDING_MACHINE values (" +
-                    vendingMachineId + "," + denominationStorageUnit + "," + denominationId + "," + denominationPiece +")");
+                    vendingMachineId + "," + denominationStorageUnit + "," + denominationId + "," + denominationCountOnStorage +")");
             statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
     }
 
-    public void updateDenominationOfVendingMachine(int vendingMachineId, int denominationStorageUnit, int denominationId, int denominationPiece) throws SQLException {
+    public void updateDenominationOfVendingMachine(int vendingMachineId, int denominationStorageUnit, int denominationId, int denominationCountOnStorage) throws SQLException {
         try {
-            preparedStatement = connection.prepareStatement("update DENOMINATION_OF_VENDING_MACHINE set denominationId = ?, denominationPiece = ? where vendingMachineId = ? and denominationStorageUnit = ?");
+            preparedStatement = connection.prepareStatement("update DENOMINATION_OF_VENDING_MACHINE set denominationId = ?, denominationCountOnStorage = ? where vendingMachineId = ? and denominationStorageUnit = ?");
             preparedStatement.setInt(1, denominationId);
-            preparedStatement.setInt(2, denominationPiece);
+            preparedStatement.setInt(2, denominationCountOnStorage);
             preparedStatement.setInt(3, vendingMachineId);
             preparedStatement.setInt(4, denominationStorageUnit);
             preparedStatement.executeUpdate();
@@ -178,7 +202,7 @@ public class VendingMachineDatabaseController {
                     + "vendingMachineId INT NOT NULL,"
                     + "productStorageUnit INT NOT NULL,"
                     + "productId INT NOT NULL,"
-                    + "productPiece INT NOT NULL,"
+                    + "productCountOnStorage INT NOT NULL,"
                     + "FOREIGN KEY (vendingMachineId) REFERENCES VENDING_MACHINE(vendingMachineId) ON DELETE CASCADE,"
                     + "FOREIGN KEY (productId) REFERENCES PRODUCT(productId) ON DELETE CASCADE,"
                     + "PRIMARY KEY (vendingMachineId, productStorageUnit))");
@@ -188,22 +212,22 @@ public class VendingMachineDatabaseController {
         }
     }
 
-    public void insertProductToVendingMachine(int vendingMachineId, int productStorageUnit, int productId, int productPiece) throws SQLException {
+    public void insertProductToVendingMachine(int vendingMachineId, int productStorageUnit, int productId, int productCountOnStorage) throws SQLException {
         try {
             statement = connection.createStatement();
             statement.executeUpdate("insert into PRODUCT_OF_VENDING_MACHINE values (" +
-                    vendingMachineId + "," + productStorageUnit + "," + productId + "," + productPiece + ")");
+                    vendingMachineId + "," + productStorageUnit + "," + productId + "," + productCountOnStorage + ")");
             statement.close();
         } catch (SQLException e) {
             throw new SQLException(e);
         }
     }
 
-    public void updateProductOfVendingMachine(int vendingMachineId, int productStorageUnit , int productId, int productPiece) throws SQLException {
+    public void updateProductOfVendingMachine(int vendingMachineId, int productStorageUnit , int productId, int productCountOnStorage) throws SQLException {
         try {
-            preparedStatement = connection.prepareStatement("update PRODUCT_OF_VENDING_MACHINE set productId = ?, productPiece = ? where vendingMachineId = ? and productStorageUnit = ?");
+            preparedStatement = connection.prepareStatement("update PRODUCT_OF_VENDING_MACHINE set productId = ?, productCountOnStorage = ? where vendingMachineId = ? and productStorageUnit = ?");
             preparedStatement.setInt(1, productId);
-            preparedStatement.setInt(2, productPiece);
+            preparedStatement.setInt(2, productCountOnStorage);
             preparedStatement.setInt(3, vendingMachineId);
             preparedStatement.setInt(4, productStorageUnit);
             preparedStatement.executeUpdate();
